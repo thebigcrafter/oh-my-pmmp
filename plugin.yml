@@ -1,0 +1,11 @@
+name: oh-my-pmmp
+author: MintoD
+version: 1.0.0
+description: A plugin manager for OhMyPMMP
+api: 4.0.0
+main: MintoD\OhMyPMMP\OhMyPMMP
+
+permissions:
+  omp.command:
+    description: "Allows the user to execute the OhMyPMMP command"
+    default: op
