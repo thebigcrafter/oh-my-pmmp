@@ -1,0 +1,8 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/MintoD/oh-my-pmmp
+build-by-default: true
+branches:
+- main
+projects:
+  oh-my-pmmp:
+    path: ""
+...
