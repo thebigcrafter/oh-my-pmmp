@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace MintoD\OhMyPMMP\commands;
+namespace thebigcrafter\OhMyPMMP\commands;
 
-use MintoD\OhMyPMMP\tasks\Installer;
+use thebigcrafter\OhMyPMMP\tasks\Installer;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 

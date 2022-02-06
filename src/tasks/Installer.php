@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace MintoD\OhMyPMMP\tasks;
+namespace thebigcrafter\OhMyPMMP\tasks;
 
-use MintoD\OhMyPMMP\OhMyPMMP;
+use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use pocketmine\utils\Internet;
 
 class Installer {

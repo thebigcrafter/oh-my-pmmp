@@ -1,0 +1,23 @@
+{
+    "name": "thebigcrafter/oh-my-pmmp",
+    "description": "A plugin manager for PocketMine-MP downloads plugin from PocketMine-MP official plugin repository",
+    "type": "project",
+    "require-dev": {
+        "pocketmine/pocketmine-mp": "^4.0",
+        "phpstan/phpstan": "^1.4",
+        "friendsofphp/php-cs-fixer": "^3.5"
+    },
+    "license": "GPL-3.0-only",
+    "autoload": {
+        "psr-4": {
+            "thebigcrafter\\OhMyPMMP\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "MintoD",
+            "email": "tobythedev7@outlook.com"
+        }
+    ],
+    "require": {}
+}
