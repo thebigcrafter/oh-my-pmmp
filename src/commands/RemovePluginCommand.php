@@ -7,8 +7,10 @@ namespace thebigcrafter\OhMyPMMP\commands;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
+use pocketmine\plugin\Plugin;
+use pocketmine\plugin\PluginOwned;
 
-class RemovePluginCommand extends Command {
+class RemovePluginCommand extends Command implements PluginOwned {
     private string $name = 'remove';
     private string $des = 'Remove a plugin';
 
@@ -39,5 +41,10 @@ class RemovePluginCommand extends Command {
                 $sender->sendMessage("§cPlugin $plugin not found");
             }
         }
+    }
+
+    public function getOwningPlugin(): Plugin
+    {
+        return OhMyPMMP::getInstance();
     }
 }

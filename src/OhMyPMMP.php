@@ -21,9 +21,9 @@ class OhMyPMMP extends PluginBase {
 
         $this->getServer()->getAsyncPool()->submitTask(new CachePoggitPlugins());
 
-        $this->getServer()->getCommandMap()->register("installPlugin", new InstallPluginCommand());
-        $this->getServer()->getCommandMap()->register("removePlugin", new RemovePluginCommand());
-        $this->getServer()->getCommandMap()->register("upgradePlugin", new UpgradePluginCommand());
+        $this->getServer()->getCommandMap()->register("oh-my-pmmp", new InstallPluginCommand());
+        $this->getServer()->getCommandMap()->register("oh-my-pmmp", new RemovePluginCommand());
+        $this->getServer()->getCommandMap()->register("oh-my-pmmp", new UpgradePluginCommand());
     }
 
     public function setPluginsList(array $pluginsList): void {
@@ -32,5 +32,9 @@ class OhMyPMMP extends PluginBase {
 
     public function getPluginsList(): array {
         return $this->pluginsList;
+    }
+
+    public static function getInstance(): OhMyPMMP {
+        return self::$instance;
     }
 }

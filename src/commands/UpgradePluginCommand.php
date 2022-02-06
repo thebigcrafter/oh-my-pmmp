@@ -7,8 +7,11 @@ namespace thebigcrafter\OhMyPMMP\commands;
 use thebigcrafter\OhMyPMMP\tasks\Installer;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
+use pocketmine\plugin\Plugin;
+use pocketmine\plugin\PluginOwned;
+use thebigcrafter\OhMyPMMP\OhMyPMMP;
 
-class UpgradePluginCommand extends Command {
+class UpgradePluginCommand extends Command implements PluginOwned {
 
     private string $name = 'upgrade';
     private string $des = 'Upgrade a plugin';
@@ -39,5 +42,10 @@ class UpgradePluginCommand extends Command {
                 $sender->sendMessage("§cPlugin $plugin §cnot found");
             }
         }
+    }
+
+    public function getOwningPlugin(): Plugin
+    {
+        return OhMyPMMP::getInstance();
     }
 }
