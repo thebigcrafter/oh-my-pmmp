@@ -30,11 +30,11 @@ Update later.
 
 # Commands
 
-| Commands |    Description   |  Permission |
-|:--------:|:----------------:|:-----------:|
-|  install | Install a plugin | install.cmd |
-|  remove  |  Remove a plugin |  remove.cmd |
-|  upgrade | Upgrade a plugin | upgrade.cmd |
+| Commands |    Description   |      Permission      |
+|:--------:|:----------------:|:--------------------:|
+|  install | Install a plugin | ohmypmmp.install.cmd |
+|  remove  |  Remove a plugin |  ohmypmmp.remove.cmd |
+|  upgrade | Upgrade a plugin | ohmypmmp.upgrade.cmd |
 # License
 
 Copyright (c) MintoD. All rights reserved.

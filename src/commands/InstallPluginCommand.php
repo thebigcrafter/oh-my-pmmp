@@ -21,7 +21,7 @@ class InstallPluginCommand extends Command {
     {
         if($commandLabel == $this->name) {
 
-            if(!$sender->hasPermission('install.cmd')) {
+            if(!$sender->hasPermission('ohmypmmp.install.cmd')) {
                 $sender->sendMessage('§cYou do not have permission to use this command');
                 return;
             }

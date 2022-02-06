@@ -20,7 +20,7 @@ class RemovePluginCommand extends Command {
     {
         if($commandLabel == $this->name) {
 
-            if(!$sender->hasPermission('remove.cmd')) {
+            if(!$sender->hasPermission('ohmypmmp.remove.cmd')) {
                 $sender->sendMessage('§cYou do not have permission to use this command');
                 return;
             }

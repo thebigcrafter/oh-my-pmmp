@@ -7,12 +7,12 @@ main: thebigcrafter\OhMyPMMP\OhMyPMMP
 src-namespace-prefix: thebigcrafter\OhMyPMMP
 
 permissions:
-  install.cmd:
+  ohmypmmp.install.cmd:
     description: Allow players to install plugin
     default: op
-  remove.cmd:
+  ohmypmmp.remove.cmd:
     description: Allow players to remove plugin
     default: op
-  upgrade.cmd:
+  ohmypmmp.upgrade.cmd:
     description: Allow players to upgrade plugin
     default: op
