@@ -3,7 +3,8 @@ author: MintoD
 version: 1.0.0
 description: A plugin manager for OhMyPMMP
 api: 4.0.0
-main: MintoD\OhMyPMMP\OhMyPMMP
+main: thebigcrafter\OhMyPMMP\OhMyPMMP
+src-namespace-prefix: thebigcrafter\OhMyPMMP
 
 permissions:
   install.cmd:
