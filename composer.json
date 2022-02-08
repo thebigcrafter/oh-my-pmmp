@@ -19,5 +19,8 @@
             "email": "tobythedev7@outlook.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "scripts": {
+        "fix-cs": "./vendor/bin/php-cs-fixer fix"
+    }
 }
