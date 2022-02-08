@@ -34,7 +34,7 @@ jobs:
         run: mkdir build
         
       - name: Run ConsoleScript.php
-        run: php -dphar.readonly=0 ../ConsoleScript.php --make src --out build/oh-my-pmmp.phar --stub plugin.yml
+        run: php -dphar.readonly=0 ../ConsoleScript.php --make src,plugin.yml --out build/oh-my-pmmp.phar
         
       - uses: actions/upload-artifact@v2
         with:
