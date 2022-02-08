@@ -1,0 +1,44 @@
+name: Generate Phar file
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    name: PHPStan analysis
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php:
+          - "8.0"
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@2.15.0
+        with:
+          php-version: ${{ matrix.php }}
+
+      - name: Install PHPStan Composer dependencies
+        run: composer install
+
+      - name: Run php-cs-fixer
+        run: composer run-script fix-cs
+        
+      - name: Download ConsoleScript.php
+        run: curl -o ../ConsoleScript.php https://raw.githubusercontent.com/pmmp/DevTools/master/src/ConsoleScript.php
+        
+      - name: Create build folder
+        run: mkdir build
+        
+      - name: Run ConsoleScript.php
+        run: php -dphar.readonly=0 ../ConsoleScript.php --make src --out build/oh-my-pmmp.phar
+        
+      - uses: actions/upload-artifact@v2
+        with:
+          name: oh-my-pmmp
+          path: build/oh-my-pmmp.phar
+        
+        
