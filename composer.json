@@ -19,9 +19,6 @@
             "email": "tobythedev7@outlook.com"
         }
     ],
-    "require": {
-        "sof3/await-generator": "^3.4"
-    },
     "scripts": {
         "fix-cs": "./vendor/bin/php-cs-fixer fix"
     }

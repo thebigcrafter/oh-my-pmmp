@@ -8,6 +8,7 @@ use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\plugin\Plugin;
 use pocketmine\plugin\PluginOwned;
+use pocketmine\utils\TextFormat;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 
 class RemovePluginCommand extends Command implements PluginOwned {
@@ -22,13 +23,13 @@ class RemovePluginCommand extends Command implements PluginOwned {
 	{
 		if($commandLabel == $this->name) {
 
-			if(!$sender->hasPermission('ohmypmmp.remove.cmd')) {
-				$sender->sendMessage('§cYou do not have permission to use this command');
+			if(!$sender->hasPermission("ohmypmmp.remove.cmd")) {
+				$sender->sendMessage(TextFormat::RED . "You do not have permission to use this command");
 				return;
 			}
 
 			if(!isset($args[0])) {
-				$sender->sendMessage("§cUsage: /remove <plugin>");
+				$sender->sendMessage(TextFormat::RED . "Usage: /remove <plugin>");
 				return;
 			}
 
@@ -36,9 +37,9 @@ class RemovePluginCommand extends Command implements PluginOwned {
 
 			if(is_file(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/$plugin.phar")) {
 				unlink(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/$plugin.phar");
-				$sender->sendMessage("§aPlugin $plugin has been removed");
+				$sender->sendMessage(TextFormat::GREEN . "Plugin $plugin " . TextFormat::GREEN . "has been removed");
 			} else {
-				$sender->sendMessage("§cPlugin $plugin not found");
+				$sender->sendMessage(TextFormat::RED . "Plugin $plugin " . TextFormat::RED . "not found");
 			}
 		}
 	}

@@ -4,55 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "50f9f3abc5d0e717df6d59cf95c72edb",
-    "packages": [
-        {
-            "name": "sof3/await-generator",
-            "version": "3.4.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SOF3/await-generator.git",
-                "reference": "9e290d34fd627584d00f0b3105b7335c67ff5494"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SOF3/await-generator/zipball/9e290d34fd627584d00f0b3105b7335c67ff5494",
-                "reference": "9e290d34fd627584d00f0b3105b7335c67ff5494",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^8.0"
-            },
-            "require-dev": {
-                "composer/package-versions-deprecated": "1.11.99.1",
-                "infection/infection": "^0.18.2 || ^0.20.2",
-                "phpstan/phpstan": "^0.12.84",
-                "phpunit/phpunit": "^9"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "SOFe\\AwaitGenerator\\": "await-generator/src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "SOFe",
-                    "email": "sofe2038@gmail.com"
-                }
-            ],
-            "description": "Use async/await in PHP using generators",
-            "support": {
-                "issues": "https://github.com/SOF3/await-generator/issues",
-                "source": "https://github.com/SOF3/await-generator/tree/3.4.1"
-            },
-            "time": "2022-03-19T09:38:28+00:00"
-        }
-    ],
+    "content-hash": "69ce97ef33da481dcb25d19b72c42c77",
+    "packages": [],
     "packages-dev": [
         {
             "name": "adhocore/json-comment",
