@@ -4,50 +4,45 @@ declare(strict_types=1);
 
 namespace thebigcrafter\OhMyPMMP\tasks;
 
-use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use pocketmine\utils\Internet;
+use thebigcrafter\OhMyPMMP\OhMyPMMP;
 
 class Installer {
-    /**
-     * @param string $name
-     * @param string $version
-     *
-     * @return bool
-     */
-    public static function install(string $name, string $version = "latest"): bool {
-        $pluginsList = [];
-        $downloadURL = "";
 
-        foreach (OhMyPMMP::getInstance()->getPluginsList() as $plugin) {
-            if($plugin["name"] == $name) {
-                $pluginsList[] = $plugin;
-            }
-        }
+	public static function install(string $name, string $version = "latest"): bool {
+		$pluginsList = [];
+		$downloadURL = "";
 
-        if($version != "latest") {
-            foreach ($pluginsList as $plugin) {
-                if($plugin["version"] == $version) {
-                    $downloadURL = $plugin["download_url"];
-                }
-            }
-        } else {
-            $version = "0.0.1";
+		foreach (OhMyPMMP::getInstance()->getPluginsList() as $plugin) {
+			if($plugin["name"] == $name) {
+				$pluginsList[] = $plugin;
+			}
+		}
 
-            foreach ($pluginsList as $plugin) {
-                if(version_compare($plugin["version"], $version, ">")) {
-                    $version = $plugin["version"];
-                    $downloadURL = $plugin["download_url"];
-                }
-            }
-        }
+		if($version != "latest") {
+			foreach ($pluginsList as $plugin) {
+				if($plugin["version"] == $version) {
+					$downloadURL = $plugin["download_url"];
+				}
+			}
+		} else {
+			$version = "0.0.1";
 
-        if(empty($downloadURL)) {
-            return false;
-        }
+			foreach ($pluginsList as $plugin) {
+				if(version_compare($plugin["version"], $version, ">")) {
+					$version = $plugin["version"];
+					$downloadURL = $plugin["download_url"];
+				}
+			}
+		}
 
-        $raw = Internet::getURL($downloadURL . "/$name.phar")->getBody();
-        file_put_contents(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/" . $name . ".phar", $raw);
+		if(empty($downloadURL)) {
+			return false;
+		}
 
-        return true;
-    }
+		$raw = Internet::getURL($downloadURL . "/$name.phar")->getBody();
+		file_put_contents(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/" . $name . ".phar", $raw);
+
+		return true;
+	}
 }
