@@ -7,6 +7,7 @@ namespace thebigcrafter\OhMyPMMP\utils;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 
 trait SingletonTrait {
+
 	public static OhMyPMMP $instance;
 
 	public static function setInstance(OhMyPMMP $instance): void

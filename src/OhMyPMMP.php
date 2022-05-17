@@ -12,6 +12,7 @@ use thebigcrafter\OhMyPMMP\tasks\CachePoggitPlugins;
 use thebigcrafter\OhMyPMMP\utils\SingletonTrait;
 
 class OhMyPMMP extends PluginBase {
+
 	use SingletonTrait;
 
 	public array $pluginsList = [];
@@ -21,9 +22,11 @@ class OhMyPMMP extends PluginBase {
 
 		$this->getServer()->getAsyncPool()->submitTask(new CachePoggitPlugins());
 
-		$this->getServer()->getCommandMap()->register("oh-my-pmmp", new InstallPluginCommand());
-		$this->getServer()->getCommandMap()->register("oh-my-pmmp", new RemovePluginCommand());
-		$this->getServer()->getCommandMap()->register("oh-my-pmmp", new UpgradePluginCommand());
+		$this->getServer()->getCommandMap()->registerAll("OhMyPMMP", [
+			new InstallPluginCommand(),
+			new RemovePluginCommand(),
+			new UpgradePluginCommand()
+		]);
 	}
 
 	public function setPluginsList(array $pluginsList): void {

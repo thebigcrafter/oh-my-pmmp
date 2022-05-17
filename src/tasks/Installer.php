@@ -22,7 +22,7 @@ class Installer {
 		if($version != "latest") {
 			foreach ($pluginsList as $plugin) {
 				if($plugin["version"] == $version) {
-					$downloadURL = $plugin["download_url"];
+					$downloadURL = $plugin["artifact_url"];
 				}
 			}
 		} else {
@@ -31,7 +31,7 @@ class Installer {
 			foreach ($pluginsList as $plugin) {
 				if(version_compare($plugin["version"], $version, ">")) {
 					$version = $plugin["version"];
-					$downloadURL = $plugin["download_url"];
+					$downloadURL = $plugin["artifact_url"];
 				}
 			}
 		}

@@ -6,27 +6,39 @@ namespace thebigcrafter\OhMyPMMP\tasks;
 
 use pocketmine\scheduler\AsyncTask;
 use pocketmine\utils\Internet;
+use pocketmine\utils\TextFormat;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
+use thebigcrafter\OhMyPMMP\Vars;
 
 class CachePoggitPlugins extends AsyncTask {
-
 	public function onRun(): void
 	{
 		$pluginsList = [];
+		$req = Internet::getURL(Vars::POGGIT_REPO_URL);
 
-		$res = Internet::getURL("https://poggit.pmmp.io/releases.json")->getBody();
+		if($req === null) {
+			$this->setResult(false);
+			return;
+		}
 
-		$json = json_decode($res, true);
+		$json = json_decode($req->getBody(), true);
 
 		foreach ($json as $plugin) {
-			$pluginsList[] = ["name" => $plugin["name"], "version" => $plugin["version"], "download_url" => $plugin["artifact_url"]];
+			$pluginsList[] = ["name" => $plugin["name"], "version" => $plugin["version"], "artifact_url" => $plugin["artifact_url"]];
 		}
 
 		$this->setResult($pluginsList);
 	}
 
-	public function onCompletion(): void
+	function onCompletion(): void
 	{
-		OhMyPMMP::getInstance()->setPluginsList($this->getResult());
+		$result = $this->getResult();
+
+		if($result === false) {
+			throw new \RuntimeException("Could not retrieve plugins list from Poggit");
+		}
+
+		OhMyPMMP::getInstance()->setPluginsList($result);
+		OhMyPMMP::getInstance()->getLogger()->info(TextFormat::GREEN . "Plugins list has been cached. You can install plugin now");
 	}
 }
