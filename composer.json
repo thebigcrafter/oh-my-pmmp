@@ -21,5 +21,8 @@
     ],
     "scripts": {
         "fix-cs": "./vendor/bin/php-cs-fixer fix"
+    },
+    "require": {
+        "react/promise": "2.9.0"
     }
 }
