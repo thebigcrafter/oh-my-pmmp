@@ -6,6 +6,7 @@ namespace thebigcrafter\OhMyPMMP\commands;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
+use pocketmine\player\Player;
 use pocketmine\plugin\Plugin;
 use pocketmine\plugin\PluginOwned;
 use pocketmine\utils\TextFormat;
@@ -25,10 +26,15 @@ class UpgradePluginCommand extends Command implements PluginOwned {
 	{
 		if($commandLabel == $this->name) {
 
-			if(!$sender->hasPermission("ohmypmmp.upgrade.cmd")) {
-				$sender->sendMessage(TextFormat::RED . "You do not have permission to use this command");
-				return;
-			}
+            if(OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning) {
+                $sender->sendMessage(TextFormat::RED . 'Cache Poggit Plugins task is running! Please wait until it is finished.');
+                return;
+            }
+
+            if($sender instanceof Player) {
+                $sender->sendMessage(TextFormat::RED . 'This command can only be used in console');
+                return;
+            }
 
 			if(!isset($args[0])) {
 				$sender->sendMessage(TextFormat::RED . "Usage: /upgrade <plugin>");

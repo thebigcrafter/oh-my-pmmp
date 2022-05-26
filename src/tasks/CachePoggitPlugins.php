@@ -6,39 +6,35 @@ namespace thebigcrafter\OhMyPMMP\tasks;
 
 use pocketmine\scheduler\AsyncTask;
 use pocketmine\utils\Internet;
+use pocketmine\utils\InternetException;
 use pocketmine\utils\TextFormat;
+use thebigcrafter\OhMyPMMP\async\AsyncTasks;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use thebigcrafter\OhMyPMMP\Vars;
 
 class CachePoggitPlugins extends AsyncTask {
 	public function onRun(): void
-	{
-		$pluginsList = [];
-		$req = Internet::getURL(Vars::POGGIT_REPO_URL);
+    {
+        AsyncTasks::getURL(Vars::POGGIT_REPO_URL)->then(function(string $raw) {
+            $pluginsList = [];
+            $json = json_decode($raw, true);
 
-		if($req === null) {
-			$this->setResult(false);
-			return;
-		}
+            foreach ($json as $plugin) {
+                $pluginsList[] = ["name" => $plugin["name"], "version" => $plugin["version"], "artifact_url" => $plugin["artifact_url"]];
+            }
 
-		$json = json_decode($req->getBody(), true);
-
-		foreach ($json as $plugin) {
-			$pluginsList[] = ["name" => $plugin["name"], "version" => $plugin["version"], "artifact_url" => $plugin["artifact_url"]];
-		}
-
-		$this->setResult($pluginsList);
+            $this->setResult($pluginsList);
+        }, function (InternetException $e) {
+            OhMyPMMP::getInstance()->getLogger()->error(TextFormat::RED . "Could not get Poggit Plugins list: " . $e->getMessage());
+        });
 	}
 
 	function onCompletion(): void
 	{
 		$result = $this->getResult();
 
-		if($result === false) {
-			throw new \RuntimeException("Could not retrieve plugins list from Poggit");
-		}
-
 		OhMyPMMP::getInstance()->setPluginsList($result);
+        OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning = false;
 		OhMyPMMP::getInstance()->getLogger()->info(TextFormat::GREEN . "Plugins list has been cached. You can install plugin now");
 	}
 }
