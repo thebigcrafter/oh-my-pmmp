@@ -30,11 +30,11 @@ Update later.
 
 # Commands
 
-| Commands |    Description   |      Permission      |
-|:--------:|:----------------:|:--------------------:|
-|  install | Install a plugin | ohmypmmp.install.cmd |
-|  remove  |  Remove a plugin |  ohmypmmp.remove.cmd |
-|  upgrade | Upgrade a plugin | ohmypmmp.upgrade.cmd |
+| Commands |    Description   |
+|:--------:|:----------------:|
+|  install | Install a plugin |
+|  remove  |  Remove a plugin |
+|  upgrade | Upgrade a plugin |
 
 # License
 
