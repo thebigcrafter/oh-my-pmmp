@@ -25,7 +25,7 @@ jobs:
         php-version: ${{ matrix.php }}
 
     - name: Install dependencies
-      run: composer install --dev
+      run: composer install --prefer-dist --no-interaction --ignore-platform-reqs
       
     - name: Run PHPStan analysis
       run: composer run-script analyse
