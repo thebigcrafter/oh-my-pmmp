@@ -2,12 +2,22 @@
     "name": "thebigcrafter/oh-my-pmmp",
     "description": "A plugin manager for PocketMine-MP downloads plugin from PocketMine-MP official plugin repository",
     "type": "project",
+    "require": {
+        "php": "^8.0",
+        "react/promise": "2.9.0"
+    },
     "require-dev": {
         "pocketmine/pocketmine-mp": "^4.0",
         "phpstan/phpstan": "^1.4",
         "friendsofphp/php-cs-fixer": "^3.5"
     },
     "license": "GPL-3.0-only",
+    "config": {
+        "platform": {
+            "php": "8.0.0"
+        },
+        "sort-packages": true
+    },
     "autoload": {
         "psr-4": {
             "thebigcrafter\\OhMyPMMP\\": "src/"
@@ -20,9 +30,7 @@
         }
     ],
     "scripts": {
-        "fix-cs": "./vendor/bin/php-cs-fixer fix"
-    },
-    "require": {
-        "react/promise": "2.9.0"
+        "fix-cs": "./vendor/bin/php-cs-fixer fix",
+        "analyse-src": "./vendor/bin/phpstan analyse -c phpstan.neon.dist"
     }
 }
