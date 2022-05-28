@@ -1,28 +1,25 @@
-<div align="center">
-  <a href="https://github.com/thebigcrafter/oh-my-pmmp">
-    <img src="assets/icon.jpg" alt="Logo" width="100" height="100">
-  </a>
+<img src="assets/icon.png" align="left" width="190px" height="190px" />
+<img align="left" width="0" height="190px" hspace="10"/>
 
-  <h2 align="center">oh-my-pmmp</h2>
+The asynchronous <a href="https://pmmp.io">PocketMine-MP</a> plugin manager
 
-  <h3 align="center">
-    A plugin manager for PocketMine-MP
-  </h3>
-</div>
+![GitHub](https://img.shields.io/github/license/thebigcrafter/oh-my-pmmp)
 
-# Getting Started
+Oh My PMMP provides commands to allow you to install plugins from [Poggit](https"//poggit.pmmp.io). It's fast and easy to use.
 
-## Prerequisites
+<br />
+
+# Prerequisites
 
 Your server **MUST RUN** the latest version of PocketMine.
 
-## Installation
+# Installation
 
-### From Poggit
+## From Poggit
 
 Update later.
 
-### From GitHub
+## From GitHub
 
 1. Download the latest version of the plugin from [here](https://github.com/thebigcrafter/oh-my-pmmp/releases).
 2. Put it in the plugins folder.
