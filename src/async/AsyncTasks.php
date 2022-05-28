@@ -12,45 +12,45 @@ use React\Promise\Deferred;
 use React\Promise\Promise;
 
 class AsyncTasks {
-    public static function getURL(string $url): Promise {
-        $deferred = new Deferred();
+	public static function getURL(string $url): Promise {
+		$deferred = new Deferred();
 
-        try {
-            $raw = Internet::simpleCurl($url, 5);
+		try {
+			$raw = Internet::simpleCurl($url, 5);
 
-            $deferred->resolve($raw->getBody());
-        } catch (InternetException $e) {
-            $deferred->reject($e);
-        }
+			$deferred->resolve($raw->getBody());
+		} catch (InternetException $e) {
+			$deferred->reject($e);
+		}
 
-        return $deferred->promise();
-    }
+		return $deferred->promise();
+	}
 
-    public static function writeFile(string $filename, string $content): Promise {
-        $deferred = new Deferred();
+	public static function writeFile(string $filename, string $content): Promise {
+		$deferred = new Deferred();
 
-        try {
-            file_put_contents($filename, $content);
+		try {
+			file_put_contents($filename, $content);
 
-            $deferred->resolve();
-        } catch (\Throwable $e) {
-            $deferred->reject($e);
-        }
+			$deferred->resolve();
+		} catch (\Throwable $e) {
+			$deferred->reject($e);
+		}
 
-        return $deferred->promise();
-    }
+		return $deferred->promise();
+	}
 
-    public static function deleteFile(string $filename): Promise {
-        $deferred = new Deferred();
+	public static function deleteFile(string $filename): Promise {
+		$deferred = new Deferred();
 
-        try {
-            unlink($filename);
+		try {
+			unlink($filename);
 
-            $deferred->resolve();
-        } catch (\Throwable $e) {
-            $deferred->reject($e);
-        }
+			$deferred->resolve();
+		} catch (\Throwable $e) {
+			$deferred->reject($e);
+		}
 
-        return $deferred->promise();
-    }
+		return $deferred->promise();
+	}
 }

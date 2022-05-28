@@ -26,15 +26,15 @@ class InstallPluginCommand extends Command implements PluginOwned {
 	{
 		if($commandLabel == $this->name) {
 
-            if(OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning) {
-                $sender->sendMessage(TextFormat::RED . 'Cache Poggit Plugins task is running! Please wait until it is finished.');
-                return;
-            }
+			if(OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning) {
+				$sender->sendMessage(TextFormat::RED . 'Cache Poggit Plugins task is running! Please wait until it is finished.');
+				return;
+			}
 
-            if($sender instanceof Player) {
-                $sender->sendMessage(TextFormat::RED . 'This command can only be used in console');
-                return;
-            }
+			if($sender instanceof Player) {
+				$sender->sendMessage(TextFormat::RED . 'This command can only be used in console');
+				return;
+			}
 
 			if(!isset($args[0])) {
 				$sender->sendMessage(TextFormat::RED . "Usage: /install <plugin> <version>");
