@@ -11,21 +11,21 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php:
+          - "8.0"
 
     steps:
     - uses: actions/checkout@v3
 
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v3
+    - name: Set up PHP
+      uses: shivammathur/setup-php@2.15.0
       with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
+        php-version: ${{ matrix.php }}
 
     - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
+      run: composer install --dev
       
     - name: Run PHPStan analysis
       run: composer run-script analyse
