@@ -5,6 +5,7 @@ branches:
 projects:
   oh-my-pmmp:
     path: ""
+    icon: assets/icon.png
     lint:
       phpstan: false
 ...
