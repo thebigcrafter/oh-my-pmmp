@@ -15,13 +15,13 @@ class OhMyPMMP extends PluginBase {
 
 	use SingletonTrait;
 
-    public bool $isCachePoggitPluginsTaskRunning = false;
+	public bool $isCachePoggitPluginsTaskRunning = false;
 	public array $pluginsList = [];
 
 	public function onEnable(): void {
-		$this->setInstance($this);
+		self::setInstance($this);
 
-        $this->isCachePoggitPluginsTaskRunning = true;
+		$this->isCachePoggitPluginsTaskRunning = true;
 		$this->getServer()->getAsyncPool()->submitTask(new CachePoggitPlugins());
 
 		$this->getServer()->getCommandMap()->registerAll("OhMyPMMP", [

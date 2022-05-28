@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace thebigcrafter\OhMyPMMP\tasks;
 
-use pocketmine\utils\Internet;
 use pocketmine\utils\InternetException;
 use thebigcrafter\OhMyPMMP\async\AsyncTasks;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
@@ -42,13 +41,13 @@ class Installer {
 			return false;
 		}
 
-        AsyncTasks::getURL($downloadURL . "/$name.phar")->then(function($raw) use ($name) {
-            AsyncTasks::writeFile(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/" . $name . ".phar", $raw)->then(function() {
-                return true;
-            });
-        }, function (InternetException $error) {
-            OhMyPMMP::getInstance()->getLogger()->error("Could not download plugin: " . $error->getMessage());
-        });
+		AsyncTasks::getURL($downloadURL . "/$name.phar")->then(function($raw) use ($name) {
+			AsyncTasks::writeFile(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/" . $name . ".phar", $raw)->then(function() {
+				return true;
+			});
+		}, function (InternetException $error) {
+			OhMyPMMP::getInstance()->getLogger()->error("Could not download plugin: " . $error->getMessage());
+		});
 
 		return true;
 	}

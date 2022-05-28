@@ -25,10 +25,10 @@ class RemovePluginCommand extends Command implements PluginOwned {
 	{
 		if($commandLabel == $this->name) {
 
-            if($sender instanceof Player) {
-                $sender->sendMessage(TextFormat::RED . 'This command can only be used in console');
-                return;
-            }
+			if($sender instanceof Player) {
+				$sender->sendMessage(TextFormat::RED . 'This command can only be used in console');
+				return;
+			}
 
 			if(!isset($args[0])) {
 				$sender->sendMessage(TextFormat::RED . "Usage: /remove <plugin>");
@@ -37,11 +37,11 @@ class RemovePluginCommand extends Command implements PluginOwned {
 
 			$plugin = $args[0];
 
-            AsyncTasks::deleteFile(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/$plugin.phar")->then(function() use ($plugin, $sender) {
-                $sender->sendMessage(TextFormat::GREEN . "Plugin $plugin " . TextFormat::GREEN . "has been removed");
-            }, function() use ($plugin, $sender) {
-                $sender->sendMessage(TextFormat::RED . "Plugin $plugin " . TextFormat::RED . "not found");
-            });
+			AsyncTasks::deleteFile(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/$plugin.phar")->then(function() use ($plugin, $sender) {
+				$sender->sendMessage(TextFormat::GREEN . "Plugin $plugin " . TextFormat::GREEN . "has been removed");
+			}, function() use ($plugin, $sender) {
+				$sender->sendMessage(TextFormat::RED . "Plugin $plugin " . TextFormat::RED . "not found");
+			});
 		}
 	}
 
