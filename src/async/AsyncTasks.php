@@ -44,7 +44,7 @@ class AsyncTasks {
 		$deferred = new Deferred();
 
 		try {
-			unlink($filename);
+            \Phar::unlinkArchive($filename);
 
 			$deferred->resolve();
 		} catch (\Throwable $e) {
