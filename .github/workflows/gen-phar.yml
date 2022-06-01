@@ -23,9 +23,6 @@ jobs:
 
       - name: Install Composer dependencies
         run: composer install --no-dev
-
-      - name: Run php-cs-fixer
-        run: composer run-script fix-cs
         
       - name: Download ConsoleScript.php
         run: curl -o ../ConsoleScript.php https://raw.githubusercontent.com/pmmp/DevTools/master/src/ConsoleScript.php
