@@ -21,8 +21,8 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
 
-      - name: Install PHPStan Composer dependencies
-        run: composer install --ignore-platform-reqs
+      - name: Install Composer dependencies
+        run: composer install --no-dev
 
       - name: Run php-cs-fixer
         run: composer run-script fix-cs
