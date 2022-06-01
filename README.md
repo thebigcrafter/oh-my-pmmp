@@ -1,5 +1,5 @@
-<img src="assets/icon.png" align="left" width="190px" height="190px" />
-<img align="left" width="0" height="190px" hspace="10"/>
+<img src="assets/icon.png" align="left" width="140px" height="140px" />
+<img align="left" width="0" height="140px" hspace="10"/>
 
 The asynchronous <a href="https://pmmp.io">PocketMine-MP</a> plugin manager
 
@@ -10,32 +10,99 @@ Oh My PMMP provides commands to allow you to install plugins from [Poggit](https
 
 <br />
 
-# Prerequisites
+<details>
 
-Your server **MUST RUN** the latest version of PocketMine.
+<summary>Table of Contents</summary>
 
-# Installation
+- [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Basic Installation](#basic-installation)
+- [Using Oh My PMMP](#using-oh-my-pmmp)
+    - [Commands](#commands)
+- [Advanced Topics](#advanced-topics)
+    - [Advanced Installation](#advanced-installation)
+      - [Build from source](#build-from-source)
+      - [Run from source](#run-from-source)
+- [License](#license)
 
-## From Poggit
+</details>
 
-Update later.
+# Getting Started
 
-## From GitHub
+## Prerequisites
+
+- [PHP binary for PocketMine-MP](https://jenkins.pmmp.io/job/PHP-8.0-Aggregate/) 8.0+
+- [PocketMine-MP](https://pmmp.io) v4.3.4 or higher.
+
+## Basic installation
 
 1. Download the latest version of the plugin from [here](https://github.com/thebigcrafter/oh-my-pmmp/releases).
 2. Put it in the plugins folder.
 3. Restart your server.
 
-# Commands
+# Using Oh My PMMP
 
-| Commands |    Description   |
-|:--------:|:----------------:|
-|  install | Install a plugin |
-|  remove  |  Remove a plugin |
-|  upgrade | Upgrade a plugin |
+## Commands
+
+|       Commands        |    Description   |
+|:---------------------:|:----------------:|
+| install [plugin name] | Install a plugin |
+| remove [plugin name]  |  Remove a plugin |
+| upgrade [plugin name] | Upgrade a plugin |
+
+# Advanced Topics
+
+## Advanced Installation
+
+### Build from source
+
+1. Clone the repository.
+```shell
+git clone https://github.com/thebigcrafter/oh-my-pmmp
+cd oh-my-pmmp
+```
+
+2. Download build script.  
+**`NOTE:` Make sure `curl` is installed**
+
+```shell
+curl -o ../ConsoleScript.php https://raw.githubusercontent.com/pmmp/DevTools/master/src/ConsoleScript.php
+```
+
+3. Install dependencies.
+```shell
+composer install --no-dev
+```
+
+4. Make build folder
+```shell
+mkdir build
+```
+
+5. Run the build script.
+```shell
+php -dphar.readonly=0 ../ConsoleScript.php --make src,plugin.yml --out build/oh-my-pmmp.phar
+```
+
+6. Enjoy the phar file in build folder.
+
+### Run from source
+
+1. Download DevTools at [here.](https://poggit.pmmp.io/p/DevTools/) and put it in the plugins folder.
+
+2. Clone the repository.
+```shell
+cd your_server/plugins/
+git clone git clone https://github.com/thebigcrafter/oh-my-pmmp
+```
+
+3. Install dependencies.
+```shell
+composer install --no-dev
+```
+
+4. Start your server and enjoy the plugin.
 
 # License
-
-Copyright (c) thebigcrafter. All rights reserved.
 
 Licensed under the [GPL-3.0](https://github.com/thebigcrafter/oh-my-pmmp/blob/main/LICENSE) license.
