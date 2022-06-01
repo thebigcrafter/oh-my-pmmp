@@ -18,8 +18,9 @@ class CachePoggitPlugins extends AsyncTask {
 			$pluginsList = [];
 			$json = json_decode($raw, true);
 
+			/* @phpstan-ignore-next-line */
 			foreach ($json as $plugin) {
-				$pluginsList[] = ["name" => $plugin["name"], "version" => $plugin["version"], "artifact_url" => $plugin["artifact_url"]];
+				$pluginsList[] = ["name" => $plugin["name"], "version" => $plugin["version"], "artifact_url" => $plugin["artifact_url"]]; /* @phpstan-ignore-line */
 			}
 
 			$this->setResult($pluginsList);
@@ -32,7 +33,7 @@ class CachePoggitPlugins extends AsyncTask {
 	{
 		$result = $this->getResult();
 
-		OhMyPMMP::getInstance()->setPluginsList($result);
+		OhMyPMMP::getInstance()->setPluginsList($result); /* @phpstan-ignore-line */
 		OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning = false;
 		OhMyPMMP::getInstance()->getLogger()->info(TextFormat::GREEN . "Plugins list has been cached. You can install plugin now");
 	}

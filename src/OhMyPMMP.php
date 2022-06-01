@@ -16,6 +16,8 @@ class OhMyPMMP extends PluginBase {
 	use SingletonTrait;
 
 	public bool $isCachePoggitPluginsTaskRunning = false;
+
+	/* @phpstan-ignore-next-line */
 	public array $pluginsList = [];
 
 	public function onEnable(): void {
@@ -31,10 +33,12 @@ class OhMyPMMP extends PluginBase {
 		]);
 	}
 
+	/* @phpstan-ignore-next-line */
 	public function setPluginsList(array $pluginsList): void {
 		$this->pluginsList = $pluginsList;
 	}
 
+	/* @phpstan-ignore-next-line */
 	public function getPluginsList(): array {
 		return $this->pluginsList;
 	}
