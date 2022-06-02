@@ -1,7 +1,7 @@
---- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/MintoD/oh-my-pmmp
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/thebigcrafter/oh-my-pmmp
 build-by-default: true
 branches:
-- main
+- poggit
 projects:
   oh-my-pmmp:
     path: ""
@@ -10,5 +10,5 @@ projects:
       - src: DavidGlitch04/promise/promise
         version: ^2.9.0
     lint:
-      phpstan: false
+      phpstan: true
 ...
