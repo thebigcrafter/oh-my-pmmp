@@ -6,6 +6,9 @@ projects:
   oh-my-pmmp:
     path: ""
     icon: assets/icon.png
+    libs:
+      - src: DavidGlitch04/promise/promise
+        version: ^2.9.0
     lint:
       phpstan: false
 ...
