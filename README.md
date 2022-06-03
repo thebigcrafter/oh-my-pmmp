@@ -44,11 +44,11 @@ Oh My PMMP provides commands to allow you to install plugins from [Poggit](https
 
 ## Commands
 
-|       Commands        |    Description   |
-|:---------------------:|:----------------:|
-| install [plugin name] | Install a plugin |
-| remove [plugin name]  |  Remove a plugin |
-| upgrade [plugin name] | Upgrade a plugin |
+| Commands                           | Description      |
+| ---------------------------------- | ---------------- |
+| /install \<plugin name> \<version> | Install a plugin |
+| /remove \<plugin name>             | Remove a plugin  |
+| /upgrade \<plugin name>            | Upgrade a plugin |
 
 # Advanced Topics
 
