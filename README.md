@@ -93,7 +93,7 @@ php -dphar.readonly=0 ../ConsoleScript.php --make src,plugin.yml --out build/oh-
 2. Clone the repository.
 ```shell
 cd your_server/plugins/
-git clone git clone https://github.com/thebigcrafter/oh-my-pmmp
+git clone https://github.com/thebigcrafter/oh-my-pmmp
 ```
 
 3. Install dependencies.
