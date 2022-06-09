@@ -23,6 +23,7 @@ Oh My PMMP provides commands to allow you to install plugins from [Poggit](https
     - [Advanced Installation](#advanced-installation)
       - [Build from source](#build-from-source)
       - [Run from source](#run-from-source)
+- [How Do I Contribute To Oh My PMMP?](#how-do-i-contribute-to-oh-my-pmmp)
 - [License](#license)
 
 </details>
@@ -102,6 +103,12 @@ composer install --no-dev
 ```
 
 4. Start your server and enjoy the plugin.
+
+# How do I contribute to Oh My PMMP?
+
+Before you participate in our community, please read the [code of conduct](https://github.com/thebigcrafter/oh-my-pmmp/blob/main/CODE_OF_CONDUCT.md).
+
+See [Contributing](https://github.com/thebigcrafter/oh-my-pmmp/blob/main/CONTRIBUTING.md) for more details.
 
 # License
 
