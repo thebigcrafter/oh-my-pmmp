@@ -18,7 +18,7 @@ class AsyncTasks
 	/**
 	 * Get a resource from the URL
 	 */
-	public static function getURL(string $url): PromiseInterface
+	public static function fetch(string $url): PromiseInterface
 	{
 		$deferred = new Deferred();
 

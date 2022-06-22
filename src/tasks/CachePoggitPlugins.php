@@ -14,7 +14,7 @@ use thebigcrafter\OhMyPMMP\Vars;
 class CachePoggitPlugins extends AsyncTask {
 	public function onRun(): void
 	{
-		AsyncTasks::getURL(Vars::POGGIT_REPO_URL)->then(function(string $raw) {
+		AsyncTasks::fetch(Vars::POGGIT_REPO_URL)->then(function(string $raw) {
 			$pluginsList = [];
 			$json = json_decode($raw, true);
 

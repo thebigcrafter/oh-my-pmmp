@@ -41,7 +41,7 @@ class Installer {
 			return false;
 		}
 
-		AsyncTasks::getURL($downloadURL . "/$name.phar")->then(function($raw) use ($name) {
+		AsyncTasks::fetch($downloadURL . "/$name.phar")->then(function($raw) use ($name) {
 			AsyncTasks::writeFile(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/" . $name . ".phar", $raw)->then(function() {
 				return true;
 			});
