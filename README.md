@@ -48,11 +48,13 @@ Oh My PMMP provides commands to allow you to install plugins from [Poggit](https
 
 ## Commands
 
-| Commands                           | Description      |
-| ---------------------------------- | ---------------- |
-| /install \<plugin name> \<version> | Install a plugin |
-| /remove \<plugin name>             | Remove a plugin  |
-| /upgrade \<plugin name>            | Upgrade a plugin |
+|          Commands         |         Description        |      Aliases     |
+|:-------------------------:|:--------------------------:|:----------------:|
+|           /help           | List available subcommands |   h, -h, --help  |
+|          /version         |     Get plugin version     | v, -v, --version |
+| /install <name> <version> |      Install a plugin      | i, -i, --install |
+|       /remove <name>      |       Remove a plugin      |  r, -r, --remove |
+|      /upgrade <name>      |      Upgrade a plugin      | u, -u, --upgrade |
 
 # Advanced Topics
 
