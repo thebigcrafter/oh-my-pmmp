@@ -6,6 +6,7 @@ namespace thebigcrafter\OhMyPMMP;
 
 use pocketmine\plugin\PluginBase;
 use thebigcrafter\OhMyPMMP\commands\InstallPluginCommand;
+use thebigcrafter\OhMyPMMP\commands\OMPCommand;
 use thebigcrafter\OhMyPMMP\commands\RemovePluginCommand;
 use thebigcrafter\OhMyPMMP\commands\UpgradePluginCommand;
 use thebigcrafter\OhMyPMMP\tasks\CachePoggitPlugins;
@@ -26,11 +27,7 @@ class OhMyPMMP extends PluginBase {
 		$this->isCachePoggitPluginsTaskRunning = true;
 		$this->getServer()->getAsyncPool()->submitTask(new CachePoggitPlugins());
 
-		$this->getServer()->getCommandMap()->registerAll("OhMyPMMP", [
-			new InstallPluginCommand(),
-			new RemovePluginCommand(),
-			new UpgradePluginCommand()
-		]);
+        $this->getServer()->getCommandMap()->register("OhMyPMMP", new OMPCommand($this, "ohmypmmp", "Oh My PMMP", ["omp", "oh-my-pmmp"]));
 	}
 
 	/* @phpstan-ignore-next-line */

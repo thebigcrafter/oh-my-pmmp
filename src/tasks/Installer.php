@@ -10,7 +10,7 @@ use thebigcrafter\OhMyPMMP\OhMyPMMP;
 
 class Installer {
 
-	public static function install(string $name, string $version = "latest"): bool {
+	public static function install(string $name, string $version): bool {
 		$pluginsList = [];
 		$downloadURL = "";
 
