@@ -1,11 +1,12 @@
 --- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/thebigcrafter/oh-my-pmmp
 build-by-default: true
 branches:
-- main
+  - main
 projects:
   oh-my-pmmp:
     path: ""
     icon: assets/icon.png
+    includeDirs: { vendor: vendor }
     lint:
       phpstan: true
 ...
