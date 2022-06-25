@@ -1,18 +1,7 @@
 name: oh-my-pmmp
 author: MintoD
-version: 1.3.0
+version: 1.3.1
 description: A plugin manager for PocketMine-MP
 api: 4.0.0
 main: thebigcrafter\OhMyPMMP\OhMyPMMP
 src-namespace-prefix: thebigcrafter\OhMyPMMP
-
-permissions:
-  ohmypmmp.install.cmd:
-    description: Allow players to install plugin
-    default: op
-  ohmypmmp.remove.cmd:
-    description: Allow players to remove plugin
-    default: op
-  ohmypmmp.upgrade.cmd:
-    description: Allow players to upgrade plugin
-    default: op
