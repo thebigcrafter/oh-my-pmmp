@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace thebigcrafter\OhMyPMMP\commands\subcommands;
 
+require_once __DIR__ . '/../../../../../vendor/autoload.php';
+
 use CortexPE\Commando\args\RawStringArgument;
 use CortexPE\Commando\BaseSubCommand;
 use CortexPE\Commando\exception\ArgumentOrderException;

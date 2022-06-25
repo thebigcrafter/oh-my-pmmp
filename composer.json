@@ -21,7 +21,7 @@
     },
     "autoload": {
         "psr-4": {
-            "thebigcrafter\\OhMyPMMP\\": "src/"
+            "thebigcrafter\\OhMyPMMP\\": "src/thebigcrafter/OhMyPMMP"
         }
     },
     "authors": [

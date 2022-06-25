@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace thebigcrafter\OhMyPMMP\commands\subcommands;
 
+require_once __DIR__ . '/../../../../../vendor/autoload.php';
+
 use CortexPE\Commando\BaseSubCommand;
 use pocketmine\command\CommandSender;
-use pocketmine\player\Player;
-use pocketmine\utils\TextFormat;
+use thebigcrafter\OhMyPMMP\Vars;
 
-class HelpCommand extends BaseSubCommand
+class VersionCommand extends BaseSubCommand
 {
     /**
      * @param CommandSender $sender
@@ -20,16 +21,13 @@ class HelpCommand extends BaseSubCommand
      */
     public function onRun(CommandSender $sender, string $aliasUsed, array $args): void
     {
-        if($sender instanceof Player) {
-            $sender->sendMessage(TextFormat::RED . "This command is only available in console.");
-            return;
-        }
-
-        $this->sendUsage();
+        $sender->sendMessage("Oh My PMMP v" . Vars::VERSION);
     }
 
     /**
      * @return void
      */
-    protected function prepare(): void {}
+    protected function prepare(): void
+    {
+    }
 }

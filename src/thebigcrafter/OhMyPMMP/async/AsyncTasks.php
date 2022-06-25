@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace thebigcrafter\OhMyPMMP\async;
 
-require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../../../../vendor/autoload.php';
 
 use Phar;
 use pocketmine\utils\Internet;
