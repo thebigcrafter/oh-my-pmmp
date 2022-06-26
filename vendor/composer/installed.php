@@ -3,7 +3,7 @@
         'name' => 'thebigcrafter/oh-my-pmmp',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '9cbdff6bb82694ab47169b6c579c3b414ef9efe4',
+        'reference' => '863eb96995603e3909727c74f459c0d41c8978f4',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -33,7 +33,7 @@
         'thebigcrafter/oh-my-pmmp' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '9cbdff6bb82694ab47169b6c579c3b414ef9efe4',
+            'reference' => '863eb96995603e3909727c74f459c0d41c8978f4',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

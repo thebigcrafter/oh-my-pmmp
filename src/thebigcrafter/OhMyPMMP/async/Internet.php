@@ -1,0 +1,36 @@
+<?php
+
+declare(strict_types=1);
+
+namespace thebigcrafter\OhMyPMMP\async;
+
+require_once __DIR__ . '/../../../../vendor/autoload.php';
+
+use pocketmine\utils\InternetException;
+use React\Promise\Deferred;
+use React\Promise\Promise;
+use React\Promise\PromiseInterface;
+
+class Internet {
+    /**
+     * Get resource from the URL
+     *
+     * @param string $url
+     *
+     * @return PromiseInterface|Promise
+     */
+    public static function fetch(string $url): PromiseInterface|Promise
+    {
+        $deferred = new Deferred();
+
+        try {
+            $res = \pocketmine\utils\Internet::getURL($url);
+
+            $deferred->resolve($res->getBody());
+        } catch (InternetException $e) {
+            $deferred->reject($e);
+        }
+
+        return $deferred->promise();
+    }
+}

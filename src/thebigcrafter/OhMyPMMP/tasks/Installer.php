@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace thebigcrafter\OhMyPMMP\tasks;
 
 use pocketmine\utils\InternetException;
+use pocketmine\utils\TextFormat;
 use thebigcrafter\OhMyPMMP\async\AsyncTasks;
+use thebigcrafter\OhMyPMMP\async\Filesystem;
+use thebigcrafter\OhMyPMMP\async\Internet;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 
 class Installer {
@@ -27,7 +30,7 @@ class Installer {
 				}
 			}
 		} else{
-			$version = "0.0.1";
+			$version = "0.0.0";
 
 			foreach ($pluginsList as $plugin) {
 				if(version_compare($plugin["version"], $version, ">")) {
@@ -41,12 +44,14 @@ class Installer {
 			return false;
 		}
 
-		AsyncTasks::fetch($downloadURL . "/$name.phar")->then(function($raw) use ($name) {
-			AsyncTasks::writeFile(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/" . $name . ".phar", $raw)->then(function() {
+		Internet::fetch($downloadURL . "/$name.phar")->then(function($raw) use ($name) {
+			Filesystem::writeFile(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/" . $name . ".phar", $raw)->done(function() {
 				return true;
-			});
+			}, function(\Throwable $e) {
+                OhMyPMMP::getInstance()->getLogger()->error(TextFormat::RED . $e->getMessage());
+            });
 		}, function (InternetException $error) {
-			OhMyPMMP::getInstance()->getLogger()->error("Could not download plugin: " . $error->getMessage());
+			OhMyPMMP::getInstance()->getLogger()->error(TextFormat::RED . "Could not download plugin: " . $error->getMessage());
 		});
 
 		return true;

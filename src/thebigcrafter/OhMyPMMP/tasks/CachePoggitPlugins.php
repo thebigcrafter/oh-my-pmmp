@@ -8,13 +8,14 @@ use pocketmine\scheduler\AsyncTask;
 use pocketmine\utils\InternetException;
 use pocketmine\utils\TextFormat;
 use thebigcrafter\OhMyPMMP\async\AsyncTasks;
+use thebigcrafter\OhMyPMMP\async\Internet;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use thebigcrafter\OhMyPMMP\Vars;
 
 class CachePoggitPlugins extends AsyncTask {
 	public function onRun(): void
 	{
-		AsyncTasks::fetch(Vars::POGGIT_REPO_URL)->then(function(string $raw) {
+		Internet::fetch(Vars::POGGIT_REPO_URL)->done(function(string $raw) {
 			$pluginsList = [];
 			$json = (array) json_decode($raw, true);
 
@@ -24,7 +25,7 @@ class CachePoggitPlugins extends AsyncTask {
 
 			$this->setResult($pluginsList);
 		}, function (InternetException $e) {
-			OhMyPMMP::getInstance()->getLogger()->error(TextFormat::RED . "Could not get Poggit Plugins list: " . $e->getMessage());
+			OhMyPMMP::getInstance()->getLogger()->error(TextFormat::RED . "Could not get Poggit plugins list: " . $e->getMessage());
 		});
 	}
 

@@ -13,6 +13,7 @@ use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
 use pocketmine\utils\TextFormat;
 use thebigcrafter\OhMyPMMP\async\AsyncTasks;
+use thebigcrafter\OhMyPMMP\async\Filesystem;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 
 class RemoveCommand extends BaseSubCommand
@@ -34,7 +35,7 @@ class RemoveCommand extends BaseSubCommand
 
         $plugin = $args["pluginName"];
 
-        AsyncTasks::deleteFile(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/$plugin.phar")->then(function () use ($plugin, $sender) {
+        Filesystem::unlinkPhar(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/$plugin.phar")->then(function () use ($plugin, $sender) {
             $sender->sendMessage(TextFormat::GREEN . "Plugin $plugin " . TextFormat::GREEN . "has been removed");
         }, function () use ($plugin, $sender) {
             $sender->sendMessage(TextFormat::RED . "Plugin $plugin " . TextFormat::RED . "not found");
