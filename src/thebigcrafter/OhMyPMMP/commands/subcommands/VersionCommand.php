@@ -8,6 +8,8 @@ require_once __DIR__ . '/../../../../../vendor/autoload.php';
 
 use CortexPE\Commando\BaseSubCommand;
 use pocketmine\command\CommandSender;
+use pocketmine\plugin\PluginDescription;
+use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use thebigcrafter\OhMyPMMP\Vars;
 
 class VersionCommand extends BaseSubCommand
@@ -21,7 +23,10 @@ class VersionCommand extends BaseSubCommand
      */
     public function onRun(CommandSender $sender, string $aliasUsed, array $args): void
     {
-        $sender->sendMessage("Oh My PMMP v" . Vars::VERSION);
+        $phpVersion = phpversion();
+        $pluginVersion = OhMyPMMP::getInstance()->getDescription()->getVersion();
+        $sender->sendMessage("PHP version $phpVersion");
+        $sender->sendMessage("OhMyPMMP version $pluginVersion");
     }
 
     /**
