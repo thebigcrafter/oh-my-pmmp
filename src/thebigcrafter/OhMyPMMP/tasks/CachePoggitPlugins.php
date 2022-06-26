@@ -16,7 +16,7 @@ class CachePoggitPlugins extends AsyncTask {
 	{
 		AsyncTasks::fetch(Vars::POGGIT_REPO_URL)->then(function(string $raw) {
 			$pluginsList = [];
-			$json = json_decode($raw, true);
+			$json = (array) json_decode($raw, true);
 
 			foreach ($json as $plugin) {
 				$pluginsList[] = ["name" => $plugin["name"], "version" => $plugin["version"], "artifact_url" => $plugin["artifact_url"]]; /* @phpstan-ignore-line */

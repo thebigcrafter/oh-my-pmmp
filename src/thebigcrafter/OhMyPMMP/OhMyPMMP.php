@@ -17,7 +17,7 @@ class OhMyPMMP extends PluginBase {
 	use SingletonTrait;
 
 	public bool $isCachePoggitPluginsTaskRunning = false;
-	/** @var array<string> */
+	/** @var array<string, array<string>> */
 	public array $pluginsList = [];
 
 	public function onEnable(): void {
@@ -28,11 +28,15 @@ class OhMyPMMP extends PluginBase {
 
         $this->getServer()->getCommandMap()->register("OhMyPMMP", new OMPCommand($this, "ohmypmmp", "Oh My PMMP", ["omp", "oh-my-pmmp"]));
 	}
-
+	/**
+	 * @param array<string, array<string>> $pluginsList
+	 */
 	public function setPluginsList(array $pluginsList): void {
 		$this->pluginsList = $pluginsList;
 	}
-
+	/**
+	 * @return array<string, array<string>>
+	 */
 	public function getPluginsList(): array {
 		return $this->pluginsList;
 	}

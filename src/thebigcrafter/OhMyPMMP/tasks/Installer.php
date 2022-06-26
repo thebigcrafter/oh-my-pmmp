@@ -26,7 +26,7 @@ class Installer {
 					$downloadURL = $plugin["artifact_url"];
 				}
 			}
-		} else {
+		} else{
 			$version = "0.0.1";
 
 			foreach ($pluginsList as $plugin) {
