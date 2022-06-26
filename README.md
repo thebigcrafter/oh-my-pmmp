@@ -87,7 +87,7 @@ mkdir build
 
 5. Run the build script.
 ```shell
-php -dphar.readonly=0 ../ConsoleScript.php --make src,plugin.yml --out build/oh-my-pmmp.phar
+php -dphar.readonly=0 ../ConsoleScript.php --make src,plugin.yml,vendor --out build/oh-my-pmmp.phar
 ```
 
 6. Enjoy the phar file in build folder.
