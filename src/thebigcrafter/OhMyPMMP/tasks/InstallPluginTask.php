@@ -8,6 +8,7 @@ use pocketmine\command\CommandSender;
 use pocketmine\scheduler\Task;
 use pocketmine\utils\InternetException;
 use pocketmine\utils\TextFormat;
+use React\Promise\Promise;
 use thebigcrafter\OhMyPMMP\async\Filesystem;
 use thebigcrafter\OhMyPMMP\async\Internet;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
@@ -42,7 +43,6 @@ class InstallPluginTask extends Task
 
     public function onRun(): void
     {
-        $this->sender->sendMessage("Install start");
         $pluginsList = [];
         $downloadURL = "";
 
@@ -77,7 +77,7 @@ class InstallPluginTask extends Task
             return;
         }
         Internet::fetch($downloadURL . "/$this->pluginName.phar")->then(function ($raw) {
-            /** @var \React\Promise\Promise $writefile */
+            /** @var Promise $writefile */
             $writefile = Filesystem::writeFile(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/" . $this->pluginName . ".phar", $raw);
             $writefile->done(function () {
                 if (!$this->silent) {
@@ -93,7 +93,5 @@ class InstallPluginTask extends Task
                 $this->sender->sendMessage(TextFormat::RED . "Could not download plugin: " . $e->getMessage());
             }
         });
-
-        $this->sender->sendMessage("Install end");
     }
 }
