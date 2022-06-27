@@ -25,8 +25,9 @@ class Internet {
 
         try {
             $res = \pocketmine\utils\Internet::getURL($url);
-
-            $deferred->resolve($res->getBody());
+            if($res instanceof \pocketmine\utils\InternetRequestResult){
+                $deferred->resolve($res->getBody());
+            }
         } catch (InternetException $e) {
             $deferred->reject($e);
         }
