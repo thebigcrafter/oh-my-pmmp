@@ -76,9 +76,10 @@ class InstallPluginTask extends Task
             }
             return;
         }
-
         Internet::fetch($downloadURL . "/$this->pluginName.phar")->then(function ($raw) {
-            Filesystem::writeFile(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/" . $this->pluginName . ".phar", $raw)->done(function () {
+            /** @var \React\Promise\Promise $writefile */
+            $writefile = Filesystem::writeFile(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/" . $this->pluginName . ".phar", $raw);
+            $writefile->done(function () {
                 if (!$this->silent) {
                     $this->sender->sendMessage(TextFormat::GREEN . "Plugin $this->pluginName installed successfully");
                 }
