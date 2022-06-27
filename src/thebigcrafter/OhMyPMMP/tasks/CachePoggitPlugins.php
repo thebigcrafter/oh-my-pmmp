@@ -14,8 +14,10 @@ use thebigcrafter\OhMyPMMP\Vars;
 
 class CachePoggitPlugins extends AsyncTask {
 	public function onRun(): void
-	{
-		Internet::fetch(Vars::POGGIT_REPO_URL)->done(function(string $raw) {
+	{	
+		/** @var $fetch React\Promise\Promise */
+		$fetch = Internet::fetch(Vars::POGGIT_REPO_URL);
+		$fetch->done(function(string $raw) {
 			$pluginsList = [];
 			$json = (array) json_decode($raw, true);
 
@@ -33,7 +35,7 @@ class CachePoggitPlugins extends AsyncTask {
 	{
 		$result = $this->getResult();
 
-		OhMyPMMP::getInstance()->setPluginsList($result); /* @phpstan-ignore-line */
+		OhMyPMMP::getInstance()->setPluginsList($result);
 		OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning = false;
 		OhMyPMMP::getInstance()->getLogger()->info(TextFormat::GREEN . "Plugins list has been cached. You can install plugin now");
 	}
