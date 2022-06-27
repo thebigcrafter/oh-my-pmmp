@@ -4,3 +4,23 @@ version: 1.3.1
 description: A plugin manager for PocketMine-MP
 api: 4.0.0
 main: thebigcrafter\OhMyPMMP\OhMyPMMP
+
+permissions:
+  oh-my-pmmp.cmds:
+    description: Allow players to use all commands of Oh My PMMP
+    default: op
+  oh-my-pmmp.help:
+    description: Allow players to list available subcommands
+    default: op
+  oh-my-pmmp.version:
+    description: Allow players to get plugin version
+    default: op
+  oh-my-pmmp.install:
+    description: Allow players to install plugin
+    default: op
+  oh-my-pmmp.remove:
+    description: Allow players to remove plugin
+    default: op
+  oh-my-pmmp.update:
+    description: Allow players to update plugin
+    default: op

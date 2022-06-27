@@ -15,6 +15,7 @@ use pocketmine\player\Player;
 use pocketmine\utils\TextFormat;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use thebigcrafter\OhMyPMMP\tasks\Installer;
+use thebigcrafter\OhMyPMMP\tasks\InstallPluginTask;
 
 class InstallCommand extends BaseSubCommand
 {
@@ -39,11 +40,7 @@ class InstallCommand extends BaseSubCommand
 
         $pluginName = $args["pluginName"];
 
-        if(Installer::install($pluginName, $args["pluginVersion"])) {
-            $sender->sendMessage(TextFormat::GREEN . "Plugin $pluginName " . TextFormat::GREEN . "was installed successfully");
-        } else {
-            $sender->sendMessage(TextFormat::RED . "Plugin $pluginName " . TextFormat::RED . "not found");
-        }
+        OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new InstallPluginTask($sender, $pluginName, $args["pluginVersion"]));
     }
 
     /**
@@ -52,6 +49,8 @@ class InstallCommand extends BaseSubCommand
      * @return void
      */
     protected function prepare(): void {
+        $this->setPermission("oh-my-pmmp.install");
+
         $this->registerArgument(0, new RawStringArgument("pluginName"));
         $this->registerArgument(1, new RawStringArgument("pluginVersion"));
     }

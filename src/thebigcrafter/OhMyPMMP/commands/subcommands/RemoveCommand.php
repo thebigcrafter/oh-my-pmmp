@@ -12,9 +12,8 @@ use CortexPE\Commando\exception\ArgumentOrderException;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
 use pocketmine\utils\TextFormat;
-use thebigcrafter\OhMyPMMP\async\AsyncTasks;
-use thebigcrafter\OhMyPMMP\async\Filesystem;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
+use thebigcrafter\OhMyPMMP\tasks\RemovePluginTask;
 
 class RemoveCommand extends BaseSubCommand
 {
@@ -35,11 +34,7 @@ class RemoveCommand extends BaseSubCommand
 
         $plugin = $args["pluginName"];
 
-        Filesystem::unlinkPhar(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/$plugin.phar")->then(function () use ($plugin, $sender) {
-            $sender->sendMessage(TextFormat::GREEN . "Plugin $plugin " . TextFormat::GREEN . "has been removed");
-        }, function () use ($plugin, $sender) {
-            $sender->sendMessage(TextFormat::RED . "Plugin $plugin " . TextFormat::RED . "not found");
-        });
+        OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new RemovePluginTask($sender, $plugin));
     }
 
     /**
@@ -49,6 +44,8 @@ class RemoveCommand extends BaseSubCommand
      */
     protected function prepare(): void
     {
+        $this->setPermission("oh-my-pmmp.remove");
+
         $this->registerArgument(0, new RawStringArgument("pluginName"));
     }
 }

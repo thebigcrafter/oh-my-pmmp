@@ -14,6 +14,8 @@ use pocketmine\player\Player;
 use pocketmine\utils\TextFormat;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use thebigcrafter\OhMyPMMP\tasks\Installer;
+use thebigcrafter\OhMyPMMP\tasks\InstallPluginTask;
+use thebigcrafter\OhMyPMMP\tasks\RemovePluginTask;
 
 class UpdateCommand extends BaseSubCommand
 {
@@ -26,11 +28,6 @@ class UpdateCommand extends BaseSubCommand
      */
     public function onRun(CommandSender $sender, string $aliasUsed, array $args): void
     {
-        if ($sender instanceof Player) {
-            $sender->sendMessage(TextFormat::RED . "This command is only available in console.");
-            return;
-        }
-
         if (OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning) {
             $sender->sendMessage(TextFormat::RED . 'Cache Poggit Plugins task is running! Please wait until it is finished.');
             return;
@@ -38,11 +35,10 @@ class UpdateCommand extends BaseSubCommand
 
         $pluginName = $args["pluginName"];
 
-        if (Installer::install($pluginName, "latest")) {
-            $sender->sendMessage(TextFormat::GREEN . "Plugin $pluginName " . TextFormat::GREEN . " was updated successfully");
-        } else {
-            $sender->sendMessage(TextFormat::RED . "Plugin $pluginName " . TextFormat::RED . "not found");
-        }
+        OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new RemovePluginTask($sender, $pluginName, true));
+        OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new InstallPluginTask($sender, $pluginName, "latest", true));
+
+        $sender->sendMessage(TextFormat::GREEN . "$pluginName has been updated!");
     }
 
     /**
@@ -52,6 +48,8 @@ class UpdateCommand extends BaseSubCommand
      */
     protected function prepare(): void
     {
+        $this->setPermission("oh-my-pmmp.update");
+
         $this->registerArgument(0, new RawStringArgument("pluginName"));
     }
 }

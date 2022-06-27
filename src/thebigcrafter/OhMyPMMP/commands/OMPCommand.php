@@ -40,6 +40,8 @@ class OMPCommand extends BaseCommand
      */
     protected function prepare(): void
     {
+        $this->setPermission("oh-my-pmmp.cmds");
+
         $subcommands = [
             new HelpCommand("help", "List available subcommands", ["h", "-h", "--help"]),
             new VersionCommand("version", "Get plugin version", ["v", "-v", "--version"]),

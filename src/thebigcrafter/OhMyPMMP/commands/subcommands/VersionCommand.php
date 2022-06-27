@@ -25,6 +25,7 @@ class VersionCommand extends BaseSubCommand
     {
         $phpVersion = phpversion();
         $pluginVersion = OhMyPMMP::getInstance()->getDescription()->getVersion();
+
         $sender->sendMessage("PHP version $phpVersion");
         $sender->sendMessage("OhMyPMMP version $pluginVersion");
     }
@@ -34,5 +35,6 @@ class VersionCommand extends BaseSubCommand
      */
     protected function prepare(): void
     {
+        $this->setPermission("oh-my-pmmp.version");
     }
 }

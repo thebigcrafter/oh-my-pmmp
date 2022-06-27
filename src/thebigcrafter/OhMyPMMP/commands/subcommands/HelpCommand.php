@@ -22,16 +22,13 @@ class HelpCommand extends BaseSubCommand
      */
     public function onRun(CommandSender $sender, string $aliasUsed, array $args): void
     {
-        if($sender instanceof Player) {
-            $sender->sendMessage(TextFormat::RED . "This command is only available in console.");
-            return;
-        }
-
         $this->sendUsage();
     }
 
     /**
      * @return void
      */
-    protected function prepare(): void {}
+    protected function prepare(): void {
+        $this->setPermission("oh-my-pmmp.help");
+    }
 }
