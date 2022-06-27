@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace thebigcrafter\OhMyPMMP\commands;
 
-require_once __DIR__ . '/../../../../vendor/autoload.php';
-
 use CortexPE\Commando\BaseCommand;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;

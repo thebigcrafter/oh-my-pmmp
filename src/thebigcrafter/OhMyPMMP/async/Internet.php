@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace thebigcrafter\OhMyPMMP\async;
 
-require_once __DIR__ . '/../../../../vendor/autoload.php';
-
 use pocketmine\utils\InternetException;
 use React\Promise\Deferred;
 use React\Promise\Promise;
