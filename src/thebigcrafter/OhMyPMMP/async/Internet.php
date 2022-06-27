@@ -15,9 +15,9 @@ class Internet {
      *
      * @param string $url
      *
-     * @return PromiseInterface|Promise
+     * @return Promise|PromiseInterface
      */
-    public static function fetch(string $url): PromiseInterface|Promise
+    public static function fetch(string $url): Promise|PromiseInterface
     {
         $deferred = new Deferred();
 
