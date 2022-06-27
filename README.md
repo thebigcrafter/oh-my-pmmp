@@ -48,13 +48,15 @@ Oh My PMMP provides commands to allow you to install plugins from [Poggit](https
 
 ## Commands
 
-|            Commands           |                                                     Description                                                     |      Aliases     |
-|:-----------------------------:|:-------------------------------------------------------------------------------------------------------------------:|:----------------:|
-|           /omp help           |                                              List available subcommands                                             |   h, -h, --help  |
-|          /omp version         |                                                  Get plugin version                                                 | v, -v, --version |
-| /omp install <name> <version> | Install a plugin<br/> `NOTE:` To install the latest version, use "latest"<br/> Example: /omp i ExamplePlugin latest | i, -i, --install |
-|       /omp remove <name>      |                                                   Remove a plugin                                                   |  r, -r, --remove |
-|      /omp upgrade <name>      |                                                   Upgrade a plugin                                                  | u, -u, --upgrade |
+|            Commands           |                                                     Description                                                     |      Aliases     |     Permissions    |
+|:-----------------------------:|:-------------------------------------------------------------------------------------------------------------------:|:----------------:|:------------------:|
+|           /omp help           |                                              List available subcommands                                             |   h, -h, --help  |   oh-my-pmmp.help  |
+|          /omp version         |                                                  Get plugin version                                                 | v, -v, --version | oh-my-pmmp.version |
+| /omp install <name> <version> | Install a plugin<br/> `NOTE:` To install the latest version, use "latest"<br/> Example: /omp i ExamplePlugin latest | i, -i, --install | oh-my-pmmp.install |
+|       /omp remove <name>      |                                                   Remove a plugin                                                   |  r, -r, --remove |  oh-my-pmmp.remove |
+|      /omp upgrade <name>      |                                                   Upgrade a plugin                                                  | u, -u, --upgrade |  oh-my-pmmp.update |
+
+`NOTE:` To use all commands of Oh My PMMP, use `oh-my-pmmp.cmds` permission.
 
 # Advanced Topics
 
