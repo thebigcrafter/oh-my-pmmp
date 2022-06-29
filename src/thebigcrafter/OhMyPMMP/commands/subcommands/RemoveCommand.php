@@ -26,7 +26,7 @@ class RemoveCommand extends BaseSubCommand
     public function onRun(CommandSender $sender, string $aliasUsed, array $args): void
     {
         if ($sender instanceof Player) {
-            $sender->sendMessage(TextFormat::RED . 'This command can only be used in console');
+            $sender->sendMessage(OhMyPMMP::getInstance()->getLanguage()->translateString("command.only.console"));
             return;
         }
 

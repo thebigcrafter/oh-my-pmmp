@@ -27,12 +27,12 @@ class InstallCommand extends BaseSubCommand
     public function onRun(CommandSender $sender, string $aliasUsed, array $args): void
     {
         if($sender instanceof Player) {
-            $sender->sendMessage(TextFormat::RED . "This command is only available in console.");
+            $sender->sendMessage(OhMyPMMP::getInstance()->getLanguage()->translateString("command.only.console"));
             return;
         }
 
         if(OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning) {
-            $sender->sendMessage(TextFormat::RED . 'Cache Poggit Plugins task is running! Please wait until it is finished.');
+            $sender->sendMessage(OhMyPMMP::getInstance()->getLanguage()->translateString("cache.running"));
             return;
         }
 

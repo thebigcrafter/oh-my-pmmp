@@ -27,7 +27,7 @@ class UpdateCommand extends BaseSubCommand
     public function onRun(CommandSender $sender, string $aliasUsed, array $args): void
     {
         if (OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning) {
-            $sender->sendMessage(TextFormat::RED . 'Cache Poggit Plugins task is running! Please wait until it is finished.');
+            $sender->sendMessage(OhMyPMMP::getInstance()->getLanguage()->translateString("cache.running"));
             return;
         }
 
@@ -36,7 +36,7 @@ class UpdateCommand extends BaseSubCommand
         OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new RemovePluginTask($sender, $pluginName, true));
         OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new InstallPluginTask($sender, $pluginName, "latest", true));
 
-        $sender->sendMessage(TextFormat::GREEN . "$pluginName has been updated!");
+        $sender->sendMessage(str_replace("{{plugin}}", $pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.updated")));
     }
 
     /**

@@ -13,6 +13,7 @@ use thebigcrafter\OhMyPMMP\commands\subcommands\InstallCommand;
 use thebigcrafter\OhMyPMMP\commands\subcommands\RemoveCommand;
 use thebigcrafter\OhMyPMMP\commands\subcommands\UpdateCommand;
 use thebigcrafter\OhMyPMMP\commands\subcommands\VersionCommand;
+use thebigcrafter\OhMyPMMP\OhMyPMMP;
 
 class OMPCommand extends BaseCommand
 {
@@ -26,7 +27,7 @@ class OMPCommand extends BaseCommand
     public function onRun(CommandSender $sender, string $aliasUsed, array $args): void
     {
         if ($sender instanceof Player) {
-            $sender->sendMessage(TextFormat::RED . "This command is only available in console.");
+            $sender->sendMessage(OhMyPMMP::getInstance()->getLanguage()->translateString("command.only.console"));
             return;
         }
 

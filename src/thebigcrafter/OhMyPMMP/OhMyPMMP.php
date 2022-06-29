@@ -42,13 +42,13 @@ class OhMyPMMP extends PluginBase
 			@mkdir($langFolder);
 		}
 
-		foreach ($this->getConfig()->get("availableLanguages") as $lang) {
+		foreach ((array)$this->getConfig()->get("availableLanguages") as $lang) {
 			if (!is_file($lang)) {
-				$this->saveResource("lang/$lang.ini");
+				$this->saveResource("lang/".strval($lang).".ini");
 			}
 		}
 
-		$this->language = new Language($this->getConfig()->get('language'), $langFolder);
+		$this->language = new Language(strval($this->getConfig()->get('language')), $langFolder);
 	}
 
 	/**
