@@ -71,7 +71,7 @@ class InstallPluginTask extends Task
 
         if (empty($downloadURL)) {
             if (!$this->silent) {
-                $this->sender->sendMessage(TextFormat::RED . "Plugin $this->pluginName not found");
+                $this->sender->sendMessage(str_replace("{{plugin}}", $this->pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.not.found")));
                 return;
             }
             return;
@@ -81,7 +81,7 @@ class InstallPluginTask extends Task
             $writefile = Filesystem::writeFile(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/" . $this->pluginName . ".phar", $raw);
             $writefile->done(function () {
                 if (!$this->silent) {
-                    $this->sender->sendMessage(TextFormat::GREEN . "Plugin $this->pluginName installed successfully");
+                    $this->sender->sendMessage(str_replace("{{plugin}}", $this->pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.installed")));
                 }
             }, function (Throwable $e) {
                 if (!$this->silent) {
@@ -90,7 +90,7 @@ class InstallPluginTask extends Task
             });
         }, function (InternetException $e) {
             if (!$this->silent) {
-                $this->sender->sendMessage(TextFormat::RED . "Could not download plugin: " . $e->getMessage());
+                $this->sender->sendMessage(str_replace("{{reason}}", $e->getMessage(), OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.cannot.downloaded")));
             }
         });
     }

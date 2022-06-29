@@ -6,16 +6,15 @@ namespace thebigcrafter\OhMyPMMP\tasks;
 
 use pocketmine\scheduler\AsyncTask;
 use pocketmine\utils\InternetException;
-use pocketmine\utils\TextFormat;
-use thebigcrafter\OhMyPMMP\async\AsyncTasks;
+use React\Promise\Promise;
 use thebigcrafter\OhMyPMMP\async\Internet;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use thebigcrafter\OhMyPMMP\Vars;
 
 class CachePoggitPlugins extends AsyncTask {
 	public function onRun(): void
-	{	
-		/** @var \React\Promise\Promise $fetch */
+	{
+		/** @var Promise $fetch */
 		$fetch = Internet::fetch(Vars::POGGIT_REPO_URL);
 		$fetch->done(function(string $raw) {
 			$pluginsList = [];
@@ -27,7 +26,7 @@ class CachePoggitPlugins extends AsyncTask {
 
 			$this->setResult($pluginsList);
 		}, function (InternetException $e) {
-			OhMyPMMP::getInstance()->getLogger()->error(TextFormat::RED . "Could not get Poggit plugins list: " . $e->getMessage());
+			OhMyPMMP::getInstance()->getLogger()->error(str_replace("{{message}}", $e->getMessage(), OhMyPMMP::getInstance()->getLanguage()->translateString("cache.failed")));
 		});
 	}
 
@@ -37,6 +36,6 @@ class CachePoggitPlugins extends AsyncTask {
 		/** @var array<string, array<string>> $result */
 		OhMyPMMP::getInstance()->setPluginsList($result);
 		OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning = false;
-		OhMyPMMP::getInstance()->getLogger()->info(TextFormat::GREEN . "Plugins list has been cached. You can install plugin now");
+		OhMyPMMP::getInstance()->getLogger()->info(OhMyPMMP::getInstance()->getLanguage()->translateString("cache.successfully"));
 	}
 }

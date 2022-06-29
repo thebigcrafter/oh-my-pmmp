@@ -37,11 +37,11 @@ class RemovePluginTask extends Task {
     {
         Filesystem::unlinkPhar(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/$this->pluginName.phar")->then(function () {
             if (!$this->silent) {
-                $this->sender->sendMessage(TextFormat::GREEN . "Plugin $this->pluginName " . TextFormat::GREEN . "has been removed successfully");
+                $this->sender->sendMessage(str_replace("{{plugin}}", $this->pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.removed")));
             }
         }, function () {
             if (!$this->silent) {
-                $this->sender->sendMessage(TextFormat::RED . "Plugin $this->pluginName " . TextFormat::RED . "not found");
+                $this->sender->sendMessage(str_replace("{{plugin}}", $this->pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.not.found")));
             }
         });
     }
