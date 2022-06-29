@@ -43,7 +43,7 @@ class OhMyPMMP extends PluginBase
 		}
 
 		foreach ((array)$this->getConfig()->get("availableLanguages") as $lang) {
-			if (!is_file($lang)) {
+			if (!is_file(strval($lang))) {
 				$this->saveResource("lang/".strval($lang).".ini");
 			}
 		}
