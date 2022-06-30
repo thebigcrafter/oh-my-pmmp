@@ -42,9 +42,9 @@ class OhMyPMMP extends PluginBase
 			@mkdir($langFolder);
 		}
 
-		foreach ((array)$this->getConfig()->get("availableLanguages") as $lang) {
+		foreach ((array) $this->getConfig()->get("availableLanguages") as $lang) {
 			if (!is_file(strval($lang))) {
-				$this->saveResource("lang/".strval($lang).".ini");
+				$this->saveResource("lang/" . strval($lang) . ".ini");
 			}
 		}
 
@@ -67,7 +67,7 @@ class OhMyPMMP extends PluginBase
 		$this->pluginsList = $pluginsList;
 	}
 
-    public function getLanguage(): Language {
-        return $this->language;
-    }
+	public function getLanguage(): Language {
+		return $this->language;
+	}
 }

@@ -16,82 +16,74 @@ use Throwable;
 
 class InstallPluginTask extends Task
 {
-    /**
-     * @var CommandSender $sender
-     */
-    private CommandSender $sender;
 
-    /**
-     * @var string $pluginName
-     */
-    private string $pluginName;
+	private CommandSender $sender;
 
-    /**
-     * @var string $pluginVersion
-     */
-    private string $pluginVersion;
+	private string $pluginName;
 
-    private bool $silent;
+	private string $pluginVersion;
 
-    public function __construct(CommandSender $sender, string $pluginName, string $pluginVersion, bool $silent = false)
-    {
-        $this->sender = $sender;
-        $this->pluginName = $pluginName;
-        $this->pluginVersion = $pluginVersion;
-        $this->silent = $silent;
-    }
+	private bool $silent;
 
-    public function onRun(): void
-    {
-        $pluginsList = [];
-        $downloadURL = "";
+	public function __construct(CommandSender $sender, string $pluginName, string $pluginVersion, bool $silent = false)
+	{
+		$this->sender = $sender;
+		$this->pluginName = $pluginName;
+		$this->pluginVersion = $pluginVersion;
+		$this->silent = $silent;
+	}
 
-        foreach (OhMyPMMP::getInstance()->getPluginsList() as $plugin) {
-            if ($plugin["name"] == $this->pluginName) {
-                $pluginsList[] = $plugin;
-            }
-        }
+	public function onRun(): void
+	{
+		$pluginsList = [];
+		$downloadURL = "";
 
-        if ($this->pluginVersion != "latest") {
-            foreach ($pluginsList as $plugin) {
-                if ($plugin["version"] == $this->pluginVersion) {
-                    $downloadURL = $plugin["artifact_url"];
-                }
-            }
-        } else {
-            $version = "0.0.0";
+		foreach (OhMyPMMP::getInstance()->getPluginsList() as $plugin) {
+			if ($plugin["name"] == $this->pluginName) {
+				$pluginsList[] = $plugin;
+			}
+		}
 
-            foreach ($pluginsList as $plugin) {
-                if (version_compare($plugin["version"], $version, ">")) {
-                    $version = $plugin["version"];
-                    $downloadURL = $plugin["artifact_url"];
-                }
-            }
-        }
+		if ($this->pluginVersion != "latest") {
+			foreach ($pluginsList as $plugin) {
+				if ($plugin["version"] == $this->pluginVersion) {
+					$downloadURL = $plugin["artifact_url"];
+				}
+			}
+		} else {
+			$version = "0.0.0";
 
-        if (empty($downloadURL)) {
-            if (!$this->silent) {
-                $this->sender->sendMessage(str_replace("{{plugin}}", $this->pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.not.found")));
-                return;
-            }
-            return;
-        }
-        Internet::fetch($downloadURL . "/$this->pluginName.phar")->then(function ($raw) {
-            /** @var Promise $writefile */
-            $writefile = Filesystem::writeFile(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/" . $this->pluginName . ".phar", $raw);
-            $writefile->done(function () {
-                if (!$this->silent) {
-                    $this->sender->sendMessage(str_replace("{{plugin}}", $this->pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.installed")));
-                }
-            }, function (Throwable $e) {
-                if (!$this->silent) {
-                    $this->sender->sendMessage(TextFormat::RED . $e->getMessage());
-                }
-            });
-        }, function (InternetException $e) {
-            if (!$this->silent) {
-                $this->sender->sendMessage(str_replace("{{reason}}", $e->getMessage(), OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.cannot.downloaded")));
-            }
-        });
-    }
+			foreach ($pluginsList as $plugin) {
+				if (version_compare($plugin["version"], $version, ">")) {
+					$version = $plugin["version"];
+					$downloadURL = $plugin["artifact_url"];
+				}
+			}
+		}
+
+		if (empty($downloadURL)) {
+			if (!$this->silent) {
+				$this->sender->sendMessage(str_replace("{{plugin}}", $this->pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.not.found")));
+				return;
+			}
+			return;
+		}
+		Internet::fetch($downloadURL . "/$this->pluginName.phar")->then(function ($raw) {
+			/** @var Promise $writefile */
+			$writefile = Filesystem::writeFile(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/" . $this->pluginName . ".phar", $raw);
+			$writefile->done(function () {
+				if (!$this->silent) {
+					$this->sender->sendMessage(str_replace("{{plugin}}", $this->pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.installed")));
+				}
+			}, function (Throwable $e) {
+				if (!$this->silent) {
+					$this->sender->sendMessage(TextFormat::RED . $e->getMessage());
+				}
+			});
+		}, function (InternetException $e) {
+			if (!$this->silent) {
+				$this->sender->sendMessage(str_replace("{{reason}}", $e->getMessage(), OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.cannot.downloaded")));
+			}
+		});
+	}
 }

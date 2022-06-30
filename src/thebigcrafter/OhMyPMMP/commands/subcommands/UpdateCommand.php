@@ -8,46 +8,37 @@ use CortexPE\Commando\args\RawStringArgument;
 use CortexPE\Commando\BaseSubCommand;
 use CortexPE\Commando\exception\ArgumentOrderException;
 use pocketmine\command\CommandSender;
-use pocketmine\player\Player;
-use pocketmine\utils\TextFormat;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
-use thebigcrafter\OhMyPMMP\tasks\Installer;
 use thebigcrafter\OhMyPMMP\tasks\InstallPluginTask;
 use thebigcrafter\OhMyPMMP\tasks\RemovePluginTask;
 
 class UpdateCommand extends BaseSubCommand
 {
-    /**
-     * @param CommandSender $sender
-     * @param string $aliasUsed
-     * @param string[] $args
-     *
-     * @return void
-     */
-    public function onRun(CommandSender $sender, string $aliasUsed, array $args): void
-    {
-        if (OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning) {
-            $sender->sendMessage(OhMyPMMP::getInstance()->getLanguage()->translateString("cache.running"));
-            return;
-        }
+	/**
+	 * @param string[] $args
+	 */
+	public function onRun(CommandSender $sender, string $aliasUsed, array $args): void
+	{
+		if (OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning) {
+			$sender->sendMessage(OhMyPMMP::getInstance()->getLanguage()->translateString("cache.running"));
+			return;
+		}
 
-        $pluginName = $args["pluginName"];
+		$pluginName = $args["pluginName"];
 
-        OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new RemovePluginTask($sender, $pluginName, true));
-        OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new InstallPluginTask($sender, $pluginName, "latest", true));
+		OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new RemovePluginTask($sender, $pluginName, true));
+		OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new InstallPluginTask($sender, $pluginName, "latest", true));
 
-        $sender->sendMessage(str_replace("{{plugin}}", $pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.updated")));
-    }
+		$sender->sendMessage(str_replace("{{plugin}}", $pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.updated")));
+	}
 
-    /**
-     * @return void
-     * @throws ArgumentOrderException
-     *
-     */
-    protected function prepare(): void
-    {
-        $this->setPermission("oh-my-pmmp.update");
+	/**
+	 * @throws ArgumentOrderException
+	 */
+	protected function prepare(): void
+	{
+		$this->setPermission("oh-my-pmmp.update");
 
-        $this->registerArgument(0, new RawStringArgument("pluginName"));
-    }
+		$this->registerArgument(0, new RawStringArgument("pluginName"));
+	}
 }

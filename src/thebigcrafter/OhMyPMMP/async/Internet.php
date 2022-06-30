@@ -10,26 +10,22 @@ use React\Promise\Promise;
 use React\Promise\PromiseInterface;
 
 class Internet {
-    /**
-     * Get resource from the URL
-     *
-     * @param string $url
-     *
-     * @return Promise|PromiseInterface
-     */
-    public static function fetch(string $url): Promise|PromiseInterface
-    {
-        $deferred = new Deferred();
+	/**
+	 * Get resource from the URL
+	 */
+	public static function fetch(string $url): Promise|PromiseInterface
+	{
+		$deferred = new Deferred();
 
-        try {
-            $res = \pocketmine\utils\Internet::getURL($url);
-            if($res instanceof \pocketmine\utils\InternetRequestResult){
-                $deferred->resolve($res->getBody());
-            }
-        } catch (InternetException $e) {
-            $deferred->reject($e);
-        }
+		try {
+			$res = \pocketmine\utils\Internet::getURL($url);
+			if($res instanceof \pocketmine\utils\InternetRequestResult){
+				$deferred->resolve($res->getBody());
+			}
+		} catch (InternetException $e) {
+			$deferred->reject($e);
+		}
 
-        return $deferred->promise();
-    }
+		return $deferred->promise();
+	}
 }
