@@ -10,6 +10,8 @@ use thebigcrafter\OhMyPMMP\commands\OMPCommand;
 use thebigcrafter\OhMyPMMP\tasks\CachePoggitPlugins;
 use thebigcrafter\OhMyPMMP\utils\SingletonTrait;
 
+use function strval;
+
 class OhMyPMMP extends PluginBase
 {
 

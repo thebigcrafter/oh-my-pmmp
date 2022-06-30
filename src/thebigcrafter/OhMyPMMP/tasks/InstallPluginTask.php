@@ -14,6 +14,9 @@ use thebigcrafter\OhMyPMMP\async\Internet;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use Throwable;
 
+use function version_compare;
+use function str_replace;
+
 class InstallPluginTask extends Task
 {
 

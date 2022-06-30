@@ -9,6 +9,8 @@ use pocketmine\scheduler\Task;
 use thebigcrafter\OhMyPMMP\async\Filesystem;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 
+use function str_replace;
+
 class RemovePluginTask extends Task {
 
 	private CommandSender $sender;

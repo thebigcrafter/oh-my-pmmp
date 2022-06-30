@@ -11,6 +11,9 @@ use thebigcrafter\OhMyPMMP\async\Internet;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use thebigcrafter\OhMyPMMP\Vars;
 
+use function json_decode;
+use function str_replace;
+
 class CachePoggitPlugins extends AsyncTask {
 	public function onRun(): void
 	{

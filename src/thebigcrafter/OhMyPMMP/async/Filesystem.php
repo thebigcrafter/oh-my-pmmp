@@ -8,6 +8,8 @@ use React\Promise\Deferred;
 use React\Promise\Promise;
 use React\Promise\PromiseInterface;
 
+use function file_put_contents;
+
 class Filesystem {
 	/**
 	 * Write a data to a file

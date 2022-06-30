@@ -8,6 +8,9 @@ use CortexPE\Commando\BaseSubCommand;
 use pocketmine\command\CommandSender;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 
+use function phpversion;
+use function str_replace;
+
 class VersionCommand extends BaseSubCommand
 {
 	/**
