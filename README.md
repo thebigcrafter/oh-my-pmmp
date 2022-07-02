@@ -58,59 +58,6 @@ Oh My PMMP provides commands to allow you to install plugins from [Poggit](https
 
 `NOTE:` To use all commands of Oh My PMMP, use `oh-my-pmmp.cmds` permission.
 
-# Advanced Topics
-
-## Advanced Installation
-
-### Build from source
-
-1. Clone the repository.
-```shell
-git clone https://github.com/thebigcrafter/oh-my-pmmp
-cd oh-my-pmmp
-```
-
-2. Download build script.  
-**`NOTE:` Make sure `curl` is installed**
-
-```shell
-curl -o ../ConsoleScript.php https://raw.githubusercontent.com/pmmp/DevTools/master/src/ConsoleScript.php
-```
-
-3. Install dependencies.
-```shell
-composer install --no-dev
-```
-
-4. Make build folder
-```shell
-mkdir build
-```
-
-5. Run the build script.
-```shell
-php -dphar.readonly=0 ../ConsoleScript.php --make src,plugin.yml,vendor --out build/oh-my-pmmp.phar
-```
-
-6. Enjoy the phar file in build folder.
-
-### Run from source
-
-1. Download DevTools at [here.](https://poggit.pmmp.io/p/DevTools/) and put it in the plugins folder.
-
-2. Clone the repository.
-```shell
-cd your_server/plugins/
-git clone https://github.com/thebigcrafter/oh-my-pmmp
-```
-
-3. Install dependencies.
-```shell
-composer install --no-dev
-```
-
-4. Start your server and enjoy the plugin.
-
 # How do I contribute to Oh My PMMP?
 
 Before you participate in our community, please read the [code of conduct](https://github.com/thebigcrafter/oh-my-pmmp/blob/main/CODE_OF_CONDUCT.md).
