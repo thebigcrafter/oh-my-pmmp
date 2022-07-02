@@ -24,6 +24,20 @@ Please include the following with each issue:
 - Steps to reproduce the issue.
 - Images, logs, or a link to a video showing the issue occurring.
 
+# Translate this plugin
+
+Before translate this plugin, please add the language will be translated to the `availableLanguages` array in [`resources/config.yml`](https://github.com/thebigcrafter/oh-my-pmmp/blob/main/resources/config.yml#L1)  
+Copy the `resources/lang/eng.ini`, rename and translate it.  
+**NOTE:** The language name in `availableLanguages` must be the same as the language file name in `resources/lang/`.
+
+For example:
+```yaml
+availableLanguages: [eng] # => availableLanguages: [eng, vie]
+```
+And the `resources/lang` folder will have:
+- eng.ini
+- vie.ini
+
 # Asking Questions
 
 Please join our [Discord server](https://discord.gg/cEXW8uK6QA) to ask questions, get help, and discuss the project.
