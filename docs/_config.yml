@@ -4,7 +4,7 @@ baseurl: "/"
 url: "https://thebigcrafter.github.io/oh-my-pmmp" # the base hostname & protocol for your site, e.g. http://example.com
 
 remote_theme: just-the-docs/just-the-docs
-logo: "/assets/logo.png"
+logo: "./assets/logo.png"
 
 aux_links:
   "Oh My PMMP on GitHub":
