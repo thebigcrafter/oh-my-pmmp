@@ -6,7 +6,7 @@ The asynchronous <a href="https://pmmp.io">PocketMine-MP</a> plugin manager
 [![PHPStan](https://github.com/thebigcrafter/oh-my-pmmp/actions/workflows/phpstan.yml/badge.svg)](https://github.com/thebigcrafter/oh-my-pmmp/actions/workflows/phpstan.yml)
 [![State](https://poggit.pmmp.io/shield.state/oh-my-pmmp)](https://poggit.pmmp.io/p/oh-my-pmmp)
 [![Downloads Total](https://poggit.pmmp.io/shield.dl.total/oh-my-pmmp)](https://poggit.pmmp.io/p/oh-my-pmmp)
-![GitHub](https://img.shields.io/github/license/thebigcrafter/oh-my-pmmp)
+[![License](https://img.shields.io/github/license/thebigcrafter/oh-my-pmmp)](https://github.com/thebigcrafter/oh-my-pmmp/blob/main/LICENSE)
 [![Discord](https://img.shields.io/discord/970294579372912700?label=discord&color=7289DA&logo=discord)](https://discord.gg/cEXW8uK6QA)
 
 Oh My PMMP provides commands to allow you to install plugins from [Poggit](https"//poggit.pmmp.io). It's fast and easy to use.
@@ -18,14 +18,14 @@ Oh My PMMP provides commands to allow you to install plugins from [Poggit](https
 <summary>Table of Contents</summary>
 
 - [Getting Started](#getting-started)
-    - [Prerequisites](#prerequisites)
-    - [Basic Installation](#basic-installation)
+	- [Prerequisites](#prerequisites)
+	- [Basic Installation](#basic-installation)
 - [Using Oh My PMMP](#using-oh-my-pmmp)
-    - [Commands](#commands)
+	- [Commands](#commands)
 - [Advanced Topics](#advanced-topics)
-    - [Advanced Installation](#advanced-installation)
-      - [Build from source](#build-from-source)
-      - [Run from source](#run-from-source)
+	- [Advanced Installation](#advanced-installation)
+		- [Build from source](#build-from-source)
+		- [Run from source](#run-from-source)
 - [How Do I Contribute To Oh My PMMP?](#how-do-i-contribute-to-oh-my-pmmp)
 - [License](#license)
 
