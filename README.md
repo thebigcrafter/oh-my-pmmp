@@ -36,7 +36,7 @@ Oh My PMMP provides commands to allow you to install plugins from [Poggit](https
 ## Prerequisites
 
 - [PHP binary for PocketMine-MP](https://jenkins.pmmp.io/job/PHP-8.0-Aggregate/) 8.0+
-- [PocketMine-MP](https://pmmp.io) v4.3.4 or higher.
+- [PocketMine-MP](https://pmmp.io) v4.0.0 or higher.
 
 ## Basic installation
 
@@ -65,4 +65,4 @@ See [Contributing](https://github.com/thebigcrafter/oh-my-pmmp/blob/main/CONTRIB
 
 # License
 
-Licensed under the [GPL-3.0](https://github.com/thebigcrafter/oh-my-pmmp/blob/main/LICENSE) license.
+Licensed under the [GNU General Public License v3.0](https://github.com/thebigcrafter/oh-my-pmmp/blob/main/LICENSE) license.
