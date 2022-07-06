@@ -7,7 +7,7 @@ Welcome, and thank you for your interest in contributing to Oh My PMMP!
 Have a problem with Oh My PMMP or a feature request? We want to hear about it!
 
 **NOTE:** Please check if the issue exists before creating.
- 
+
 If you cannot find an existing issue that describes your bug or feature, create a new issue using the guidelines below.
 
 # Writing good bug reports and feature requests
