@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace thebigcrafter\OhMyPMMP\commands\subcommands;
 
+use CortexPE\Commando\args\BooleanArgument;
 use CortexPE\Commando\args\RawStringArgument;
 use CortexPE\Commando\BaseSubCommand;
 use CortexPE\Commando\exception\ArgumentOrderException;
@@ -18,23 +19,36 @@ class InstallCommand extends BaseSubCommand
 	 */
 	public function onRun(CommandSender $sender, string $aliasUsed, array $args): void
 	{
-		if(OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning) {
+		if (OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning) {
 			$sender->sendMessage(OhMyPMMP::getInstance()->getLanguage()->translateString("cache.running"));
 			return;
 		}
 
 		$pluginName = $args["pluginName"];
 
-		OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new InstallPluginTask($sender, $pluginName, $args["pluginVersion"]));
+		if (!isset($args["extract"])) {
+			OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new InstallPluginTask($sender, $pluginName, $args["pluginVersion"]));
+		} else {
+			if($args["extract"] === true) {
+				OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new InstallPluginTask($sender, $pluginName, $args["pluginVersion"], false, true));
+			} else {
+				OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new InstallPluginTask($sender, $pluginName, $args["pluginVersion"]));
+			}
+		}
 	}
 
 	/**
 	 * @throws ArgumentOrderException
 	 */
-	protected function prepare(): void {
+	protected function prepare(): void
+	{
 		$this->setPermission("oh-my-pmmp.install");
 
 		$this->registerArgument(0, new RawStringArgument("pluginName"));
 		$this->registerArgument(1, new RawStringArgument("pluginVersion"));
+
+		if (OhMyPMMP::getInstance()->getConfig()->get("devMode") === true) {
+			$this->registerArgument(2, new BooleanArgument("extract", true));
+		}
 	}
 }

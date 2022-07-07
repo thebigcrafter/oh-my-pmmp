@@ -1,3 +1,5 @@
 availableLanguages: [eng, vie] # DON'T DELETE THIS LINE
 
 language: eng
+
+devMode: false

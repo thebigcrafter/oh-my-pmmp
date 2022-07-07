@@ -14,8 +14,8 @@ use thebigcrafter\OhMyPMMP\async\Internet;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use Throwable;
 
-use function version_compare;
 use function str_replace;
+use function version_compare;
 
 class InstallPluginTask extends Task
 {
@@ -28,12 +28,15 @@ class InstallPluginTask extends Task
 
 	private bool $silent;
 
-	public function __construct(CommandSender $sender, string $pluginName, string $pluginVersion, bool $silent = false)
+	private bool $extract;
+
+	public function __construct(CommandSender $sender, string $pluginName, string $pluginVersion, bool $silent = false, bool $extract = false)
 	{
 		$this->sender = $sender;
 		$this->pluginName = $pluginName;
 		$this->pluginVersion = $pluginVersion;
 		$this->silent = $silent;
+		$this->extract = $extract;
 	}
 
 	public function onRun(): void
@@ -77,6 +80,16 @@ class InstallPluginTask extends Task
 			$writefile->done(function () {
 				if (!$this->silent) {
 					$this->sender->sendMessage(str_replace("{{plugin}}", $this->pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.installed")));
+				}
+
+				if($this->extract) {
+					$this->sender->sendMessage("Start extracting plugin");
+
+					Filesystem::extractPhar(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/" . $this->pluginName . ".phar", OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/$this->pluginName")->then(function () {
+						Filesystem::unlinkPhar(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/" . $this->pluginName . ".phar")->then(function () {
+							$this->sender->sendMessage("Finished extracting");
+						});
+					});
 				}
 			}, function (Throwable $e) {
 				if (!$this->silent) {
