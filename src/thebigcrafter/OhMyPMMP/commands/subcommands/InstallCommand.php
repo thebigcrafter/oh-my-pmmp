@@ -29,7 +29,7 @@ class InstallCommand extends BaseSubCommand
 		if (!isset($args["extract"])) {
 			OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new InstallPluginTask($sender, $pluginName, $args["pluginVersion"]));
 		} else {
-			if($args["extract"] === true) {
+			if($args["extract"] == "true") {
 				OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new InstallPluginTask($sender, $pluginName, $args["pluginVersion"], false, true));
 			} else {
 				OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new InstallPluginTask($sender, $pluginName, $args["pluginVersion"]));
