@@ -83,11 +83,11 @@ class InstallPluginTask extends Task
 				}
 
 				if($this->extract) {
-					$this->sender->sendMessage("Start extracting plugin");
+					$this->sender->sendMessage(str_replace("{{plugin}}", $this->pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.extracting")));
 
 					Filesystem::extractPhar(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/" . $this->pluginName . ".phar", OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/$this->pluginName")->then(function () {
 						Filesystem::unlinkPhar(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/" . $this->pluginName . ".phar")->then(function () {
-							$this->sender->sendMessage("Finished extracting");
+							$this->sender->sendMessage(str_replace("{{plugin}}", $this->pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.extracted")));
 						});
 					});
 				}
