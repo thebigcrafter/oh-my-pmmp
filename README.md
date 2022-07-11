@@ -23,9 +23,7 @@ Oh My PMMP provides commands to allow you to install plugins from [Poggit](https
 - [Using Oh My PMMP](#using-oh-my-pmmp)
 	- [Commands](#commands)
 - [Advanced Topics](#advanced-topics)
-	- [Advanced Installation](#advanced-installation)
-		- [Build from source](#build-from-source)
-		- [Run from source](#run-from-source)
+	- [Developer Mode](#developer-mode)
 - [How Do I Contribute To Oh My PMMP?](#how-do-i-contribute-to-oh-my-pmmp)
 - [License](#license)
 
@@ -56,6 +54,15 @@ Oh My PMMP provides commands to allow you to install plugins from [Poggit](https
 |      /omp upgrade <name>      |                                                   Upgrade a plugin                                                  | u, -u, --upgrade |  oh-my-pmmp.update |
 
 `NOTE:` To use all commands of Oh My PMMP, use `oh-my-pmmp.cmds` permission.
+
+# Advanced Topics
+
+## Developer Mode
+
+Turn on this mode in `config.yml` by changing `devMode` to `true`
+
+Some features will be unlocked after developer mode is enabled:
+- **Download plugins as folder**: Download the plugin and oh-my-pmmp will help you extract it by adding the word `true` after the install command. For example: `omp i latest ExamplePlugin true`
 
 # How do I contribute to Oh My PMMP?
 
