@@ -14,7 +14,7 @@ use thebigcrafter\OhMyPMMP\commands\subcommands\VersionCommand;
 class OMPCommand extends BaseCommand
 {
 	/**
-	 * @param string[] $args
+	 * @param array<string> $args
 	 */
 	public function onRun(CommandSender $sender, string $aliasUsed, array $args): void
 	{

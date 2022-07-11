@@ -15,7 +15,7 @@ use thebigcrafter\OhMyPMMP\tasks\RemovePluginTask;
 class UpdateCommand extends BaseSubCommand
 {
 	/**
-	 * @param string[] $args
+	 * @param array<string> $args
 	 */
 	public function onRun(CommandSender $sender, string $aliasUsed, array $args): void
 	{

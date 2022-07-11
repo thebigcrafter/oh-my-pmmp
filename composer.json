@@ -32,6 +32,6 @@
     ],
     "scripts": {
         "fix-cs": "./vendor/bin/php-cs-fixer fix",
-        "analyse-src": "./vendor/bin/phpstan analyse -c phpstan.neon.dist"
+        "analyse": "./vendor/bin/phpstan analyse -c phpstan.neon.dist"
     }
 }

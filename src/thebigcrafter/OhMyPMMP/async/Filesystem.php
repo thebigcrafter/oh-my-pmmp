@@ -15,6 +15,8 @@ class Filesystem
 {
 	/**
 	 * Write a data to a file
+	 *
+	 * @retrun PromiseInterface|Promise
 	 */
 	public static function writeFile(string $file, string $data): PromiseInterface|Promise
 	{
@@ -32,6 +34,8 @@ class Filesystem
 
 	/**
 	 * Unlink Phar file
+	 *
+	 * @retrun PromiseInterface|Promise
 	 */
 	public static function unlinkPhar(string $file): PromiseInterface|Promise
 	{
@@ -50,6 +54,8 @@ class Filesystem
 
 	/**
 	 * Extract Phar file
+	 *
+	 * @retrun PromiseInterface|Promise
 	 */
 	public static function extractPhar(string $file, string $to): PromiseInterface|Promise
 	{

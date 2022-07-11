@@ -10,6 +10,9 @@ use thebigcrafter\OhMyPMMP\commands\OMPCommand;
 use thebigcrafter\OhMyPMMP\tasks\CachePoggitPlugins;
 use thebigcrafter\OhMyPMMP\utils\SingletonTrait;
 
+use function is_dir;
+use function is_file;
+use function mkdir;
 use function strval;
 
 class OhMyPMMP extends PluginBase
@@ -20,6 +23,7 @@ class OhMyPMMP extends PluginBase
 	public Language $language;
 
 	public bool $isCachePoggitPluginsTaskRunning = false;
+
 	/** @var array<string, array<string>> */
 	public array $pluginsList = [];
 

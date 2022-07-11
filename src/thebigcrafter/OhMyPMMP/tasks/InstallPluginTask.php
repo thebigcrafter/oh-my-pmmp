@@ -19,7 +19,6 @@ use function version_compare;
 
 class InstallPluginTask extends Task
 {
-
 	private CommandSender $sender;
 
 	private string $pluginName;

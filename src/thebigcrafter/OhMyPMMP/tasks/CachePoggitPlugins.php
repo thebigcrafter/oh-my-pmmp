@@ -36,8 +36,10 @@ class CachePoggitPlugins extends AsyncTask {
 	function onCompletion(): void
 	{
 		$result = $this->getResult();
+
 		/** @var array<string, array<string>> $result */
 		OhMyPMMP::getInstance()->setPluginsList($result);
+
 		OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning = false;
 		OhMyPMMP::getInstance()->getLogger()->info(OhMyPMMP::getInstance()->getLanguage()->translateString("cache.successfully"));
 	}

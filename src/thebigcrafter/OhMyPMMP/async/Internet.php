@@ -12,6 +12,8 @@ use React\Promise\PromiseInterface;
 class Internet {
 	/**
 	 * Get resource from the URL
+	 *
+	 * @retrun PromiseInterface|Promise
 	 */
 	public static function fetch(string $url): Promise|PromiseInterface
 	{
