@@ -62,7 +62,7 @@ Oh My PMMP provides commands to allow you to install plugins from [Poggit](https
 Turn on this mode in `config.yml` by changing `devMode` to `true`
 
 Some features will be unlocked after developer mode is enabled:
-- **Download plugins as folder**: Download the plugin and oh-my-pmmp will help you extract it by adding the word `true` after the install command. For example: `omp i latest ExamplePlugin true`
+- **Download plugins as folder**: Download the plugin and oh-my-pmmp will help you extract it by adding the word `true` after the install command. For example: `omp i ExamplePlugin latest true`
 
 # How do I contribute to Oh My PMMP?
 
