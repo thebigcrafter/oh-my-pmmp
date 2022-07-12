@@ -66,7 +66,7 @@ Some features will be unlocked after developer mode is enabled:
 
 # How do I contribute to Oh My PMMP?
 
-Before you participate in our community, please read the [code of conduct](https://github.com/thebigcrafter/oh-my-pmmp/blob/main/CODE_OF_CONDUCT.md).
+Before you participate in our community, please read the [Code of Conduct](https://github.com/thebigcrafter/oh-my-pmmp/blob/main/CODE_OF_CONDUCT.md).
 
 See [Contributing](https://github.com/thebigcrafter/oh-my-pmmp/blob/main/CONTRIBUTING.md) for more details.
 
