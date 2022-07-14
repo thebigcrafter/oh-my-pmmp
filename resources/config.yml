@@ -1,5 +1,10 @@
+
+# Available languages
 availableLanguages: [eng, vie] # DON'T DELETE THIS LINE
 
+# Plugin default language
 language: eng
 
+# Developer Mode
+# If true, some advanced features like downloading plugins as a folder and other features for developers will be enabled.
 devMode: false
