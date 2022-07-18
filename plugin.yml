@@ -25,3 +25,6 @@ permissions:
   oh-my-pmmp.update:
     description: Allow players to update plugin
     default: op
+  oh-my-pmmp.list:
+    description: Allow players to list available plugins or installed plugins
+    default: op
