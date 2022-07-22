@@ -17,22 +17,55 @@ class InstallCommand extends BaseSubCommand
 	/**
 	 * @param array<string> $args
 	 */
-	public function onRun(CommandSender $sender, string $aliasUsed, array $args): void
-	{
+	public function onRun(
+		CommandSender $sender,
+		string $aliasUsed,
+		array $args,
+	): void {
 		if (OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning) {
-			$sender->sendMessage(OhMyPMMP::getInstance()->getLanguage()->translateString("cache.running"));
+			$sender->sendMessage(
+				OhMyPMMP::getInstance()
+					->getLanguage()
+					->translateString("cache.running"),
+			);
 			return;
 		}
 
 		$pluginName = $args["pluginName"];
 
 		if (!isset($args["extract"])) {
-			OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new InstallPluginTask($sender, $pluginName, $args["pluginVersion"]));
+			OhMyPMMP::getInstance()
+				->getScheduler()
+				->scheduleTask(
+					new InstallPluginTask(
+						$sender,
+						$pluginName,
+						$args["pluginVersion"],
+					),
+				);
 		} else {
-			if($args["extract"] == "true") {
-				OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new InstallPluginTask($sender, $pluginName, $args["pluginVersion"], false, true));
+			if ($args["extract"] == "true") {
+				OhMyPMMP::getInstance()
+					->getScheduler()
+					->scheduleTask(
+						new InstallPluginTask(
+							$sender,
+							$pluginName,
+							$args["pluginVersion"],
+							false,
+							true,
+						),
+					);
 			} else {
-				OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new InstallPluginTask($sender, $pluginName, $args["pluginVersion"]));
+				OhMyPMMP::getInstance()
+					->getScheduler()
+					->scheduleTask(
+						new InstallPluginTask(
+							$sender,
+							$pluginName,
+							$args["pluginVersion"],
+						),
+					);
 			}
 		}
 	}
@@ -47,7 +80,11 @@ class InstallCommand extends BaseSubCommand
 		$this->registerArgument(0, new RawStringArgument("pluginName"));
 		$this->registerArgument(1, new RawStringArgument("pluginVersion"));
 
-		if (OhMyPMMP::getInstance()->getConfig()->get("devMode") === true) {
+		if (
+			OhMyPMMP::getInstance()
+				->getConfig()
+				->get("devMode") === true
+		) {
 			$this->registerArgument(2, new BooleanArgument("extract", true));
 		}
 	}

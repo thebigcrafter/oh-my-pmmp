@@ -17,19 +17,40 @@ class UpdateCommand extends BaseSubCommand
 	/**
 	 * @param array<string> $args
 	 */
-	public function onRun(CommandSender $sender, string $aliasUsed, array $args): void
-	{
+	public function onRun(
+		CommandSender $sender,
+		string $aliasUsed,
+		array $args,
+	): void {
 		if (OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning) {
-			$sender->sendMessage(OhMyPMMP::getInstance()->getLanguage()->translateString("cache.running"));
+			$sender->sendMessage(
+				OhMyPMMP::getInstance()
+					->getLanguage()
+					->translateString("cache.running"),
+			);
 			return;
 		}
 
 		$pluginName = $args["pluginName"];
 
-		OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new RemovePluginTask($sender, $pluginName, true));
-		OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new InstallPluginTask($sender, $pluginName, "latest", true));
+		OhMyPMMP::getInstance()
+			->getScheduler()
+			->scheduleTask(new RemovePluginTask($sender, $pluginName, true));
+		OhMyPMMP::getInstance()
+			->getScheduler()
+			->scheduleTask(
+				new InstallPluginTask($sender, $pluginName, "latest", true),
+			);
 
-		$sender->sendMessage(str_replace("{{plugin}}", $pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.updated")));
+		$sender->sendMessage(
+			str_replace(
+				"{{plugin}}",
+				$pluginName,
+				OhMyPMMP::getInstance()
+					->getLanguage()
+					->translateString("plugin.updated"),
+			),
+		);
 	}
 
 	/**

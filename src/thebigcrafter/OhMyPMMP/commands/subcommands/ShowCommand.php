@@ -13,7 +13,8 @@ use thebigcrafter\OhMyPMMP\OhMyPMMP;
 
 use function str_replace;
 
-class ShowCommand extends BaseSubCommand {
+class ShowCommand extends BaseSubCommand
+{
 	// Usage /omp show XPShop 1.0.0
 
 	/**
@@ -24,26 +25,47 @@ class ShowCommand extends BaseSubCommand {
 		$this->setPermission("oh-my-pmmp.show");
 
 		$this->registerArgument(0, new RawStringArgument("pluginName", false));
-		$this->registerArgument(1, new RawStringArgument("pluginVersion", false));
+		$this->registerArgument(
+			1,
+			new RawStringArgument("pluginVersion", false),
+		);
 	}
 
-	public function onRun(CommandSender $sender, string $aliasUsed, array $args): void
-	{
+	public function onRun(
+		CommandSender $sender,
+		string $aliasUsed,
+		array $args,
+	): void {
 		if (OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning) {
-			$sender->sendMessage(OhMyPMMP::getInstance()->getLanguage()->translateString("cache.running"));
+			$sender->sendMessage(
+				OhMyPMMP::getInstance()
+					->getLanguage()
+					->translateString("cache.running"),
+			);
 			return;
 		}
 
 		$pluginInfo = "";
 
 		foreach (OhMyPMMP::getInstance()->getPluginsList() as $plugin) {
-			if($args["pluginName"] == $plugin["name"] && $args["pluginVersion"] == $plugin["version"]) {
+			if (
+				$args["pluginName"] == $plugin["name"] &&
+				$args["pluginVersion"] == $plugin["version"]
+			) {
 				$pluginInfo = $plugin;
 			}
 		}
 
-		if(empty($pluginInfo)) {
-			$sender->sendMessage(str_replace("{{plugin}}", $args["pluginName"],OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.not.found")));
+		if (empty($pluginInfo)) {
+			$sender->sendMessage(
+				str_replace(
+					"{{plugin}}",
+					$args["pluginName"],
+					OhMyPMMP::getInstance()
+						->getLanguage()
+						->translateString("plugin.not.found"),
+				),
+			);
 			return;
 		}
 
@@ -60,12 +82,35 @@ class ShowCommand extends BaseSubCommand {
 			return $item["name"] . " v" . $item["version"];
 		}, $pluginDeps);
 		$deps = implode(", ", $deps ?? []);
-		$deps = ($deps == "") ? "[]" : $deps;
+		$deps = $deps == "" ? "[]" : $deps;
 
-		Internet::getRemoteFilesize($pluginInfo["artifact_url"])->done(function (string $size) use ($pluginScore, $pluginDownloads, $pluginHomepage, $pluginLicense, $sender, $pluginName, $pluginVersion, $deps, $pluginAPI) {
-			$sender->sendMessage("Name: $pluginName\nVersion: $pluginVersion\nHomepage: $pluginHomepage\nLicense: $pluginLicense\nDownloads: $pluginDownloads\nScore: $pluginScore\nAPI: " . $pluginAPI[0]["from"] . " <= PocketMine-MP <= " . $pluginAPI[0]["to"] . "\nDepends: $deps\nDownload Size: $size");
-		}, function () use ($sender) {
-			$sender->sendMessage(OhMyPMMP::getInstance()->getLanguage()->translateString("poggit.api.error"));
-		});
+		Internet::getRemoteFilesize($pluginInfo["artifact_url"])->done(
+			function (string $size) use (
+				$pluginScore,
+				$pluginDownloads,
+				$pluginHomepage,
+				$pluginLicense,
+				$sender,
+				$pluginName,
+				$pluginVersion,
+				$deps,
+				$pluginAPI,
+			) {
+				$sender->sendMessage(
+					"Name: $pluginName\nVersion: $pluginVersion\nHomepage: $pluginHomepage\nLicense: $pluginLicense\nDownloads: $pluginDownloads\nScore: $pluginScore\nAPI: " .
+						$pluginAPI[0]["from"] .
+						" <= PocketMine-MP <= " .
+						$pluginAPI[0]["to"] .
+						"\nDepends: $deps\nDownload Size: $size",
+				);
+			},
+			function () use ($sender) {
+				$sender->sendMessage(
+					OhMyPMMP::getInstance()
+						->getLanguage()
+						->translateString("poggit.api.error"),
+				);
+			},
+		);
 	}
 }

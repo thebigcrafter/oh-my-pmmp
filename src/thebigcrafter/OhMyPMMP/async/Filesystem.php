@@ -18,8 +18,10 @@ class Filesystem
 	 *
 	 * @retrun PromiseInterface|Promise
 	 */
-	public static function writeFile(string $file, string $data): PromiseInterface|Promise
-	{
+	public static function writeFile(
+		string $file,
+		string $data,
+	): PromiseInterface|Promise {
 		$deferred = new Deferred();
 
 		try {
@@ -57,8 +59,10 @@ class Filesystem
 	 *
 	 * @retrun PromiseInterface|Promise
 	 */
-	public static function extractPhar(string $file, string $to): PromiseInterface|Promise
-	{
+	public static function extractPhar(
+		string $file,
+		string $to,
+	): PromiseInterface|Promise {
 		$deferred = new Deferred();
 
 		$phar = new Phar($file);

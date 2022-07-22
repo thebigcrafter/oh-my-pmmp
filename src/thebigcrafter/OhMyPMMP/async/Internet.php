@@ -70,11 +70,14 @@ class Internet
 		$size = $clen;
 		switch ($clen) {
 			case $clen < 1024:
-				$size = $clen . ' B'; break;
+				$size = $clen . " B";
+				break;
 			case $clen < 1048576:
-				$size = round($clen / 1024, 2) . ' KiB'; break;
+				$size = round($clen / 1024, 2) . " KiB";
+				break;
 			case $clen < 1073741824:
-				$size = round($clen / 1048576, 2) . ' MiB'; break;
+				$size = round($clen / 1048576, 2) . " MiB";
+				break;
 		}
 
 		$deferred->resolve($size);

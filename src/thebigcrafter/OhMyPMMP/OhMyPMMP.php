@@ -17,7 +17,6 @@ use function strval;
 
 class OhMyPMMP extends PluginBase
 {
-
 	use SingletonTrait;
 
 	public Language $language;
@@ -35,9 +34,19 @@ class OhMyPMMP extends PluginBase
 		$this->loadLanguage();
 
 		$this->isCachePoggitPluginsTaskRunning = true;
-		$this->getServer()->getAsyncPool()->submitTask(new CachePoggitPlugins());
+		$this->getServer()
+			->getAsyncPool()
+			->submitTask(new CachePoggitPlugins());
 
-		$this->getServer()->getCommandMap()->register("OhMyPMMP", new OMPCommand($this, "ohmypmmp", "Oh My PMMP", ["omp", "oh-my-pmmp"]));
+		$this->getServer()
+			->getCommandMap()
+			->register(
+				"OhMyPMMP",
+				new OMPCommand($this, "ohmypmmp", "Oh My PMMP", [
+					"omp",
+					"oh-my-pmmp",
+				]),
+			);
 	}
 
 	public function loadLanguage(): void
@@ -48,13 +57,19 @@ class OhMyPMMP extends PluginBase
 			@mkdir($langFolder);
 		}
 
-		foreach ((array) $this->getConfig()->get("availableLanguages") as $lang) {
+		foreach (
+			(array) $this->getConfig()->get("availableLanguages")
+			as $lang
+		) {
 			if (!is_file(strval($lang))) {
 				$this->saveResource("lang/" . strval($lang) . ".ini");
 			}
 		}
 
-		$this->language = new Language(strval($this->getConfig()->get('language')), $langFolder);
+		$this->language = new Language(
+			strval($this->getConfig()->get("language")),
+			$langFolder,
+		);
 	}
 
 	/**
@@ -73,7 +88,8 @@ class OhMyPMMP extends PluginBase
 		$this->pluginsList = $pluginsList;
 	}
 
-	public function getLanguage(): Language {
+	public function getLanguage(): Language
+	{
 		return $this->language;
 	}
 }
