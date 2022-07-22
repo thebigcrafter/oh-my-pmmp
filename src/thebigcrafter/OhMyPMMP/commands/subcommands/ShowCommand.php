@@ -56,12 +56,11 @@ class ShowCommand extends BaseSubCommand {
 		$pluginAPI = $pluginInfo["api"];
 		$pluginDeps = $pluginInfo["deps"];
 
-		// TODO: Split into array and connect them with comma
-		$deps = "";
-
-		foreach ($pluginDeps as $dep) {
-			$deps .= $dep["name"] . " (v" . $dep["version"] . ") ";
-		}
+		$deps = array_map(function ($item) {
+			return $item["name"] . " v" . $item["version"];
+		}, $pluginDeps);
+		$deps = implode(", ", $deps ?? []);
+		$deps = ($deps == "") ? "[]" : $deps;
 
 		Internet::getRemoteFilesize($pluginInfo["artifact_url"])->done(function (string $size) use ($pluginScore, $pluginDownloads, $pluginHomepage, $pluginLicense, $sender, $pluginName, $pluginVersion, $deps, $pluginAPI) {
 			$sender->sendMessage("Name: $pluginName\nVersion: $pluginVersion\nHomepage: $pluginHomepage\nLicense: $pluginLicense\nDownloads: $pluginDownloads\nScore: $pluginScore\nAPI: " . $pluginAPI[0]["from"] . " <= PocketMine-MP <= " . $pluginAPI[0]["to"] . "\nDepends: $deps\nDownload Size: $size");
