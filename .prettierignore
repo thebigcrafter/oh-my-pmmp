@@ -1,0 +1,12 @@
+vendor/
+resources/
+.github
+
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+
+composer.lock
+yarn.lock
+
+plugin.yml
+.poggit.yml

@@ -1,0 +1,17 @@
+{
+    "name": "oh-my-pmmp",
+    "version": "1.5.0",
+    "description": "📦 A plugin manager for PocketMine-MP downloads plugin from PocketMine-MP official plugin repository",
+    "main": "",
+    "repository": "https://github.com/thebigcrafter/oh-my-pmmp.git",
+    "author": "thebigcrafter Team",
+    "license": "GPL-3.0",
+    "devDependencies": {
+        "@prettier/plugin-php": "^0.18.9",
+        "prettier": "2.7.1"
+    },
+    "scripts": {
+        "check": "prettier --check .",
+        "format": "prettier --write ."
+    }
+}

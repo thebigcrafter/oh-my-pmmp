@@ -1,0 +1,9 @@
+{
+    "tabWidth": 4,
+    "singleQuote": false,
+    "phpVersion": "8.0",
+    "trailingCommaPHP": true,
+    "braceStyle": "psr-2",
+    "requirePragma": false,
+    "insertPragma": false
+}
