@@ -4,6 +4,7 @@
 The asynchronous <a href="https://pmmp.io">PocketMine-MP</a> plugin manager
 
 [![PHPStan](https://github.com/thebigcrafter/oh-my-pmmp/actions/workflows/phpstan.yml/badge.svg)](https://github.com/thebigcrafter/oh-my-pmmp/actions/workflows/phpstan.yml)
+[![Prettier Check](https://github.com/thebigcrafter/oh-my-pmmp/actions/workflows/prettier.yml/badge.svg)](https://github.com/thebigcrafter/oh-my-pmmp/actions/workflows/prettier.yml)
 [![State](https://poggit.pmmp.io/shield.state/oh-my-pmmp)](https://poggit.pmmp.io/p/oh-my-pmmp)
 [![Downloads Total](https://poggit.pmmp.io/shield.dl.total/oh-my-pmmp)](https://poggit.pmmp.io/p/oh-my-pmmp)
 [![License](https://img.shields.io/github/license/thebigcrafter/oh-my-pmmp)](https://github.com/thebigcrafter/oh-my-pmmp/blob/main/LICENSE)
