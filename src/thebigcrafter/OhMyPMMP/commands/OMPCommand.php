@@ -9,6 +9,7 @@ use pocketmine\command\CommandSender;
 use thebigcrafter\OhMyPMMP\commands\subcommands\InstallCommand;
 use thebigcrafter\OhMyPMMP\commands\subcommands\ListCommand;
 use thebigcrafter\OhMyPMMP\commands\subcommands\RemoveCommand;
+use thebigcrafter\OhMyPMMP\commands\subcommands\ShowCommand;
 use thebigcrafter\OhMyPMMP\commands\subcommands\UpdateCommand;
 use thebigcrafter\OhMyPMMP\commands\subcommands\VersionCommand;
 
@@ -31,7 +32,8 @@ class OMPCommand extends BaseCommand
 			new InstallCommand("install", "Install a plugin", ["i", "-i", "--install"]),
 			new UpdateCommand("update", "Update a plugin", ["u", "-u", "--update"]),
 			new RemoveCommand("remove", "Remove a plugin", ["r", "-r", "--remove"]),
-			new ListCommand("list", "List all available plugins", ["l", "-l", "--list"])
+			new ListCommand("list", "List all available plugins", ["l", "-l", "--list"]),
+			new ShowCommand("show", "Get details of a plugin", ["s", "-s", "--show"])
 		];
 
 		foreach ($subcommands as $subcommand) {

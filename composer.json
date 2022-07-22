@@ -5,7 +5,8 @@
     "require": {
         "php": "^8.0",
         "cortexpe/commando": "dev-master",
-        "react/promise": "2.9.0"
+        "react/promise": "2.9.0",
+      "ext-curl": "*"
     },
     "require-dev": {
         "pocketmine/pocketmine-mp": "^4.0",

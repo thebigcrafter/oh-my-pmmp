@@ -28,3 +28,5 @@ permissions:
   oh-my-pmmp.list:
     description: Allow players to list available plugins or installed plugins
     default: op
+  oh-my-pmmp.show:
+    description: Allow players to get details about a plugin

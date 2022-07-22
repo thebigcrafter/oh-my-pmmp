@@ -10,8 +10,8 @@ use pocketmine\command\CommandSender;
 use pocketmine\utils\TextFormat;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 
-use function in_array;
 use function array_unique;
+use function in_array;
 
 class ListCommand extends BaseSubCommand {
 	protected function prepare(): void

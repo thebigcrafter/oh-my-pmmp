@@ -34,18 +34,16 @@ class Internet
 	}
 
 	/**
-	 *  Get the file size of any remote resource
+	 *  Get the file size of any remote resource (using curl)
 	 *
-	 * @param string $url
-	 * @param boolean $formatSize
-	 * @param boolean $useHead
-	 * @return Promise|PromiseInterface
+	 *  @author  Stephan Schmitz <eyecatchup@gmail.com>
+	 *  @license MIT <http://eyecatchup.mit-license.org/>
+	 *  @url     <https://gist.github.com/eyecatchup/f26300ffd7e50a92bc4d>
 	 *
-	 * @author  Stephan Schmitz <eyecatchup@gmail.com>
-	 * @license MIT <http://eyecatchup.mit-license.org/>
-	 * @url     <https://gist.github.com/eyecatchup/f26300ffd7e50a92bc4d>
+	 *  @param   string   $url
+	 *  @return  Promise|PromiseInterface
 	 */
-	function getRemoteFilesize(string $url, bool $formatSize = true, bool $useHead = true): Promise|PromiseInterface
+	public static function getRemoteFilesize($url)
 	{
 		$deferred = new Deferred();
 		$ch = curl_init($url);
@@ -57,20 +55,29 @@ class Internet
 			CURLOPT_NOBODY => 1,
 		]);
 
-		if (false !== $useHead) {
-			curl_setopt($ch, CURLOPT_NOBODY, 1);
-		}
+		curl_setopt($ch, CURLOPT_NOBODY, 1);
 
 		curl_exec($ch);
+		// content-length of download (in bytes), read from Content-Length: field
 		$clen = curl_getinfo($ch, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
 		curl_close($ch);
 
 		// cannot retrieve file size, return "-1"
 		if (!$clen) {
-			$deferred->reject();
-		} else {
-			$deferred->resolve();
+			$deferred->reject(-1);
 		}
+
+		$size = $clen;
+		switch ($clen) {
+			case $clen < 1024:
+				$size = $clen . ' B'; break;
+			case $clen < 1048576:
+				$size = round($clen / 1024, 2) . ' KiB'; break;
+			case $clen < 1073741824:
+				$size = round($clen / 1048576, 2) . ' MiB'; break;
+		}
+
+		$deferred->resolve($size);
 
 		return $deferred->promise();
 	}
