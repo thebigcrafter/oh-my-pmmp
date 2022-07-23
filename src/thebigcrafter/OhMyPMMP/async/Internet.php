@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace thebigcrafter\OhMyPMMP\async;
 
+use CurlHandle;
 use pocketmine\utils\InternetException;
 use pocketmine\utils\InternetRequestResult;
 use React\Promise\Deferred;
@@ -46,7 +47,7 @@ class Internet
 	public static function getRemoteFilesize($url)
 	{
 		$deferred = new Deferred();
-		/** @var CurlHandle $ch */
+		/** @param CurlHandle $ch */
 		$ch = curl_init($url);
 
 		curl_setopt_array($ch, [

@@ -79,11 +79,11 @@ class ShowCommand extends BaseSubCommand
 		$pluginScore = $pluginInfo["score"];
 		$pluginLicense = $pluginInfo["license"];
 		$pluginAPI = $pluginInfo["api"];
-		$pluginDeps = (array)$pluginInfo["deps"];
-
+		$pluginDeps = $pluginInfo["deps"];
+		/** @param array<string> $item */
 		$deps = array_map(function ($item) {
 			return $item["name"] . " v" . $item["version"];
-		}, $pluginDeps);
+		}, (array)$pluginDeps);
 		$deps = implode(", ", $deps ?? []);
 		$deps = ($deps == "") ? "[]" : $deps;
 		/** @var Promise $RemoteFilesize */
