@@ -24,7 +24,7 @@ class CachePoggitPlugins extends AsyncTask
 			function (string $raw) {
 				$pluginsList = [];
 				$json = (array) json_decode($raw, true);
-
+				/** @var array<string> $plugin */
 				foreach ($json as $plugin) {
 					$pluginsList[] = [
 						"name" => $plugin["name"],
@@ -36,7 +36,7 @@ class CachePoggitPlugins extends AsyncTask
 						"score" => $plugin["score"],
 						"api" => $plugin["api"],
 						"deps" => $plugin["deps"],
-					]; /* @phpstan-ignore-line */
+					];
 				}
 
 				$this->setResult($pluginsList);

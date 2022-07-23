@@ -48,7 +48,7 @@ class ShowCommand extends BaseSubCommand
 			return;
 		}
 
-		$pluginInfo = "";
+		$pluginInfo = [];
 
 		foreach (OhMyPMMP::getInstance()->getPluginsList() as $plugin) {
 			if (
@@ -80,12 +80,15 @@ class ShowCommand extends BaseSubCommand
 		$pluginLicense = $pluginInfo["license"];
 		$pluginAPI = $pluginInfo["api"];
 		$pluginDeps = $pluginInfo["deps"];
-		/** @param array<string> $item */
-		$deps = array_map(function ($item) {
-			return $item["name"] . " v" . $item["version"];
-		}, (array)$pluginDeps);
-		$deps = implode(", ", $deps ?? []);
-		$deps = ($deps == "") ? "[]" : $deps;
+		if(empty($pluginDeps)){
+			$deps = "[]";
+		} else{
+			$deps = array_map(function ($item) {
+				/** @var array<string> $item */
+				return $item["name"] . " v" . $item["version"];
+			}, (array)$pluginDeps);
+			$deps = implode(", ", $deps);
+		}
 		/** @var Promise $RemoteFilesize */
 		$RemoteFilesize = Internet::getRemoteFilesize($pluginInfo["artifact_url"]);
 		$RemoteFilesize->done(
@@ -100,11 +103,13 @@ class ShowCommand extends BaseSubCommand
 				$deps,
 				$pluginAPI,
 			) {
+				/** @var array<string> $pluginAPI */
+				$pluginAPI = (array)$pluginAPI[0];
 				$sender->sendMessage(
 					"Name: $pluginName\nVersion: $pluginVersion\nHomepage: $pluginHomepage\nLicense: $pluginLicense\nDownloads: $pluginDownloads\nScore: $pluginScore\nAPI: " .
-						$pluginAPI[0]["from"] .
+						$pluginAPI["from"] .
 						" <= PocketMine-MP <= " .
-						$pluginAPI[0]["to"] .
+						$pluginAPI["to"] .
 						"\nDepends: $deps\nDownload Size: $size",
 				);
 			},
