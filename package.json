@@ -1,6 +1,6 @@
 {
     "name": "oh-my-pmmp",
-    "version": "1.5.0",
+    "version": "1.6.0-beta",
     "description": "📦 A plugin manager for PocketMine-MP downloads plugin from PocketMine-MP official plugin repository",
     "main": "",
     "repository": "https://github.com/thebigcrafter/oh-my-pmmp.git",
