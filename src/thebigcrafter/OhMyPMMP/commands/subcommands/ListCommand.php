@@ -24,7 +24,9 @@ class ListCommand extends BaseSubCommand
 			new RawStringArgument("installedPlugins", true),
 		);
 	}
-
+	/**
+	 * @param array<string>	$args
+	 */
 	public function onRun(
 		CommandSender $sender,
 		string $aliasUsed,

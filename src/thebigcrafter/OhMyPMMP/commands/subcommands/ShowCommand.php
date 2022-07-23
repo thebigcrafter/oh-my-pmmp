@@ -8,6 +8,7 @@ use CortexPE\Commando\args\RawStringArgument;
 use CortexPE\Commando\BaseSubCommand;
 use CortexPE\Commando\exception\ArgumentOrderException;
 use pocketmine\command\CommandSender;
+use React\Promise\Promise;
 use thebigcrafter\OhMyPMMP\async\Internet;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 
@@ -30,7 +31,9 @@ class ShowCommand extends BaseSubCommand
 			new RawStringArgument("pluginVersion", false),
 		);
 	}
-
+	/**
+	 * @param array<string> $args
+	 */
 	public function onRun(
 		CommandSender $sender,
 		string $aliasUsed,
@@ -76,15 +79,16 @@ class ShowCommand extends BaseSubCommand
 		$pluginScore = $pluginInfo["score"];
 		$pluginLicense = $pluginInfo["license"];
 		$pluginAPI = $pluginInfo["api"];
-		$pluginDeps = $pluginInfo["deps"];
+		$pluginDeps = (array)$pluginInfo["deps"];
 
 		$deps = array_map(function ($item) {
 			return $item["name"] . " v" . $item["version"];
 		}, $pluginDeps);
 		$deps = implode(", ", $deps ?? []);
-		$deps = $deps == "" ? "[]" : $deps;
-
-		Internet::getRemoteFilesize($pluginInfo["artifact_url"])->done(
+		$deps = ($deps == "") ? "[]" : $deps;
+		/** @var Promise $RemoteFilesize */
+		$RemoteFilesize = Internet::getRemoteFilesize($pluginInfo["artifact_url"]);
+		$RemoteFilesize->done(
 			function (string $size) use (
 				$pluginScore,
 				$pluginDownloads,

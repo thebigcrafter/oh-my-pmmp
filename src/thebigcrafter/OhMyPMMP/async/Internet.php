@@ -46,6 +46,7 @@ class Internet
 	public static function getRemoteFilesize($url)
 	{
 		$deferred = new Deferred();
+		/** @var CurlHandle $ch */
 		$ch = curl_init($url);
 
 		curl_setopt_array($ch, [
