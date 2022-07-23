@@ -80,17 +80,19 @@ class ShowCommand extends BaseSubCommand
 		$pluginLicense = $pluginInfo["license"];
 		$pluginAPI = $pluginInfo["api"];
 		$pluginDeps = $pluginInfo["deps"];
-		if(empty($pluginDeps)){
+		if (empty($pluginDeps)) {
 			$deps = "[]";
-		} else{
+		} else {
 			$deps = array_map(function ($item) {
 				/** @var array<string> $item */
 				return $item["name"] . " v" . $item["version"];
-			}, (array)$pluginDeps);
+			}, (array) $pluginDeps);
 			$deps = implode(", ", $deps);
 		}
 		/** @var Promise $RemoteFilesize */
-		$RemoteFilesize = Internet::getRemoteFilesize($pluginInfo["artifact_url"]);
+		$RemoteFilesize = Internet::getRemoteFilesize(
+			$pluginInfo["artifact_url"],
+		);
 		$RemoteFilesize->done(
 			function (string $size) use (
 				$pluginScore,
@@ -104,7 +106,7 @@ class ShowCommand extends BaseSubCommand
 				$pluginAPI,
 			) {
 				/** @var array<string> $pluginAPI */
-				$pluginAPI = (array)$pluginAPI[0];
+				$pluginAPI = (array) $pluginAPI[0];
 				$sender->sendMessage(
 					"Name: $pluginName\nVersion: $pluginVersion\nHomepage: $pluginHomepage\nLicense: $pluginLicense\nDownloads: $pluginDownloads\nScore: $pluginScore\nAPI: " .
 						$pluginAPI["from"] .
