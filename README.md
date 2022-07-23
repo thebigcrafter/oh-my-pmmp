@@ -20,12 +20,12 @@ Oh My PMMP provides commands to allow you to install plugins from [Poggit](https
 
 - [Getting Started](#getting-started)
 	- [Prerequisites](#prerequisites)
-	- [Basic Installation](#basic-installation)
+	- [Basic installation](#basic-installation)
 - [Using Oh My PMMP](#using-oh-my-pmmp)
 	- [Commands](#commands)
 - [Advanced Topics](#advanced-topics)
 	- [Developer Mode](#developer-mode)
-- [How Do I Contribute To Oh My PMMP?](#how-do-i-contribute-to-oh-my-pmmp)
+- [How do I contribute to Oh My PMMP?](#how-do-i-contribute-to-oh-my-pmmp)
 - [License](#license)
 
 </details>
@@ -47,12 +47,60 @@ Oh My PMMP provides commands to allow you to install plugins from [Poggit](https
 
 ## Commands
 
-|            Commands           |                                                     Description                                                     |      Aliases     |     Permissions    |
-|:-----------------------------:|:-------------------------------------------------------------------------------------------------------------------:|:----------------:|:------------------:|
-|          /omp version         |                                                  Get plugin version                                                 | v, -v, --version | oh-my-pmmp.version |
-| /omp install <name> <version> | Install a plugin<br/> `NOTE:` To install the latest version, use "latest"<br/> Example: /omp i ExamplePlugin latest | i, -i, --install | oh-my-pmmp.install |
-|       /omp remove <name>      |                                                   Remove a plugin                                                   |  r, -r, --remove |  oh-my-pmmp.remove |
-|      /omp upgrade <name>      |                                                   Upgrade a plugin                                                  | u, -u, --upgrade |  oh-my-pmmp.update |
+Oh My PMMP provides `omp` command to allow you to install, upgrade, remove, etc. plugins from [Poggit](https"//poggit.pmmp.io)
+
+#### `omp help`
+
+**`Permission:` `oh-my-pmmp.help`**
+
+List available commands.
+
+#### `omp version`
+
+**`Permission:` `oh-my-pmmp.version`**
+
+Print plugin version.
+
+#### `omp install` `<plugin>` `<version>`
+
+**`Permission:` `oh-my-pmmp.install`**
+
+Install a plugin with a specified version or use the word `latest` as a version to install the latest one.
+
+#### `omp remove` `<plugin>`
+
+**`Permission:` `oh-my-pmmp.remove`**
+
+Remove a plugin.
+
+> The plugin won't be disable upon deletion so you need to restart your server to apply changes. We are making it disable.
+
+#### `omp update`
+
+**`Permission:` `oh-my-pmmp.update`**
+
+Update cached data.
+
+#### `omp list`
+
+**`Permission:` `oh-my-pmmp.list`**
+
+List available plugins or installed plugins.
+
+- To list the installed plugins, you can add `i`, `-installed` or `--installed` behind the command, `omp list --installed`, for instance.
+
+#### `omp show` `<plugin>` `<version>`
+
+**`Permission:` `oh-my-pmmp.show`**
+
+Get details about a plugin (name, version, api, depends, etc.).
+
+#### `omp upgrade` `<plugin>` `<version>`
+
+**`Permission:` `oh-my-pmmp.upgrade`**
+
+Upgrade a plugin to a specified version or use the word `latest` as a version to upgrade to the latest one.
+
 
 `NOTE:` To use all commands of Oh My PMMP, use `oh-my-pmmp.cmds` permission.
 
