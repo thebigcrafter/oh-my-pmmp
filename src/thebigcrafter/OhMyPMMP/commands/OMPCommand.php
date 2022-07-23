@@ -11,6 +11,7 @@ use thebigcrafter\OhMyPMMP\commands\subcommands\ListCommand;
 use thebigcrafter\OhMyPMMP\commands\subcommands\RemoveCommand;
 use thebigcrafter\OhMyPMMP\commands\subcommands\ShowCommand;
 use thebigcrafter\OhMyPMMP\commands\subcommands\UpdateCommand;
+use thebigcrafter\OhMyPMMP\commands\subcommands\UpgradeCommand;
 use thebigcrafter\OhMyPMMP\commands\subcommands\VersionCommand;
 
 class OMPCommand extends BaseCommand
@@ -41,9 +42,9 @@ class OMPCommand extends BaseCommand
 				"-i",
 				"--install",
 			]),
-			new UpdateCommand("update", "Update a plugin", [
-				"u",
-				"-u",
+			new UpdateCommand("update", "Update cached data", [
+				"ud",
+				"-ud",
 				"--update",
 			]),
 			new RemoveCommand("remove", "Remove a plugin", [
@@ -60,6 +61,11 @@ class OMPCommand extends BaseCommand
 				"s",
 				"-s",
 				"--show",
+			]),
+			new UpgradeCommand("upgrade", "Upgrade a plugin", [
+				"u",
+				"-u",
+				"--upgrade",
 			]),
 		];
 

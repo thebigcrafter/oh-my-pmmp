@@ -23,10 +23,14 @@ permissions:
     description: Allow players to remove plugin
     default: op
   oh-my-pmmp.update:
-    description: Allow players to update plugin
+    description: Allow players to update cached data
     default: op
   oh-my-pmmp.list:
     description: Allow players to list available plugins or installed plugins
     default: op
   oh-my-pmmp.show:
     description: Allow players to get details about a plugin
+    default: op
+  oh-my-pmmp.upgrade:
+    description: Allow players to upgrade plugin
+    default: op

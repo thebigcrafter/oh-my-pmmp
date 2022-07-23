@@ -4,13 +4,10 @@ declare(strict_types=1);
 
 namespace thebigcrafter\OhMyPMMP\commands\subcommands;
 
-use CortexPE\Commando\args\RawStringArgument;
 use CortexPE\Commando\BaseSubCommand;
-use CortexPE\Commando\exception\ArgumentOrderException;
 use pocketmine\command\CommandSender;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
-use thebigcrafter\OhMyPMMP\tasks\InstallPluginTask;
-use thebigcrafter\OhMyPMMP\tasks\RemovePluginTask;
+use thebigcrafter\OhMyPMMP\tasks\CachePoggitPlugins;
 
 class UpdateCommand extends BaseSubCommand
 {
@@ -31,35 +28,15 @@ class UpdateCommand extends BaseSubCommand
 			return;
 		}
 
-		$pluginName = $args["pluginName"];
-
+		OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning = true;
 		OhMyPMMP::getInstance()
-			->getScheduler()
-			->scheduleTask(new RemovePluginTask($sender, $pluginName, true));
-		OhMyPMMP::getInstance()
-			->getScheduler()
-			->scheduleTask(
-				new InstallPluginTask($sender, $pluginName, "latest", true),
-			);
-
-		$sender->sendMessage(
-			str_replace(
-				"{{plugin}}",
-				$pluginName,
-				OhMyPMMP::getInstance()
-					->getLanguage()
-					->translateString("plugin.updated"),
-			),
-		);
+			->getServer()
+			->getAsyncPool()
+			->submitTask(new CachePoggitPlugins());
 	}
 
-	/**
-	 * @throws ArgumentOrderException
-	 */
 	protected function prepare(): void
 	{
 		$this->setPermission("oh-my-pmmp.update");
-
-		$this->registerArgument(0, new RawStringArgument("pluginName"));
 	}
 }
