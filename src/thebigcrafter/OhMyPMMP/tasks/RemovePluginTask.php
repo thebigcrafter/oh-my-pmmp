@@ -31,6 +31,26 @@ class RemovePluginTask extends Task
 
 	public function onRun(): void
 	{
+		$pluginManager = OhMyPMMP::getInstance()
+			->getServer()
+			->getPluginManager();
+		$plugin = $pluginManager->getPlugin($this->pluginName);
+
+		if (is_null($plugin)) {
+			$this->sender->sendMessage(
+				str_replace(
+					"{{plugin}}",
+					$this->pluginName,
+					OhMyPMMP::getInstance()
+						->getLanguage()
+						->translateString("plugin.not.found"),
+				),
+			);
+			return;
+		}
+
+		$pluginManager->disablePlugin($plugin);
+
 		Filesystem::unlinkPhar(
 			OhMyPMMP::getInstance()
 				->getServer()

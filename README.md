@@ -73,8 +73,6 @@ Install a plugin with a specified version or use the word `latest` as a version 
 
 Remove a plugin.
 
-> The plugin won't be disable upon deletion so you need to restart your server to apply changes. We are making it disable.
-
 #### `omp update`
 
 **`Permission:` `oh-my-pmmp.update`**
