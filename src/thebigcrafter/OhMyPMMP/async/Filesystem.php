@@ -81,6 +81,7 @@ class Filesystem
 	{
 		if (is_dir($folder)) {
 			$objects = scandir($folder);
+			if(!$objects) return;
 			foreach ($objects as $object) {
 				if ($object != "." && $object != "..") {
 					if (filetype($folder . "/" . $object) == "dir") {
