@@ -52,7 +52,7 @@ class RemovePluginTask extends Task
 
 		$pluginManager->disablePlugin($plugin);
 
-		if(is_file(Vars::getPluginsFolder() . "$this->pluginName.phar")) {
+		if (is_file(Vars::getPluginsFolder() . "$this->pluginName.phar")) {
 			Filesystem::unlinkPhar(
 				OhMyPMMP::getInstance()
 					->getServer()
@@ -86,7 +86,9 @@ class RemovePluginTask extends Task
 				},
 			);
 		} else {
-			Filesystem::deleteFolder(Vars::getPluginsFolder() . $this->pluginName);
+			Filesystem::deleteFolder(
+				Vars::getPluginsFolder() . $this->pluginName,
+			);
 			if (!$this->silent) {
 				$this->sender->sendMessage(
 					str_replace(
