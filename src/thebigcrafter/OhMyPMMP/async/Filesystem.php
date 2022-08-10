@@ -21,7 +21,8 @@ class Filesystem
 	public static function writeFile(
 		string $file,
 		string $data,
-	): PromiseInterface|Promise {
+	): PromiseInterface|Promise
+	{
 		$deferred = new Deferred();
 
 		try {
@@ -62,7 +63,8 @@ class Filesystem
 	public static function extractPhar(
 		string $file,
 		string $to,
-	): PromiseInterface|Promise {
+	): PromiseInterface|Promise
+	{
 		$deferred = new Deferred();
 
 		$phar = new Phar($file);
@@ -75,5 +77,19 @@ class Filesystem
 		}
 
 		return $deferred->promise();
+	}
+
+	public static function deleteFolder(string $folder): void
+	{
+		if (is_dir($folder)) {
+			$objects = scandir($folder);
+			foreach ($objects as $object) {
+				if ($object != "." && $object != "..") {
+					if (filetype($folder . "/" . $object) == "dir") self::deleteFolder($folder . "/" . $object); else unlink($folder . "/" . $object);
+				}
+			}
+			reset($objects);
+			rmdir($folder);
+		}
 	}
 }

@@ -9,6 +9,7 @@ use pocketmine\scheduler\Task;
 use thebigcrafter\OhMyPMMP\async\Filesystem;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 
+use thebigcrafter\OhMyPMMP\Vars;
 use function str_replace;
 
 class RemovePluginTask extends Task
@@ -51,37 +52,52 @@ class RemovePluginTask extends Task
 
 		$pluginManager->disablePlugin($plugin);
 
-		Filesystem::unlinkPhar(
-			OhMyPMMP::getInstance()
-				->getServer()
-				->getDataPath() . "plugins/$this->pluginName.phar",
-		)->then(
-			function () {
-				if (!$this->silent) {
-					$this->sender->sendMessage(
-						str_replace(
-							"{{plugin}}",
-							$this->pluginName,
-							OhMyPMMP::getInstance()
-								->getLanguage()
-								->translateString("plugin.removed"),
-						),
-					);
-				}
-			},
-			function () {
-				if (!$this->silent) {
-					$this->sender->sendMessage(
-						str_replace(
-							"{{plugin}}",
-							$this->pluginName,
-							OhMyPMMP::getInstance()
-								->getLanguage()
-								->translateString("plugin.not.found"),
-						),
-					);
-				}
-			},
-		);
+		if(is_file(Vars::getPluginsFolder() . "$this->pluginName.phar")) {
+			Filesystem::unlinkPhar(
+				OhMyPMMP::getInstance()
+					->getServer()
+					->getDataPath() . "plugins/$this->pluginName.phar",
+			)->then(
+				function () {
+					if (!$this->silent) {
+						$this->sender->sendMessage(
+							str_replace(
+								"{{plugin}}",
+								$this->pluginName,
+								OhMyPMMP::getInstance()
+									->getLanguage()
+									->translateString("plugin.removed"),
+							),
+						);
+					}
+				},
+				function () {
+					if (!$this->silent) {
+						$this->sender->sendMessage(
+							str_replace(
+								"{{plugin}}",
+								$this->pluginName,
+								OhMyPMMP::getInstance()
+									->getLanguage()
+									->translateString("plugin.not.found"),
+							),
+						);
+					}
+				},
+			);
+		} else {
+			Filesystem::deleteFolder(Vars::getPluginsFolder() . $this->pluginName);
+			if (!$this->silent) {
+				$this->sender->sendMessage(
+					str_replace(
+						"{{plugin}}",
+						$this->pluginName,
+						OhMyPMMP::getInstance()
+							->getLanguage()
+							->translateString("plugin.removed"),
+					),
+				);
+			}
+		}
 	}
 }
