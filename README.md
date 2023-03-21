@@ -1,10 +1,3 @@
-Our leader not interesting in PocketMine-MP plugin development...  
-So maybe this is the last commit of this repo.  
-Thank you for your interest and use of this plugin.  
-See you!  
-
----
-
 <img src="assets/icon.png" align="left" width="140px" height="140px" />
 <img align="left" width="0" height="140px" hspace="10"/>
 
