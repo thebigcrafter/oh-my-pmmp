@@ -10,8 +10,7 @@
     },
     "require-dev": {
         "pocketmine/pocketmine-mp": "^4.0",
-        "phpstan/phpstan": "^1.4",
-        "friendsofphp/php-cs-fixer": "^3.5"
+        "phpstan/phpstan": "^1.4"
     },
     "license": "GPL-3.0-only",
     "config": {
@@ -27,12 +26,10 @@
     },
     "authors": [
         {
-            "name": "MintoD",
-            "email": "tobythedev7@outlook.com"
+            "name": "nmtho"
         }
     ],
     "scripts": {
-        "fix-cs": "./vendor/bin/php-cs-fixer fix",
         "analyse": "./vendor/bin/phpstan analyse -c phpstan.neon.dist"
     }
 }
