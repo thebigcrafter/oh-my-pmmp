@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of oh-my-pmmp.
+ * (c) thebigcrafter <thebigcrafterteam@proton.me>
+ * This source file is subject to the GPL-3.0 license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 declare(strict_types=1);
 
 namespace thebigcrafter\OhMyPMMP\tasks;
@@ -10,6 +17,8 @@ use thebigcrafter\OhMyPMMP\async\Filesystem;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 
 use thebigcrafter\OhMyPMMP\Vars;
+use function is_file;
+use function is_null;
 use function str_replace;
 
 class RemovePluginTask extends Task
@@ -30,7 +39,7 @@ class RemovePluginTask extends Task
 		$this->silent = $silent;
 	}
 
-	public function onRun(): void
+	public function onRun() : void
 	{
 		$pluginManager = OhMyPMMP::getInstance()
 			->getServer()

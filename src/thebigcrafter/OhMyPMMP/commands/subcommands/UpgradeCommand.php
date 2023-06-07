@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of oh-my-pmmp.
+ * (c) thebigcrafter <thebigcrafterteam@proton.me>
+ * This source file is subject to the GPL-3.0 license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 declare(strict_types=1);
 
 namespace thebigcrafter\OhMyPMMP\commands\subcommands;
@@ -11,6 +18,7 @@ use pocketmine\command\CommandSender;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use thebigcrafter\OhMyPMMP\tasks\InstallPluginTask;
 use thebigcrafter\OhMyPMMP\tasks\RemovePluginTask;
+use function str_replace;
 
 class UpgradeCommand extends BaseSubCommand
 {
@@ -21,7 +29,7 @@ class UpgradeCommand extends BaseSubCommand
 		CommandSender $sender,
 		string $aliasUsed,
 		array $args,
-	): void {
+	) : void {
 		if (OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning) {
 			$sender->sendMessage(
 				OhMyPMMP::getInstance()
@@ -56,7 +64,7 @@ class UpgradeCommand extends BaseSubCommand
 	/**
 	 * @throws ArgumentOrderException
 	 */
-	protected function prepare(): void
+	protected function prepare() : void
 	{
 		$this->setPermission("oh-my-pmmp.upgrade");
 

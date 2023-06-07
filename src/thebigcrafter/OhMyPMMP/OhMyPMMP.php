@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of oh-my-pmmp.
+ * (c) thebigcrafter <thebigcrafterteam@proton.me>
+ * This source file is subject to the GPL-3.0 license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 declare(strict_types=1);
 
 namespace thebigcrafter\OhMyPMMP;
@@ -26,7 +33,7 @@ class OhMyPMMP extends PluginBase
 	/** @var array<string, array<string>> */
 	public array $pluginsList = [];
 
-	public function onEnable(): void
+	public function onEnable() : void
 	{
 		self::setInstance($this);
 
@@ -49,7 +56,7 @@ class OhMyPMMP extends PluginBase
 			);
 	}
 
-	public function loadLanguage(): void
+	public function loadLanguage() : void
 	{
 		$langFolder = $this->getDataFolder() . "lang/";
 
@@ -75,7 +82,7 @@ class OhMyPMMP extends PluginBase
 	/**
 	 * @return array<string, array<string>>
 	 */
-	public function getPluginsList(): array
+	public function getPluginsList() : array
 	{
 		return $this->pluginsList;
 	}
@@ -83,12 +90,12 @@ class OhMyPMMP extends PluginBase
 	/**
 	 * @param array<string, array<string>> $pluginsList
 	 */
-	public function setPluginsList(array $pluginsList): void
+	public function setPluginsList(array $pluginsList) : void
 	{
 		$this->pluginsList = $pluginsList;
 	}
 
-	public function getLanguage(): Language
+	public function getLanguage() : Language
 	{
 		return $this->language;
 	}

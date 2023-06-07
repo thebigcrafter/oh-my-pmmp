@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of oh-my-pmmp.
+ * (c) thebigcrafter <thebigcrafterteam@proton.me>
+ * This source file is subject to the GPL-3.0 license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 declare(strict_types=1);
 
 namespace thebigcrafter\OhMyPMMP\async;
@@ -11,6 +18,18 @@ use pocketmine\utils\InternetRequestResult;
 use React\Promise\Deferred;
 use React\Promise\Promise;
 use React\Promise\PromiseInterface;
+use function curl_close;
+use function curl_exec;
+use function curl_getinfo;
+use function curl_init;
+use function curl_setopt;
+use function curl_setopt_array;
+use function round;
+use const CURLINFO_CONTENT_LENGTH_DOWNLOAD;
+use const CURLOPT_FOLLOWLOCATION;
+use const CURLOPT_NOBODY;
+use const CURLOPT_RETURNTRANSFER;
+use const CURLOPT_SSL_VERIFYPEER;
 
 class Internet
 {
@@ -19,7 +38,7 @@ class Internet
 	 *
 	 * @retrun PromiseInterface|Promise
 	 */
-	public static function fetch(string $url): Promise|PromiseInterface
+	public static function fetch(string $url) : Promise|PromiseInterface
 	{
 		$deferred = new Deferred();
 

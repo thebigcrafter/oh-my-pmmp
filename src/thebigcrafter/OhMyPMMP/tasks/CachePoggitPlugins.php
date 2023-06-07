@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of oh-my-pmmp.
+ * (c) thebigcrafter <thebigcrafterteam@proton.me>
+ * This source file is subject to the GPL-3.0 license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 declare(strict_types=1);
 
 namespace thebigcrafter\OhMyPMMP\tasks;
@@ -16,7 +23,7 @@ use function str_replace;
 
 class CachePoggitPlugins extends AsyncTask
 {
-	public function onRun(): void
+	public function onRun() : void
 	{
 		/** @var Promise $fetch */
 		$fetch = Internet::fetch(Vars::POGGIT_REPO_URL);
@@ -57,7 +64,7 @@ class CachePoggitPlugins extends AsyncTask
 		);
 	}
 
-	function onCompletion(): void
+	function onCompletion() : void
 	{
 		$result = $this->getResult();
 

@@ -1,7 +1,0 @@
-*.yml
-*.md
-*.lock
-
-vendor/
-resources/
-.github
