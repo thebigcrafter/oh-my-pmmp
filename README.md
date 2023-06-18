@@ -35,8 +35,8 @@ Oh My PMMP provides commands to allow you to install plugins from [Poggit](https
 
 ## Prerequisites
 
-- [PHP binary for PocketMine-MP](https://jenkins.pmmp.io/job/PHP-8.0-Aggregate/) 8.0+
-- [PocketMine-MP](https://pmmp.io) v4.0.0 or higher.
+- [PHP binary for PocketMine-MP](https://github.com/pmmp/PHP-Binaries/releases) 8.1+
+- [PocketMine-MP](https://github.com/pmmp/PocketMine-MP/releases) v5.0.0 or higher.
 
 ## Basic installation
 
