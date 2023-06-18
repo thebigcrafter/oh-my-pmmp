@@ -3,14 +3,15 @@
 
 The asynchronous <a href="https://pmmp.io">PocketMine-MP</a> plugin manager
 
-[![PHPStan](https://github.com/thebigcrafter/oh-my-pmmp/actions/workflows/phpstan.yml/badge.svg)](https://github.com/thebigcrafter/oh-my-pmmp/actions/workflows/phpstan.yml)
-[![Prettier Check](https://github.com/thebigcrafter/oh-my-pmmp/actions/workflows/prettier.yml/badge.svg)](https://github.com/thebigcrafter/oh-my-pmmp/actions/workflows/prettier.yml)
+[![CI](https://github.com/thebigcrafter/oh-my-pmmp/actions/workflows/ci.yml/badge.svg)](https://github.com/thebigcrafter/oh-my-pmmp/actions/workflows/ci.yml)
+[![Build Phar](https://github.com/thebigcrafter/oh-my-pmmp/actions/workflows/build.yml/badge.svg)](https://github.com/thebigcrafter/oh-my-pmmp/actions/workflows/build.yml)
 [![State](https://poggit.pmmp.io/shield.state/oh-my-pmmp)](https://poggit.pmmp.io/p/oh-my-pmmp)
 [![Downloads Total](https://poggit.pmmp.io/shield.dl.total/oh-my-pmmp)](https://poggit.pmmp.io/p/oh-my-pmmp)
 [![License](https://img.shields.io/github/license/thebigcrafter/oh-my-pmmp)](https://github.com/thebigcrafter/oh-my-pmmp/blob/main/LICENSE)
-[![Discord](https://img.shields.io/discord/970294579372912700?label=discord&color=7289DA&logo=discord)](https://discord.gg/cEXW8uK6QA)
+[![Discord](https://img.shields.io/discord/1087729577004122112?label=discord&color=7289DA&logo=discord)](https://discord.gg/PykBfE2TZ9 
+)
 
-Oh My PMMP provides commands to allow you to install plugins from [Poggit](https"//poggit.pmmp.io). It's fast and easy to use.
+Oh My PMMP provides commands to allow you to install plugins from [Poggit](https://poggit.pmmp.io). It's fast and easy to use.
 
 <br />
 
@@ -47,7 +48,7 @@ Oh My PMMP provides commands to allow you to install plugins from [Poggit](https
 
 ## Commands
 
-Oh My PMMP provides `omp` command to allow you to install, upgrade, remove, etc. plugins from [Poggit](https"//poggit.pmmp.io)
+Oh My PMMP provides `omp` command to allow you to install, upgrade, remove, etc. plugins from [Poggit](https://poggit.pmmp.io)
 
 #### `omp help`
 
