@@ -46,4 +46,8 @@ class OMPCommand extends BaseCommand {
 			$this->registerSubcommand($subcommand);
 		}
 	}
+
+	public function getPermission() : string {
+		return $this->getPermission();
+	}
 }
