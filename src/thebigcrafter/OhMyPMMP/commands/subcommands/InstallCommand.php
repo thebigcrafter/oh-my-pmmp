@@ -19,8 +19,7 @@ use pocketmine\command\CommandSender;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use thebigcrafter\OhMyPMMP\tasks\InstallPluginTask;
 
-class InstallCommand extends BaseSubCommand
-{
+class InstallCommand extends BaseSubCommand {
 	/**
 	 * @param array<string> $args
 	 */
@@ -80,8 +79,7 @@ class InstallCommand extends BaseSubCommand
 	/**
 	 * @throws ArgumentOrderException
 	 */
-	protected function prepare() : void
-	{
+	protected function prepare() : void {
 		$this->setPermission("oh-my-pmmp.install");
 
 		$this->registerArgument(0, new RawStringArgument("pluginName"));
@@ -89,8 +87,8 @@ class InstallCommand extends BaseSubCommand
 
 		if (
 			OhMyPMMP::getInstance()
-				->getConfig()
-				->get("devMode") === true
+			->getConfig()
+			->get("devMode") === true
 		) {
 			$this->registerArgument(2, new BooleanArgument("extract", true));
 		}

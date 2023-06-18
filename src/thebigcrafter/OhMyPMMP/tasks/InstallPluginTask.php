@@ -24,8 +24,7 @@ use Throwable;
 use function str_replace;
 use function version_compare;
 
-class InstallPluginTask extends Task
-{
+class InstallPluginTask extends Task {
 	private CommandSender $sender;
 
 	private string $pluginName;
@@ -50,8 +49,7 @@ class InstallPluginTask extends Task
 		$this->extract = $extract;
 	}
 
-	public function onRun() : void
-	{
+	public function onRun() : void {
 		$pluginsList = [];
 		$downloadURL = "";
 

@@ -20,8 +20,7 @@ use thebigcrafter\OhMyPMMP\tasks\InstallPluginTask;
 use thebigcrafter\OhMyPMMP\tasks\RemovePluginTask;
 use function str_replace;
 
-class UpgradeCommand extends BaseSubCommand
-{
+class UpgradeCommand extends BaseSubCommand {
 	/**
 	 * @param array<string> $args
 	 */
@@ -64,8 +63,7 @@ class UpgradeCommand extends BaseSubCommand
 	/**
 	 * @throws ArgumentOrderException
 	 */
-	protected function prepare() : void
-	{
+	protected function prepare() : void {
 		$this->setPermission("oh-my-pmmp.upgrade");
 
 		$this->registerArgument(0, new RawStringArgument("pluginName"));

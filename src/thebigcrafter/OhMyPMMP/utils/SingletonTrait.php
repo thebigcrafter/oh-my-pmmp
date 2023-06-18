@@ -13,17 +13,14 @@ namespace thebigcrafter\OhMyPMMP\utils;
 
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 
-trait SingletonTrait
-{
+trait SingletonTrait {
 	public static OhMyPMMP $instance;
 
-	public static function setInstance(OhMyPMMP $instance) : void
-	{
+	public static function setInstance(OhMyPMMP $instance) : void {
 		self::$instance = $instance;
 	}
 
-	public static function getInstance() : OhMyPMMP
-	{
+	public static function getInstance() : OhMyPMMP {
 		return self::$instance;
 	}
 }

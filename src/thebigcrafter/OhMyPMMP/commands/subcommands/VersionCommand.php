@@ -18,8 +18,7 @@ use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use function phpversion;
 use function str_replace;
 
-class VersionCommand extends BaseSubCommand
-{
+class VersionCommand extends BaseSubCommand {
 	/**
 	 * @param array<string> $args
 	 */
@@ -53,8 +52,7 @@ class VersionCommand extends BaseSubCommand
 		);
 	}
 
-	protected function prepare() : void
-	{
+	protected function prepare() : void {
 		$this->setPermission("oh-my-pmmp.version");
 	}
 }

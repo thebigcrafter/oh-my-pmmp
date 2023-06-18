@@ -23,15 +23,13 @@ use function array_map;
 use function implode;
 use function str_replace;
 
-class ShowCommand extends BaseSubCommand
-{
+class ShowCommand extends BaseSubCommand {
 	// Usage /omp show XPShop 1.0.0
 
 	/**
 	 * @throws ArgumentOrderException
 	 */
-	protected function prepare() : void
-	{
+	protected function prepare() : void {
 		$this->setPermission("oh-my-pmmp.show");
 
 		$this->registerArgument(0, new RawStringArgument("pluginName", false));

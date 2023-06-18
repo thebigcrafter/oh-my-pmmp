@@ -21,10 +21,8 @@ use thebigcrafter\OhMyPMMP\Vars;
 use function json_decode;
 use function str_replace;
 
-class CachePoggitPlugins extends AsyncTask
-{
-	public function onRun() : void
-	{
+class CachePoggitPlugins extends AsyncTask {
+	public function onRun() : void {
 		/** @var Promise $fetch */
 		$fetch = Internet::fetch(Vars::POGGIT_REPO_URL);
 		$fetch->done(
@@ -64,8 +62,7 @@ class CachePoggitPlugins extends AsyncTask
 		);
 	}
 
-	function onCompletion() : void
-	{
+	function onCompletion() : void {
 		$result = $this->getResult();
 
 		/** @var array<string, array<string>> $result */

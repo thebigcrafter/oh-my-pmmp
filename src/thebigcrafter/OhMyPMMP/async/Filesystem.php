@@ -24,8 +24,7 @@ use function rmdir;
 use function scandir;
 use function unlink;
 
-class Filesystem
-{
+class Filesystem {
 	/**
 	 * Write a data to a file
 	 *
@@ -52,8 +51,7 @@ class Filesystem
 	 *
 	 * @retrun PromiseInterface|Promise
 	 */
-	public static function unlinkPhar(string $file) : PromiseInterface|Promise
-	{
+	public static function unlinkPhar(string $file) : PromiseInterface|Promise {
 		$deferred = new Deferred();
 
 		try {
@@ -90,8 +88,7 @@ class Filesystem
 		return $deferred->promise();
 	}
 
-	public static function deleteFolder(string $folder) : void
-	{
+	public static function deleteFolder(string $folder) : void {
 		if (is_dir($folder)) {
 			$objects = scandir($folder);
 			if (!$objects) {

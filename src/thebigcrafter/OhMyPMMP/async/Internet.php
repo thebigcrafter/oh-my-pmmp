@@ -31,15 +31,13 @@ use const CURLOPT_NOBODY;
 use const CURLOPT_RETURNTRANSFER;
 use const CURLOPT_SSL_VERIFYPEER;
 
-class Internet
-{
+class Internet {
 	/**
 	 * Get resource from the URL
 	 *
 	 * @retrun PromiseInterface|Promise
 	 */
-	public static function fetch(string $url) : Promise|PromiseInterface
-	{
+	public static function fetch(string $url) : Promise|PromiseInterface {
 		$deferred = new Deferred();
 
 		try {
@@ -64,8 +62,7 @@ class Internet
 	 *  @param   string   $url
 	 *  @return  Promise|PromiseInterface
 	 */
-	public static function getRemoteFilesize($url)
-	{
+	public static function getRemoteFilesize($url) {
 		$deferred = new Deferred();
 		/** @param CurlHandle $ch */
 		$ch = curl_init($url);

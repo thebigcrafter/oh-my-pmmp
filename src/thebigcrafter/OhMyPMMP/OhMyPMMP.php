@@ -22,8 +22,7 @@ use function is_file;
 use function mkdir;
 use function strval;
 
-class OhMyPMMP extends PluginBase
-{
+class OhMyPMMP extends PluginBase {
 	use SingletonTrait;
 
 	public Language $language;
@@ -33,8 +32,7 @@ class OhMyPMMP extends PluginBase
 	/** @var array<string, array<string>> */
 	public array $pluginsList = [];
 
-	public function onEnable() : void
-	{
+	public function onEnable() : void {
 		self::setInstance($this);
 
 		$this->saveDefaultConfig();
@@ -56,18 +54,15 @@ class OhMyPMMP extends PluginBase
 			);
 	}
 
-	public function loadLanguage() : void
-	{
+	public function loadLanguage() : void {
 		$langFolder = $this->getDataFolder() . "lang/";
 
 		if (!is_dir($langFolder)) {
 			@mkdir($langFolder);
 		}
 
-		foreach (
-			(array) $this->getConfig()->get("availableLanguages")
-			as $lang
-		) {
+		foreach ((array) $this->getConfig()->get("availableLanguages")
+			as $lang) {
 			if (!is_file(strval($lang))) {
 				$this->saveResource("lang/" . strval($lang) . ".ini");
 			}
@@ -82,21 +77,18 @@ class OhMyPMMP extends PluginBase
 	/**
 	 * @return array<string, array<string>>
 	 */
-	public function getPluginsList() : array
-	{
+	public function getPluginsList() : array {
 		return $this->pluginsList;
 	}
 
 	/**
 	 * @param array<string, array<string>> $pluginsList
 	 */
-	public function setPluginsList(array $pluginsList) : void
-	{
+	public function setPluginsList(array $pluginsList) : void {
 		$this->pluginsList = $pluginsList;
 	}
 
-	public function getLanguage() : Language
-	{
+	public function getLanguage() : Language {
 		return $this->language;
 	}
 }

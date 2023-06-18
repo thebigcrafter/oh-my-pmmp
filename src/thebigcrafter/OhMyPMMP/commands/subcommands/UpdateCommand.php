@@ -16,8 +16,7 @@ use pocketmine\command\CommandSender;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use thebigcrafter\OhMyPMMP\tasks\CachePoggitPlugins;
 
-class UpdateCommand extends BaseSubCommand
-{
+class UpdateCommand extends BaseSubCommand {
 	/**
 	 * @param array<string> $args
 	 */
@@ -42,8 +41,7 @@ class UpdateCommand extends BaseSubCommand
 			->submitTask(new CachePoggitPlugins());
 	}
 
-	protected function prepare() : void
-	{
+	protected function prepare() : void {
 		$this->setPermission("oh-my-pmmp.update");
 	}
 }

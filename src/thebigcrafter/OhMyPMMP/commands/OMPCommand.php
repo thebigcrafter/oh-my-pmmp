@@ -21,8 +21,7 @@ use thebigcrafter\OhMyPMMP\commands\subcommands\UpdateCommand;
 use thebigcrafter\OhMyPMMP\commands\subcommands\UpgradeCommand;
 use thebigcrafter\OhMyPMMP\commands\subcommands\VersionCommand;
 
-class OMPCommand extends BaseCommand
-{
+class OMPCommand extends BaseCommand {
 	/**
 	 * @param array<string> $args
 	 */
@@ -34,8 +33,7 @@ class OMPCommand extends BaseCommand
 		$this->sendUsage();
 	}
 
-	protected function prepare() : void
-	{
+	protected function prepare() : void {
 		$this->setPermission("oh-my-pmmp.cmds");
 
 		$subcommands = [

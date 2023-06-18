@@ -20,10 +20,8 @@ use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use function array_unique;
 use function in_array;
 
-class ListCommand extends BaseSubCommand
-{
-	protected function prepare() : void
-	{
+class ListCommand extends BaseSubCommand {
+	protected function prepare() : void {
 		$this->setPermission("oh-my-pmmp.list");
 
 		$this->registerArgument(
@@ -56,13 +54,11 @@ class ListCommand extends BaseSubCommand
 				true,
 			)
 		) {
-			foreach (
-				OhMyPMMP::getInstance()
-					->getServer()
-					->getPluginManager()
-					->getPlugins()
-				as $plugin
-			) {
+			foreach (OhMyPMMP::getInstance()
+				->getServer()
+				->getPluginManager()
+				->getPlugins()
+				as $plugin) {
 				$sender->sendMessage($plugin->getName());
 			}
 		} else {

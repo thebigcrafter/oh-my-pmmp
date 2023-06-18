@@ -18,8 +18,7 @@ use pocketmine\command\CommandSender;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use thebigcrafter\OhMyPMMP\tasks\RemovePluginTask;
 
-class RemoveCommand extends BaseSubCommand
-{
+class RemoveCommand extends BaseSubCommand {
 	/**
 	 * @param array<string> $args
 	 */
@@ -38,8 +37,7 @@ class RemoveCommand extends BaseSubCommand
 	/**
 	 * @throws ArgumentOrderException
 	 */
-	protected function prepare() : void
-	{
+	protected function prepare() : void {
 		$this->setPermission("oh-my-pmmp.remove");
 
 		$this->registerArgument(0, new RawStringArgument("pluginName"));

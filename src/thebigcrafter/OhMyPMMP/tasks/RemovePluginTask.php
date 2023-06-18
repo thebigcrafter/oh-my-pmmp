@@ -21,8 +21,7 @@ use function is_file;
 use function is_null;
 use function str_replace;
 
-class RemovePluginTask extends Task
-{
+class RemovePluginTask extends Task {
 	private CommandSender $sender;
 
 	private string $pluginName;
@@ -39,8 +38,7 @@ class RemovePluginTask extends Task
 		$this->silent = $silent;
 	}
 
-	public function onRun() : void
-	{
+	public function onRun() : void {
 		$pluginManager = OhMyPMMP::getInstance()
 			->getServer()
 			->getPluginManager();
