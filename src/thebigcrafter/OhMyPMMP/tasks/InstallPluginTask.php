@@ -20,7 +20,6 @@ use thebigcrafter\OhMyPMMP\async\Filesystem;
 use thebigcrafter\OhMyPMMP\async\Internet;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use Throwable;
-
 use function str_replace;
 use function version_compare;
 
@@ -35,13 +34,7 @@ class InstallPluginTask extends Task {
 
 	private bool $extract;
 
-	public function __construct(
-		CommandSender $sender,
-		string $pluginName,
-		string $pluginVersion,
-		bool $silent = false,
-		bool $extract = false,
-	) {
+	public function __construct(CommandSender $sender, string $pluginName, string $pluginVersion, bool $silent = false, bool $extract = false) {
 		$this->sender = $sender;
 		$this->pluginName = $pluginName;
 		$this->pluginVersion = $pluginVersion;
@@ -78,15 +71,7 @@ class InstallPluginTask extends Task {
 
 		if (empty($downloadURL)) {
 			if (!$this->silent) {
-				$this->sender->sendMessage(
-					str_replace(
-						"{{plugin}}",
-						$this->pluginName,
-						OhMyPMMP::getInstance()
-							->getLanguage()
-							->translateString("plugin.not.found"),
-					),
-				);
+				$this->sender->sendMessage(str_replace("{{plugin}}", $this->pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.not.found")));
 				return;
 			}
 			return;
@@ -94,95 +79,40 @@ class InstallPluginTask extends Task {
 		Internet::fetch($downloadURL . "/$this->pluginName.phar")->then(
 			function ($raw) {
 				/** @var Promise $writefile */
-				$writefile = Filesystem::writeFile(
-					OhMyPMMP::getInstance()
-						->getServer()
-						->getDataPath() .
-						"plugins/" .
-						$this->pluginName .
-						".phar",
-					$raw,
-				);
+				$writefile = Filesystem::writeFile(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/" . $this->pluginName . ".phar", $raw);
 				$writefile->done(
 					function () {
 						if (!$this->silent) {
-							$this->sender->sendMessage(
-								str_replace(
-									"{{plugin}}",
-									$this->pluginName,
-									OhMyPMMP::getInstance()
-										->getLanguage()
-										->translateString("plugin.installed"),
-								),
-							);
+							$this->sender->sendMessage(str_replace("{{plugin}}", $this->pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.installed")));
 						}
 
 						if ($this->extract) {
-							$this->sender->sendMessage(
-								str_replace(
-									"{{plugin}}",
-									$this->pluginName,
-									OhMyPMMP::getInstance()
-										->getLanguage()
-										->translateString("plugin.extracting"),
-								),
-							);
+							$this->sender->sendMessage(str_replace("{{plugin}}", $this->pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.extracting")));
 
 							Filesystem::extractPhar(
-								OhMyPMMP::getInstance()
-									->getServer()
-									->getDataPath() .
-									"plugins/" .
-									$this->pluginName .
-									".phar",
-								OhMyPMMP::getInstance()
-									->getServer()
-									->getDataPath() .
-									"plugins/$this->pluginName",
-							)->then(function () {
-								Filesystem::unlinkPhar(
-									OhMyPMMP::getInstance()
-										->getServer()
-										->getDataPath() .
-										"plugins/" .
-										$this->pluginName .
-										".phar",
-								)->then(function () {
-									$this->sender->sendMessage(
-										str_replace(
-											"{{plugin}}",
-											$this->pluginName,
-											OhMyPMMP::getInstance()
-												->getLanguage()
-												->translateString(
-													"plugin.extracted",
-												),
-										),
+								OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/" . $this->pluginName . ".phar",
+								OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/$this->pluginName"
+							)->then(
+								function () {
+									Filesystem::unlinkPhar(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/" . $this->pluginName . ".phar")->then(
+										function () {
+											$this->sender->sendMessage(str_replace("{{plugin}}", $this->pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.extracted")));
+										}
 									);
-								});
-							});
+								}
+							);
 						}
 					},
 					function (Throwable $e) {
 						if (!$this->silent) {
-							$this->sender->sendMessage(
-								TextFormat::RED . $e->getMessage(),
-							);
+							$this->sender->sendMessage(TextFormat::RED . $e->getMessage());
 						}
 					},
 				);
 			},
 			function (InternetException $e) {
 				if (!$this->silent) {
-					$this->sender->sendMessage(
-						str_replace(
-							"{{reason}}",
-							$e->getMessage(),
-							OhMyPMMP::getInstance()
-								->getLanguage()
-								->translateString("plugin.cannot.downloaded"),
-						),
-					);
+					$this->sender->sendMessage(str_replace("{{reason}}", $e->getMessage(), OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.cannot.downloaded")));
 				}
 			},
 		);

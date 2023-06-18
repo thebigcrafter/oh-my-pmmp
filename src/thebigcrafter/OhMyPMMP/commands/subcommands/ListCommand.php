@@ -16,7 +16,6 @@ use CortexPE\Commando\BaseSubCommand;
 use pocketmine\command\CommandSender;
 use pocketmine\utils\TextFormat;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
-
 use function array_unique;
 use function in_array;
 
@@ -24,19 +23,12 @@ class ListCommand extends BaseSubCommand {
 	protected function prepare() : void {
 		$this->setPermission("oh-my-pmmp.list");
 
-		$this->registerArgument(
-			0,
-			new RawStringArgument("installedPlugins", true),
-		);
+		$this->registerArgument(0, new RawStringArgument("installedPlugins", true));
 	}
 	/**
 	 * @param array<string> $args
 	 */
-	public function onRun(
-		CommandSender $sender,
-		string $aliasUsed,
-		array $args,
-	) : void {
+	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void {
 		if (empty($args["installedPlugins"])) {
 			$pluginsName = [];
 
@@ -47,18 +39,8 @@ class ListCommand extends BaseSubCommand {
 			foreach (array_unique($pluginsName) as $name) {
 				$sender->sendMessage($name);
 			}
-		} elseif (
-			in_array(
-				$args["installedPlugins"],
-				["i", "-installed", "--installed"],
-				true,
-			)
-		) {
-			foreach (OhMyPMMP::getInstance()
-				->getServer()
-				->getPluginManager()
-				->getPlugins()
-				as $plugin) {
+		} elseif (in_array($args["installedPlugins"], ["i", "-installed", "--installed"], true)) {
+			foreach (OhMyPMMP::getInstance()->getServer()->getPluginManager()->getPlugins() as $plugin) {
 				$sender->sendMessage($plugin->getName());
 			}
 		} else {

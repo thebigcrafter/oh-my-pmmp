@@ -20,25 +20,14 @@ class UpdateCommand extends BaseSubCommand {
 	/**
 	 * @param array<string> $args
 	 */
-	public function onRun(
-		CommandSender $sender,
-		string $aliasUsed,
-		array $args,
-	) : void {
+	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void {
 		if (OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning) {
-			$sender->sendMessage(
-				OhMyPMMP::getInstance()
-					->getLanguage()
-					->translateString("cache.running"),
-			);
+			$sender->sendMessage(OhMyPMMP::getInstance()->getLanguage()->translateString("cache.running"));
 			return;
 		}
 
 		OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning = true;
-		OhMyPMMP::getInstance()
-			->getServer()
-			->getAsyncPool()
-			->submitTask(new CachePoggitPlugins());
+		OhMyPMMP::getInstance()->getServer()->getAsyncPool()->submitTask(new CachePoggitPlugins());
 	}
 
 	protected function prepare() : void {

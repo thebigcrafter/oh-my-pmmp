@@ -17,7 +17,6 @@ use React\Promise\Promise;
 use thebigcrafter\OhMyPMMP\async\Internet;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use thebigcrafter\OhMyPMMP\Vars;
-
 use function json_decode;
 use function str_replace;
 
@@ -47,17 +46,7 @@ class CachePoggitPlugins extends AsyncTask {
 				$this->setResult($pluginsList);
 			},
 			function (InternetException $e) {
-				OhMyPMMP::getInstance()
-					->getLogger()
-					->error(
-						str_replace(
-							"{{message}}",
-							$e->getMessage(),
-							OhMyPMMP::getInstance()
-								->getLanguage()
-								->translateString("cache.failed"),
-						),
-					);
+				OhMyPMMP::getInstance()->getLogger()->error(str_replace("{{message}}", $e->getMessage(), OhMyPMMP::getInstance()->getLanguage()->translateString("cache.failed")));
 			},
 		);
 	}
@@ -69,12 +58,6 @@ class CachePoggitPlugins extends AsyncTask {
 		OhMyPMMP::getInstance()->setPluginsList($result);
 
 		OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning = false;
-		OhMyPMMP::getInstance()
-			->getLogger()
-			->info(
-				OhMyPMMP::getInstance()
-					->getLanguage()
-					->translateString("cache.successfully"),
-			);
+		OhMyPMMP::getInstance()->getLogger()->info(OhMyPMMP::getInstance()->getLanguage()->translateString("cache.successfully"));
 	}
 }

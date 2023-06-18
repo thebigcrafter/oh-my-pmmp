@@ -25,11 +25,7 @@ class OMPCommand extends BaseCommand {
 	/**
 	 * @param array<string> $args
 	 */
-	public function onRun(
-		CommandSender $sender,
-		string $aliasUsed,
-		array $args,
-	) : void {
+	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void {
 		$this->sendUsage();
 	}
 
@@ -37,41 +33,13 @@ class OMPCommand extends BaseCommand {
 		$this->setPermission("oh-my-pmmp.cmds");
 
 		$subcommands = [
-			new VersionCommand("version", "Get plugin version", [
-				"v",
-				"-v",
-				"--version",
-			]),
-			new InstallCommand("install", "Install a plugin", [
-				"i",
-				"-i",
-				"--install",
-			]),
-			new UpdateCommand("update", "Update cached data", [
-				"ud",
-				"-ud",
-				"--update",
-			]),
-			new RemoveCommand("remove", "Remove a plugin", [
-				"r",
-				"-r",
-				"--remove",
-			]),
-			new ListCommand("list", "List all available plugins", [
-				"l",
-				"-l",
-				"--list",
-			]),
-			new ShowCommand("show", "Get details of a plugin", [
-				"s",
-				"-s",
-				"--show",
-			]),
-			new UpgradeCommand("upgrade", "Upgrade a plugin", [
-				"u",
-				"-u",
-				"--upgrade",
-			]),
+			new VersionCommand("version", "Get plugin version", ["v", "-v", "--version"]),
+			new InstallCommand("install", "Install a plugin", ["i", "-i", "--install"]),
+			new UpdateCommand("update", "Update cached data", ["ud", "-ud", "--update"]),
+			new RemoveCommand("remove", "Remove a plugin", ["r", "-r", "--remove"]),
+			new ListCommand("list", "List all available plugins", ["l", "-l", "--list"]),
+			new ShowCommand("show", "Get details of a plugin", ["s", "-s", "--show"]),
+			new UpgradeCommand("upgrade", "Upgrade a plugin", ["u", "-u", "--upgrade"]),
 		];
 
 		foreach ($subcommands as $subcommand) {

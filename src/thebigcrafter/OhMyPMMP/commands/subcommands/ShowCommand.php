@@ -18,7 +18,6 @@ use pocketmine\command\CommandSender;
 use React\Promise\Promise;
 use thebigcrafter\OhMyPMMP\async\Internet;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
-
 use function array_map;
 use function implode;
 use function str_replace;
@@ -33,49 +32,27 @@ class ShowCommand extends BaseSubCommand {
 		$this->setPermission("oh-my-pmmp.show");
 
 		$this->registerArgument(0, new RawStringArgument("pluginName", false));
-		$this->registerArgument(
-			1,
-			new RawStringArgument("pluginVersion", false),
-		);
+		$this->registerArgument(1, new RawStringArgument("pluginVersion", false));
 	}
 	/**
 	 * @param array<string> $args
 	 */
-	public function onRun(
-		CommandSender $sender,
-		string $aliasUsed,
-		array $args,
-	) : void {
+	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void {
 		if (OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning) {
-			$sender->sendMessage(
-				OhMyPMMP::getInstance()
-					->getLanguage()
-					->translateString("cache.running"),
-			);
+			$sender->sendMessage(OhMyPMMP::getInstance()->getLanguage()->translateString("cache.running"));
 			return;
 		}
 
 		$pluginInfo = [];
 
 		foreach (OhMyPMMP::getInstance()->getPluginsList() as $plugin) {
-			if (
-				$args["pluginName"] == $plugin["name"] &&
-				$args["pluginVersion"] == $plugin["version"]
-			) {
+			if ($args["pluginName"] == $plugin["name"] && $args["pluginVersion"] == $plugin["version"]) {
 				$pluginInfo = $plugin;
 			}
 		}
 
 		if (empty($pluginInfo)) {
-			$sender->sendMessage(
-				str_replace(
-					"{{plugin}}",
-					$args["pluginName"],
-					OhMyPMMP::getInstance()
-						->getLanguage()
-						->translateString("plugin.not.found"),
-				),
-			);
+			$sender->sendMessage(str_replace("{{plugin}}", $args["pluginName"], OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.not.found")));
 			return;
 		}
 
@@ -101,33 +78,13 @@ class ShowCommand extends BaseSubCommand {
 			$pluginInfo["artifact_url"],
 		);
 		$RemoteFilesize->done(
-			function (string $size) use (
-				$pluginScore,
-				$pluginDownloads,
-				$pluginHomepage,
-				$pluginLicense,
-				$sender,
-				$pluginName,
-				$pluginVersion,
-				$deps,
-				$pluginAPI,
-			) {
+			function (string $size) use ($pluginScore, $pluginDownloads, $pluginHomepage, $pluginLicense, $sender, $pluginName, $pluginVersion, $deps, $pluginAPI) {
 				/** @var array<string> $pluginAPI */
 				$pluginAPI = (array) $pluginAPI[0];
-				$sender->sendMessage(
-					"Name: $pluginName\nVersion: $pluginVersion\nHomepage: $pluginHomepage\nLicense: $pluginLicense\nDownloads: $pluginDownloads\nScore: $pluginScore\nAPI: " .
-						$pluginAPI["from"] .
-						" <= PocketMine-MP <= " .
-						$pluginAPI["to"] .
-						"\nDepends: $deps\nDownload Size: $size",
-				);
+				$sender->sendMessage("Name: $pluginName\nVersion: $pluginVersion\nHomepage: $pluginHomepage\nLicense: $pluginLicense\nDownloads: $pluginDownloads\nScore: $pluginScore\nAPI: " . $pluginAPI["from"] . " <= PocketMine-MP <= " . $pluginAPI["to"] . "\nDepends: $deps\nDownload Size: $size");
 			},
 			function () use ($sender) {
-				$sender->sendMessage(
-					OhMyPMMP::getInstance()
-						->getLanguage()
-						->translateString("poggit.api.error"),
-				);
+				$sender->sendMessage(OhMyPMMP::getInstance()->getLanguage()->translateString("poggit.api.error"));
 			},
 		);
 	}

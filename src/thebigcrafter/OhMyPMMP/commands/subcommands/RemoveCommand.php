@@ -22,16 +22,10 @@ class RemoveCommand extends BaseSubCommand {
 	/**
 	 * @param array<string> $args
 	 */
-	public function onRun(
-		CommandSender $sender,
-		string $aliasUsed,
-		array $args,
-	) : void {
+	public function onRun(CommandSender $sender,string $aliasUsed,array $args) : void {
 		$plugin = $args["pluginName"];
 
-		OhMyPMMP::getInstance()
-			->getScheduler()
-			->scheduleTask(new RemovePluginTask($sender, $plugin));
+		OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new RemovePluginTask($sender, $plugin));
 	}
 
 	/**
