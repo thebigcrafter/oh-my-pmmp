@@ -59,8 +59,8 @@ class Internet {
 	 *  @license MIT <http://eyecatchup.mit-license.org/>
 	 *  @url     <https://gist.github.com/eyecatchup/f26300ffd7e50a92bc4d>
 	 *
-	 *  @param   string   $url
-	 *  @return  Promise|PromiseInterface
+	 * @param string $url
+	 * @return  Promise|PromiseInterface
 	 */
 	public static function getRemoteFilesize($url) {
 		$deferred = new Deferred();
