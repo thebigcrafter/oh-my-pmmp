@@ -1407,23 +1407,20 @@
         },
         {
             "name": "thebigcrafter/promise",
-            "version": "v2.10.0",
+            "version": "v2.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thebigcrafter/promise.git",
-                "reference": "f913fb8cceba1e6644b7b90c4bfb678ed8a3ef38"
+                "reference": "e062168d4032dae355c6d7eb07b5eef0d0893e0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thebigcrafter/promise/zipball/f913fb8cceba1e6644b7b90c4bfb678ed8a3ef38",
-                "reference": "f913fb8cceba1e6644b7b90c4bfb678ed8a3ef38",
+                "url": "https://api.github.com/repos/thebigcrafter/promise/zipball/e062168d4032dae355c6d7eb07b5eef0d0893e0c",
+                "reference": "e062168d4032dae355c6d7eb07b5eef0d0893e0c",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^9.5 || ^5.7 || ^4.8.36"
             },
             "type": "library",
             "autoload": {
@@ -1466,9 +1463,9 @@
                 "promises"
             ],
             "support": {
-                "source": "https://github.com/thebigcrafter/promise/tree/v2.10.0"
+                "source": "https://github.com/thebigcrafter/promise/tree/v2.10.1"
             },
-            "time": "2023-05-02T15:15:43+00:00"
+            "time": "2023-06-23T09:06:27+00:00"
         }
     ],
     "packages-dev": [

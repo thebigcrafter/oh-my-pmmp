@@ -8,7 +8,7 @@ projects:
     icon: assets/icon.png
     libs:
       - src: thebigcrafter/promise/promise
-        version: ^2.10.0
+        version: ^2.10.1
       - src: CortexPE/Commando/Commando
         version: ^3.0.0
         branch: PM4
