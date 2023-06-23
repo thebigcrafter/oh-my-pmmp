@@ -4,9 +4,9 @@
     "type": "project",
     "require": {
         "php": "^8.1",
-        "cortexpe/commando": "dev-master",
         "pocketmine/pocketmine-mp": "^5.0",
-        "thebigcrafter/hydrogen": "dev-main",
+        "thebigcrafter/commando": "^3.2",
+        "thebigcrafter/hydrogen": "^1.0",
         "thebigcrafter/promise": "^2.10"
     },
     "require-dev": {
