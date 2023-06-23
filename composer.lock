@@ -1325,16 +1325,16 @@
         },
         {
             "name": "thebigcrafter/commando",
-            "version": "v3.2.0",
+            "version": "v3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thebigcrafter/Commando-PM5.git",
-                "reference": "061017c2cf7fdf0edf68827e0cc2e8c4ef06331a"
+                "reference": "9963be4dd04830dec8cdcac24f9ff2b4c9495fb2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thebigcrafter/Commando-PM5/zipball/061017c2cf7fdf0edf68827e0cc2e8c4ef06331a",
-                "reference": "061017c2cf7fdf0edf68827e0cc2e8c4ef06331a",
+                "url": "https://api.github.com/repos/thebigcrafter/Commando-PM5/zipball/9963be4dd04830dec8cdcac24f9ff2b4c9495fb2",
+                "reference": "9963be4dd04830dec8cdcac24f9ff2b4c9495fb2",
                 "shasum": ""
             },
             "type": "library",
@@ -1351,9 +1351,9 @@
             ],
             "description": "A Command Framework virion for PocketMine-MP ",
             "support": {
-                "source": "https://github.com/thebigcrafter/Commando-PM5/tree/v3.2.0"
+                "source": "https://github.com/thebigcrafter/Commando-PM5/tree/v3.3.0"
             },
-            "time": "2023-06-21T14:57:40+00:00"
+            "time": "2023-06-23T09:40:37+00:00"
         },
         {
             "name": "thebigcrafter/hydrogen",
