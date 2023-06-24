@@ -32,11 +32,12 @@ Copy the `resources/lang/eng.ini`, rename and translate it.
 
 For example:
 ```yaml
-availableLanguages: [eng] # => availableLanguages: [eng, vie]
+availableLanguages: [eng] # => availableLanguages: [eng, vie, rus]
 ```
 And the `resources/lang` folder will have:
 - eng.ini
 - vie.ini
+- rus.ini
 
 # Asking Questions
 
