@@ -1,6 +1,6 @@
 
 # Available languages
-availableLanguages: [eng, vie, rus, ua] # DON'T DELETE THIS LINE
+availableLanguages: [eng, vie, rus, ukr] # DON'T DELETE THIS LINE
 
 # Plugin default language
 language: eng
