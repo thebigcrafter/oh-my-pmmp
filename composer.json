@@ -18,9 +18,9 @@
         "sort-packages": true
     },
     "autoload": {
-        "classmap": [
-            "src"
-        ]
+        "psr-4": {
+            "thebigcrafter\\OhMyPMMP\\": "src/thebigcrafter/OhMyPMMP"
+        }
     },
     "authors": [
         {
