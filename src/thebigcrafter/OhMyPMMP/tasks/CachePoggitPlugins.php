@@ -2,7 +2,7 @@
 
 /*
  * This file is part of oh-my-pmmp.
- * (c) thebigcrafter <thebigcrafterteam@proton.me>
+ * (c) thebigcrafter <hello@thebigcrafter.xyz>
  * This source file is subject to the GPL-3.0 license that is bundled
  * with this source code in the file LICENSE.
  */
@@ -18,6 +18,7 @@ use thebigcrafter\OhMyPMMP\async\Internet;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use thebigcrafter\OhMyPMMP\Vars;
 use function json_decode;
+use function sort;
 use function str_replace;
 
 class CachePoggitPlugins extends AsyncTask {
