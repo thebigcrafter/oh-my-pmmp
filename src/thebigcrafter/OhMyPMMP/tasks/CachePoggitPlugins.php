@@ -53,6 +53,7 @@ class CachePoggitPlugins extends AsyncTask {
 
 	function onCompletion() : void {
 		$result = $this->getResult();
+		sort($result);
 
 		/** @var array<string, array<string>> $result */
 		OhMyPMMP::getInstance()->setPluginsList($result);
