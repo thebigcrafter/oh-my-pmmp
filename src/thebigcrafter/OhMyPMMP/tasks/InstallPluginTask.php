@@ -45,6 +45,7 @@ class InstallPluginTask extends Task {
 	public function onRun() : void {
 		$pluginsList = [];
 		$downloadURL = "";
+		$version = "0.0.0";
 
 		foreach (OhMyPMMP::getInstance()->getPluginsList() as $plugin) {
 			if ($plugin["name"] == $this->pluginName) {
@@ -52,17 +53,14 @@ class InstallPluginTask extends Task {
 			}
 		}
 
-		if ($this->pluginVersion != "latest") {
-			foreach ($pluginsList as $plugin) {
-				if ($plugin["version"] == $this->pluginVersion) {
-					$downloadURL = $plugin["artifact_url"];
-				}
-			}
-		} else {
-			$version = "0.0.0";
+		if(count($pluginsList) == 0) {
+			$this->sender->sendMessage(str_replace("{{plugin}}", $this->pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.not.found")));
+			return;
+		}
 
-			foreach ($pluginsList as $plugin) {
-				if (version_compare($plugin["version"], $version, ">")) {
+		foreach ($pluginsList as $plugin) {
+			if($this->pluginVersion === "latest" || $plugin["version"] == $this->pluginVersion) {
+				if(version_compare($plugin["version"], $version, ">")) {
 					$version = $plugin["version"];
 					$downloadURL = $plugin["artifact_url"];
 				}
@@ -71,11 +69,12 @@ class InstallPluginTask extends Task {
 
 		if (empty($downloadURL)) {
 			if (!$this->silent) {
-				$this->sender->sendMessage(str_replace("{{plugin}}", $this->pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.not.found")));
+				$this->sender->sendMessage(str_replace(["{{plugin}}", "{{version}}"], [$this->pluginName, $this->pluginVersion], OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.version.not.found")));
 				return;
 			}
 			return;
 		}
+
 		Internet::fetch($downloadURL . "/$this->pluginName.phar")->then(
 			function ($raw) {
 				/** @var Promise $writefile */
