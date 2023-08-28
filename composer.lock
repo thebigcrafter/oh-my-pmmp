@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a245e068a5361a20c563895fd0c6ca7f",
+    "content-hash": "121dab16f0a147d50f76e6b64b169771",
     "packages": [
         {
             "name": "adhocore/json-comment",
@@ -1407,23 +1407,30 @@
         },
         {
             "name": "thebigcrafter/promise",
-            "version": "v2.10.2",
+            "version": "v3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thebigcrafter/promise.git",
-                "reference": "c35f0bd3c2adce350e71a3d9e63aab7b085aa8c8"
+                "reference": "c86753c76fd3be465d93b308f18d189f01a22be4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thebigcrafter/promise/zipball/c35f0bd3c2adce350e71a3d9e63aab7b085aa8c8",
-                "reference": "c35f0bd3c2adce350e71a3d9e63aab7b085aa8c8",
+                "url": "https://api.github.com/repos/thebigcrafter/promise/zipball/c86753c76fd3be465d93b308f18d189f01a22be4",
+                "reference": "c86753c76fd3be465d93b308f18d189f01a22be4",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4.0"
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "1.10.20 || 1.4.10",
+                "phpunit/phpunit": "^9.5 || ^7.5"
             },
             "type": "library",
             "autoload": {
+                "files": [
+                    "src/functions_include.php"
+                ],
                 "psr-4": {
                     "React\\Promise\\": "src/"
                 }
@@ -1460,9 +1467,9 @@
                 "promises"
             ],
             "support": {
-                "source": "https://github.com/thebigcrafter/promise/tree/v2.10.2"
+                "source": "https://github.com/thebigcrafter/promise/tree/v3.0.0"
             },
-            "time": "2023-06-23T14:03:01+00:00"
+            "time": "2023-07-11T16:12:49+00:00"
         }
     ],
     "packages-dev": [
