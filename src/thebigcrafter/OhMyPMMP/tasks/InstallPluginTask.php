@@ -78,9 +78,9 @@ class InstallPluginTask extends Task {
 
 		Internet::fetch($downloadURL . "/$this->pluginName.phar")->then(
 			function ($raw) {
-				/** @var Promise $writefile */
-				$writefile = Filesystem::writeFile(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/" . $this->pluginName . ".phar", $raw);
-				$writefile->done(
+				/** @var Promise $writable */
+				$writable = Filesystem::writeFile(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/" . $this->pluginName . ".phar", $raw);
+				$writable->then(
 					function () {
 						if (!$this->silent) {
 							$this->sender->sendMessage(str_replace("{{plugin}}", $this->pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.installed")));

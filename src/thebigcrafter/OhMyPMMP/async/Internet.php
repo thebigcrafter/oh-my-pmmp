@@ -35,7 +35,8 @@ class Internet {
 	/**
 	 * Get resource from the URL
 	 *
-	 * @retrun PromiseInterface|Promise
+	 * @param string $url
+	 * @return PromiseInterface|Promise
 	 */
 	public static function fetch(string $url) : Promise|PromiseInterface {
 		$deferred = new Deferred();
@@ -55,14 +56,16 @@ class Internet {
 	/**
 	 *  Get the file size of any remote resource (using curl)
 	 *
-	 *  @author  Stephan Schmitz <eyecatchup@gmail.com>
-	 *  @license MIT <http://eyecatchup.mit-license.org/>
-	 *  @url     <https://gist.github.com/eyecatchup/f26300ffd7e50a92bc4d>
-	 *
 	 * @param string $url
 	 * @return  Promise|PromiseInterface
+	 * @throws Exception
+	 * @license MIT <http://eyecatchup.mit-license.org/>
+	 * @url     <https://gist.github.com/eyecatchup/f26300ffd7e50a92bc4d>
+	 *
+	 * @author  Stephan Schmitz <eyecatchup@gmail.com>
 	 */
-	public static function getRemoteFilesize($url) {
+	public static function getRemoteFilesize(string $url): PromiseInterface|Promise
+	{
 		$deferred = new Deferred();
 		/** @param CurlHandle $ch */
 		$ch = curl_init($url);
@@ -87,7 +90,7 @@ class Internet {
 
 			// cannot retrieve file size, return "-1"
 			if (!$clen) {
-				$deferred->reject(-1);
+				$deferred->reject(new Exception("Unable to get remote filesize"));
 			}
 
 			$size = $clen;

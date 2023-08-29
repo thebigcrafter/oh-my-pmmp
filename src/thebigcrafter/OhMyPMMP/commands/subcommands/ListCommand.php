@@ -13,6 +13,7 @@ namespace thebigcrafter\OhMyPMMP\commands\subcommands;
 
 use CortexPE\Commando\args\RawStringArgument;
 use CortexPE\Commando\BaseSubCommand;
+use CortexPE\Commando\exception\ArgumentOrderException;
 use pocketmine\command\CommandSender;
 use pocketmine\utils\TextFormat;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
@@ -20,11 +21,16 @@ use function array_unique;
 use function in_array;
 
 class ListCommand extends BaseSubCommand {
+
+	/**
+	 * @throws ArgumentOrderException
+	 */
 	protected function prepare() : void {
 		$this->setPermission("oh-my-pmmp.list");
 
 		$this->registerArgument(0, new RawStringArgument("installedPlugins", true));
 	}
+
 	/**
 	 * @param array<string> $args
 	 */

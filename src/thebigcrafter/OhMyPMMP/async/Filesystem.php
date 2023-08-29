@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace thebigcrafter\OhMyPMMP\async;
 
+use Exception;
 use Phar;
 use React\Promise\Deferred;
 use React\Promise\Promise;
@@ -25,10 +26,13 @@ use function scandir;
 use function unlink;
 
 class Filesystem {
+
 	/**
-	 * Write a data to a file
+	 * Write data to a file
 	 *
-	 * @retrun PromiseInterface|Promise
+	 * @param string $file
+	 * @param string $data
+	 * @return PromiseInterface|Promise
 	 */
 	public static function writeFile(string $file, string $data) : PromiseInterface|Promise {
 		$deferred = new Deferred();
@@ -36,7 +40,7 @@ class Filesystem {
 		try {
 			file_put_contents($file, $data);
 
-			$deferred->resolve();
+			$deferred->resolve(null);
 		} catch (Throwable $e) {
 			$deferred->reject($e);
 		}
@@ -46,7 +50,8 @@ class Filesystem {
 	/**
 	 * Unlink Phar file
 	 *
-	 * @retrun PromiseInterface|Promise
+	 * @param string $file
+	 * @return PromiseInterface|Promise
 	 */
 	public static function unlinkPhar(string $file) : PromiseInterface|Promise {
 		$deferred = new Deferred();
@@ -54,7 +59,7 @@ class Filesystem {
 		try {
 			Phar::unlinkArchive($file);
 
-			$deferred->resolve();
+			$deferred->resolve(null);
 		} catch (Throwable $e) {
 			$deferred->reject($e);
 		}
@@ -65,23 +70,35 @@ class Filesystem {
 	/**
 	 * Extract Phar file
 	 *
-	 * @retrun PromiseInterface|Promise
+	 * @param string $file
+	 * @param string $to
+	 * @return  PromiseInterface
 	 */
-	public static function extractPhar(string $file,string $to) : PromiseInterface|Promise {
+	public static function extractPhar(string $file, string $to): PromiseInterface {
 		$deferred = new Deferred();
 
-		$phar = new Phar($file);
-		$result = $phar->extractTo($to);
+		try {
+			$phar = new Phar($file);
+			$result = $phar->extractTo($to);
 
-		if ($result) {
-			$deferred->resolve($result);
-		} else {
-			$deferred->reject($result);
+			if ($result) {
+				$deferred->resolve(true);
+			} else {
+				$deferred->reject(new Exception("Extraction failed."));
+			}
+		} catch (Exception $e) {
+			$deferred->reject($e);
 		}
 
 		return $deferred->promise();
 	}
 
+	/**
+	 * Delete folder
+	 *
+	 * @param string $folder
+	 * @return void
+	 */
 	public static function deleteFolder(string $folder) : void {
 		if (is_dir($folder)) {
 			$objects = scandir($folder);
@@ -97,7 +114,6 @@ class Filesystem {
 					}
 				}
 			}
-			reset($objects);
 			rmdir($folder);
 		}
 	}

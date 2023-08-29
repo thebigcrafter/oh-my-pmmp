@@ -19,6 +19,7 @@ use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use thebigcrafter\OhMyPMMP\tasks\RemovePluginTask;
 
 class RemoveCommand extends BaseSubCommand {
+
 	/**
 	 * @param array<string> $args
 	 */

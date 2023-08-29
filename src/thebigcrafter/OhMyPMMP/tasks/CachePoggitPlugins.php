@@ -22,10 +22,11 @@ use function sort;
 use function str_replace;
 
 class CachePoggitPlugins extends AsyncTask {
+
 	public function onRun() : void {
 		/** @var Promise $fetch */
 		$fetch = Internet::fetch(Vars::POGGIT_REPO_URL);
-		$fetch->done(
+		$fetch->then(
 			function (string $raw) {
 				$pluginsList = [];
 				$json = (array) json_decode($raw, true);
