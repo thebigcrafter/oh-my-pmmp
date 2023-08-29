@@ -1334,12 +1334,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thebigcrafter/promise.git",
-                "reference": "ae8d717db346c9284f3d8706227ac2c24b572d22"
+                "reference": "75a2af6a4d688c3bd8ef3eb306ac3c7166a4b9b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thebigcrafter/promise/zipball/ae8d717db346c9284f3d8706227ac2c24b572d22",
-                "reference": "ae8d717db346c9284f3d8706227ac2c24b572d22",
+                "url": "https://api.github.com/repos/thebigcrafter/promise/zipball/75a2af6a4d688c3bd8ef3eb306ac3c7166a4b9b4",
+                "reference": "75a2af6a4d688c3bd8ef3eb306ac3c7166a4b9b4",
                 "shasum": ""
             },
             "require": {
@@ -1348,9 +1348,12 @@
             "default-branch": true,
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "React\\Promise\\": "src/"
-                }
+                "files": [
+                    "src/React/Promise/functions_include.php"
+                ],
+                "classmap": [
+                    "src"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1379,15 +1382,11 @@
                 }
             ],
             "description": "A lightweight implementation of CommonJS Promises/A for PHP",
-            "keywords": [
-                "promise",
-                "promises"
-            ],
             "support": {
                 "issues": "https://github.com/thebigcrafter/promise/issues",
                 "source": "https://github.com/thebigcrafter/promise/tree/main"
             },
-            "time": "2023-08-29T12:41:09+00:00"
+            "time": "2023-08-29T12:52:24+00:00"
         }
     ],
     "packages-dev": [
