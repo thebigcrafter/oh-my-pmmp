@@ -33,12 +33,13 @@ use const CURLOPT_SSL_VERIFYPEER;
 
 class Internet {
 	/**
-	 * Get resource from the URL
+	 * Fetch a resource from the specified URL asynchronously.
 	 *
-	 * @param string $url
-	 * @return PromiseInterface|Promise
+	 * @param string $url The URL from which to fetch the resource.
+	 * @return PromiseInterface<string> A promise that resolves with the fetched resource as a string,
+	 *                                 or rejects with an InternetException if there's an error.
 	 */
-	public static function fetch(string $url) : Promise|PromiseInterface {
+	public static function fetch(string $url): PromiseInterface {
 		$deferred = new Deferred();
 
 		try {
@@ -57,14 +58,14 @@ class Internet {
 	 *  Get the file size of any remote resource (using curl)
 	 *
 	 * @param string $url
-	 * @return  Promise|PromiseInterface
+	 * @return  PromiseInterface<string>
 	 * @throws Exception
 	 * @license MIT <http://eyecatchup.mit-license.org/>
 	 * @url     <https://gist.github.com/eyecatchup/f26300ffd7e50a92bc4d>
 	 *
 	 * @author  Stephan Schmitz <eyecatchup@gmail.com>
 	 */
-	public static function getRemoteFilesize(string $url): PromiseInterface|Promise
+	public static function getRemoteFilesize(string $url): PromiseInterface
 	{
 		$deferred = new Deferred();
 		/** @param CurlHandle $ch */

@@ -14,6 +14,7 @@ namespace thebigcrafter\OhMyPMMP\commands\subcommands;
 use CortexPE\Commando\args\RawStringArgument;
 use CortexPE\Commando\BaseSubCommand;
 use CortexPE\Commando\exception\ArgumentOrderException;
+use Exception;
 use pocketmine\command\CommandSender;
 use React\Promise\Promise;
 use thebigcrafter\OhMyPMMP\async\Internet;
@@ -34,8 +35,10 @@ class ShowCommand extends BaseSubCommand {
 		$this->registerArgument(0, new RawStringArgument("pluginName", false));
 		$this->registerArgument(1, new RawStringArgument("pluginVersion", false));
 	}
+
 	/**
 	 * @param array<string> $args
+	 * @throws Exception
 	 */
 	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void {
 		if (OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning) {
@@ -77,7 +80,7 @@ class ShowCommand extends BaseSubCommand {
 		$RemoteFilesize = Internet::getRemoteFilesize(
 			$pluginInfo["artifact_url"],
 		);
-		$RemoteFilesize->done(
+		$RemoteFilesize->then(
 			function (string $size) use ($pluginScore, $pluginDownloads, $pluginHomepage, $pluginLicense, $sender, $pluginName, $pluginVersion, $deps, $pluginAPI) {
 				/** @var array<string> $pluginAPI */
 				$pluginAPI = (array) $pluginAPI[0];

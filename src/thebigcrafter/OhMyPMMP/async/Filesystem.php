@@ -14,13 +14,11 @@ namespace thebigcrafter\OhMyPMMP\async;
 use Exception;
 use Phar;
 use React\Promise\Deferred;
-use React\Promise\Promise;
 use React\Promise\PromiseInterface;
 use Throwable;
 use function file_put_contents;
 use function filetype;
 use function is_dir;
-use function reset;
 use function rmdir;
 use function scandir;
 use function unlink;
@@ -28,19 +26,20 @@ use function unlink;
 class Filesystem {
 
 	/**
-	 * Write data to a file
+	 * Write data to a file asynchronously.
 	 *
-	 * @param string $file
-	 * @param string $data
-	 * @return PromiseInterface|Promise
+	 * @param string $file The path to the file to write.
+	 * @param string $data The data to write to the file.
+	 * @return PromiseInterface<bool> A promise that resolves when the write operation is complete.
 	 */
-	public static function writeFile(string $file, string $data) : PromiseInterface|Promise {
+	public static function writeFile(string $file, string $data) : PromiseInterface
+	{
 		$deferred = new Deferred();
 
 		try {
-			file_put_contents($file, $data);
+			$result = file_put_contents($file, $data);
 
-			$deferred->resolve(null);
+			$deferred->resolve($result !== false);
 		} catch (Throwable $e) {
 			$deferred->reject($e);
 		}
@@ -48,18 +47,18 @@ class Filesystem {
 	}
 
 	/**
-	 * Unlink Phar file
+	 * Unlinks (deletes) a Phar archive asynchronously.
 	 *
-	 * @param string $file
-	 * @return PromiseInterface|Promise
+	 * @param string $file The path to the Phar archive to unlink.
+	 * @return PromiseInterface<bool> A promise that resolves when the unlink operation is complete,
+	 *                                and rejects with an exception if there's an error.
 	 */
-	public static function unlinkPhar(string $file) : PromiseInterface|Promise {
+	public static function unlinkPhar(string $file) : PromiseInterface {
 		$deferred = new Deferred();
 
 		try {
-			Phar::unlinkArchive($file);
-
-			$deferred->resolve(null);
+			$result = Phar::unlinkArchive($file);
+			$deferred->resolve($result);
 		} catch (Throwable $e) {
 			$deferred->reject($e);
 		}
@@ -67,12 +66,14 @@ class Filesystem {
 		return $deferred->promise();
 	}
 
+
 	/**
-	 * Extract Phar file
+	 * Extracts the contents of a Phar archive asynchronously.
 	 *
-	 * @param string $file
-	 * @param string $to
-	 * @return  PromiseInterface
+	 * @param string $file The path to the Phar archive to extract.
+	 * @param string $to The directory where the contents will be extracted.
+	 * @return PromiseInterface<bool> A promise that resolves to `true` if the extraction is successful,
+	 *                               and rejects with an exception if there's an error.
 	 */
 	public static function extractPhar(string $file, string $to): PromiseInterface {
 		$deferred = new Deferred();
@@ -94,9 +95,9 @@ class Filesystem {
 	}
 
 	/**
-	 * Delete folder
+	 * Recursively delete a folder and its contents.
 	 *
-	 * @param string $folder
+	 * @param string $folder The path of the folder to delete.
 	 * @return void
 	 */
 	public static function deleteFolder(string $folder) : void {
