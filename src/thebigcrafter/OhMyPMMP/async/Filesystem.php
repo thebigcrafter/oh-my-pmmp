@@ -66,7 +66,6 @@ class Filesystem {
 		return $deferred->promise();
 	}
 
-
 	/**
 	 * Extracts the contents of a Phar archive asynchronously.
 	 *
