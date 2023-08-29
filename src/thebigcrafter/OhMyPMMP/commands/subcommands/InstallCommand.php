@@ -30,14 +30,14 @@ class InstallCommand extends BaseSubCommand {
 		}
 
 		$pluginName = $args["pluginName"];
-
+		$pluginVersion = $args["pluginVersion"] ?? "latest";
 		if (!isset($args["extract"])) {
-			OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new InstallPluginTask($sender, $pluginName, $args["pluginVersion"]));
+			OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new InstallPluginTask($sender, $pluginName, $pluginVersion));
 		} else {
 			if ($args["extract"] == "true") {
-				OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new InstallPluginTask($sender, $pluginName, $args["pluginVersion"], false, true));
+				OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new InstallPluginTask($sender, $pluginName, $pluginVersion, false, true));
 			} else {
-				OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new InstallPluginTask($sender, $pluginName, $args["pluginVersion"]));
+				OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new InstallPluginTask($sender, $pluginName, $pluginVersion));
 			}
 		}
 	}
@@ -49,7 +49,7 @@ class InstallCommand extends BaseSubCommand {
 		$this->setPermission("oh-my-pmmp.install");
 
 		$this->registerArgument(0, new RawStringArgument("pluginName"));
-		$this->registerArgument(1, new RawStringArgument("pluginVersion"));
+		$this->registerArgument(1, new RawStringArgument("pluginVersion", true));
 
 		if (OhMyPMMP::getInstance()->getConfig()->get("devMode") === true) {
 			$this->registerArgument(2, new BooleanArgument("extract", true));
