@@ -1334,12 +1334,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thebigcrafter/promise.git",
-                "reference": "75a2af6a4d688c3bd8ef3eb306ac3c7166a4b9b4"
+                "reference": "f284af706b36b9ed0adce024c95c16adf05bb8aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thebigcrafter/promise/zipball/75a2af6a4d688c3bd8ef3eb306ac3c7166a4b9b4",
-                "reference": "75a2af6a4d688c3bd8ef3eb306ac3c7166a4b9b4",
+                "url": "https://api.github.com/repos/thebigcrafter/promise/zipball/f284af706b36b9ed0adce024c95c16adf05bb8aa",
+                "reference": "f284af706b36b9ed0adce024c95c16adf05bb8aa",
                 "shasum": ""
             },
             "require": {
@@ -1349,7 +1349,7 @@
             "type": "library",
             "autoload": {
                 "files": [
-                    "src/React/Promise/functions_include.php"
+                    "functions_include.php"
                 ],
                 "classmap": [
                     "src"
@@ -1386,7 +1386,7 @@
                 "issues": "https://github.com/thebigcrafter/promise/issues",
                 "source": "https://github.com/thebigcrafter/promise/tree/main"
             },
-            "time": "2023-08-29T12:52:24+00:00"
+            "time": "2023-08-29T12:56:02+00:00"
         }
     ],
     "packages-dev": [
