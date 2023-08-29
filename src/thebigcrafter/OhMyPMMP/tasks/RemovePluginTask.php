@@ -20,6 +20,8 @@ use Throwable;
 use function is_file;
 use function is_null;
 use function str_replace;
+use function str_starts_with;
+use function realpath;
 
 class RemovePluginTask extends Task {
 	private CommandSender $sender;
