@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "72d004eef2b9a2380f18180c9dc3dee7",
+    "content-hash": "ebb3262026ca0c2fbebd86c565b8a1c3",
     "packages": [
         {
             "name": "adhocore/json-comment",
@@ -1330,24 +1330,20 @@
         },
         {
             "name": "thebigcrafterx/promise",
-            "version": "3.x-dev",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thebigcrafter/promise.git",
-                "reference": "2fc739ecb34670ea02d7717bae4e48045b7f6536"
+                "reference": "ec84a9e2922c1b2fe51275e71f7dd44e5dec120a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thebigcrafter/promise/zipball/2fc739ecb34670ea02d7717bae4e48045b7f6536",
-                "reference": "2fc739ecb34670ea02d7717bae4e48045b7f6536",
+                "url": "https://api.github.com/repos/thebigcrafter/promise/zipball/ec84a9e2922c1b2fe51275e71f7dd44e5dec120a",
+                "reference": "ec84a9e2922c1b2fe51275e71f7dd44e5dec120a",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1.0"
-            },
-            "require-dev": {
-                "phpstan/phpstan": "1.10.20 || 1.4.10",
-                "phpunit/phpunit": "^9.5 || ^7.5"
             },
             "default-branch": true,
             "type": "library",
@@ -1391,9 +1387,10 @@
                 "promises"
             ],
             "support": {
-                "source": "https://github.com/thebigcrafter/promise/tree/3.x"
+                "issues": "https://github.com/thebigcrafter/promise/issues",
+                "source": "https://github.com/thebigcrafter/promise/tree/main"
             },
-            "time": "2023-08-29T06:17:40+00:00"
+            "time": "2023-08-29T12:34:41+00:00"
         }
     ],
     "packages-dev": [
