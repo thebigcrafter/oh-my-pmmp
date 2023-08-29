@@ -9,9 +9,8 @@ projects:
     libs:
       - src: thebigcrafter/React/Promise
         version: ^0.0.1
-      - src: CortexPE/Commando/Commando
-        version: ^3.0.0
-        branch: PM4
+      - src: thebigcrafter/Commando/Commando
+        version: ^3.3.0
       - src: thebigcrafter/Hydrogen/Hydrogen
         version: ^1.0.0
 ...
