@@ -16,6 +16,7 @@ use pocketmine\scheduler\Task;
 use thebigcrafter\OhMyPMMP\async\Filesystem;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use thebigcrafter\OhMyPMMP\Vars;
+use Throwable;
 use function is_file;
 use function is_null;
 use function str_replace;
@@ -51,7 +52,7 @@ class RemovePluginTask extends Task {
 						$this->sender->sendMessage(str_replace("{{plugin}}", $this->pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.removed")));
 					}
 				},
-				function () {
+				function (Throwable $e) {
 					if (!$this->silent) {
 						$this->sender->sendMessage(str_replace("{{plugin}}", $this->pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.not.found")));
 					}

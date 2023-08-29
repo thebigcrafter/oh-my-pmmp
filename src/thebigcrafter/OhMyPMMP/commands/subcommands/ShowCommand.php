@@ -17,6 +17,7 @@ use CortexPE\Commando\exception\ArgumentOrderException;
 use Exception;
 use pocketmine\command\CommandSender;
 use React\Promise\Promise;
+use React\Promise\PromiseInterface;
 use thebigcrafter\OhMyPMMP\async\Internet;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use function array_map;
@@ -76,7 +77,6 @@ class ShowCommand extends BaseSubCommand {
 			}, (array) $pluginDeps);
 			$deps = implode(", ", $deps);
 		}
-		/** @var Promise $RemoteFilesize */
 		$RemoteFilesize = Internet::getRemoteFilesize(
 			$pluginInfo["artifact_url"],
 		);

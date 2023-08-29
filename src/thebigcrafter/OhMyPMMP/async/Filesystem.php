@@ -71,7 +71,7 @@ class Filesystem {
 	 * Extracts the contents of a Phar archive asynchronously.
 	 *
 	 * @param string $file The path to the Phar archive to extract.
-	 * @param string $to The directory where the contents will be extracted.
+	 * @param string $to   The directory where the contents will be extracted.
 	 * @return PromiseInterface<bool> A promise that resolves to `true` if the extraction is successful,
 	 *                               and rejects with an exception if there's an error.
 	 */
@@ -98,7 +98,6 @@ class Filesystem {
 	 * Recursively delete a folder and its contents.
 	 *
 	 * @param string $folder The path of the folder to delete.
-	 * @return void
 	 */
 	public static function deleteFolder(string $folder) : void {
 		if (is_dir($folder)) {

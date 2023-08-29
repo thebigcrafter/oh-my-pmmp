@@ -39,7 +39,7 @@ class Internet {
 	 * @return PromiseInterface<string> A promise that resolves with the fetched resource as a string,
 	 *                                 or rejects with an InternetException if there's an error.
 	 */
-	public static function fetch(string $url): PromiseInterface {
+	public static function fetch(string $url) : PromiseInterface {
 		$deferred = new Deferred();
 
 		try {
@@ -65,7 +65,7 @@ class Internet {
 	 *
 	 * @author  Stephan Schmitz <eyecatchup@gmail.com>
 	 */
-	public static function getRemoteFilesize(string $url): PromiseInterface
+	public static function getRemoteFilesize(string $url) : PromiseInterface
 	{
 		$deferred = new Deferred();
 		/** @param CurlHandle $ch */
