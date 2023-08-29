@@ -37,7 +37,7 @@ class Internet {
 	 * Fetch a resource from the specified URL asynchronously.
 	 *
 	 * @param string $url The URL from which to fetch the resource.
-	 * @return PromiseInterface<string> A promise that resolves with the fetched resource as a string,
+	 * @return PromiseInterface A promise that resolves with the fetched resource as a string,
 	 *                                 or rejects with an InternetException if there's an error.
 	 */
 	public static function fetch(string $url) : PromiseInterface {
@@ -58,7 +58,7 @@ class Internet {
 	/**
 	 *  Get the file size of any remote resource (using curl)
 	 *
-	 * @return  PromiseInterface<string>
+	 * @return  PromiseInterface
 	 * @throws Exception
 	 * @license MIT <http://eyecatchup.mit-license.org/>
 	 * @url     <https://gist.github.com/eyecatchup/f26300ffd7e50a92bc4d>

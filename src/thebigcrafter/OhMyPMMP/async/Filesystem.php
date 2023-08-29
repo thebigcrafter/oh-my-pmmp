@@ -30,7 +30,7 @@ class Filesystem {
 	 *
 	 * @param string $file The path to the file to write.
 	 * @param string $data The data to write to the file.
-	 * @return PromiseInterface<bool> A promise that resolves when the write operation is complete.
+	 * @return PromiseInterface A promise that resolves when the write operation is complete.
 	 */
 	public static function writeFile(string $file, string $data) : PromiseInterface
 	{
@@ -50,7 +50,7 @@ class Filesystem {
 	 * Unlinks (deletes) a Phar archive asynchronously.
 	 *
 	 * @param string $file The path to the Phar archive to unlink.
-	 * @return PromiseInterface<bool> A promise that resolves when the unlink operation is complete,
+	 * @return PromiseInterface A promise that resolves when the unlink operation is complete,
 	 *                                and rejects with an exception if there's an error.
 	 */
 	public static function unlinkPhar(string $file) : PromiseInterface {
@@ -71,7 +71,7 @@ class Filesystem {
 	 *
 	 * @param string $file The path to the Phar archive to extract.
 	 * @param string $to   The directory where the contents will be extracted.
-	 * @return PromiseInterface<bool> A promise that resolves to `true` if the extraction is successful,
+	 * @return PromiseInterface A promise that resolves to `true` if the extraction is successful,
 	 *                               and rejects with an exception if there's an error.
 	 */
 	public static function extractPhar(string $file, string $to) : PromiseInterface {
