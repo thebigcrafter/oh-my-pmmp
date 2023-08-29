@@ -16,8 +16,6 @@ use CortexPE\Commando\BaseSubCommand;
 use CortexPE\Commando\exception\ArgumentOrderException;
 use Exception;
 use pocketmine\command\CommandSender;
-use React\Promise\Promise;
-use React\Promise\PromiseInterface;
 use thebigcrafter\OhMyPMMP\async\Internet;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use function array_map;

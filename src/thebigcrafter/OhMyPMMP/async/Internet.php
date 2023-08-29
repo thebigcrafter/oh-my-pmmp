@@ -57,7 +57,6 @@ class Internet {
 	/**
 	 *  Get the file size of any remote resource (using curl)
 	 *
-	 * @param string $url
 	 * @return  PromiseInterface<string>
 	 * @throws Exception
 	 * @license MIT <http://eyecatchup.mit-license.org/>

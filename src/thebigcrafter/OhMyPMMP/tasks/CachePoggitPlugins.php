@@ -12,8 +12,6 @@ declare(strict_types=1);
 namespace thebigcrafter\OhMyPMMP\tasks;
 
 use pocketmine\scheduler\AsyncTask;
-use pocketmine\utils\InternetException;
-use React\Promise\Promise;
 use thebigcrafter\OhMyPMMP\async\Internet;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use thebigcrafter\OhMyPMMP\Vars;

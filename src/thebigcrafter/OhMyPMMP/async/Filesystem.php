@@ -75,7 +75,7 @@ class Filesystem {
 	 * @return PromiseInterface<bool> A promise that resolves to `true` if the extraction is successful,
 	 *                               and rejects with an exception if there's an error.
 	 */
-	public static function extractPhar(string $file, string $to): PromiseInterface {
+	public static function extractPhar(string $file, string $to) : PromiseInterface {
 		$deferred = new Deferred();
 
 		try {

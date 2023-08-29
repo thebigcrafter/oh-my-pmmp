@@ -13,7 +13,6 @@ namespace thebigcrafter\OhMyPMMP\tasks;
 
 use pocketmine\command\CommandSender;
 use pocketmine\scheduler\Task;
-use pocketmine\utils\InternetException;
 use pocketmine\utils\TextFormat;
 use thebigcrafter\OhMyPMMP\async\Filesystem;
 use thebigcrafter\OhMyPMMP\async\Internet;
