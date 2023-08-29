@@ -19,9 +19,7 @@ use thebigcrafter\OhMyPMMP\Vars;
 use Throwable;
 use function is_file;
 use function is_null;
-use function realpath;
 use function str_replace;
-use function str_starts_with;
 
 class RemovePluginTask extends Task {
 	private CommandSender $sender;
@@ -37,16 +35,6 @@ class RemovePluginTask extends Task {
 	}
 
 	public function onRun() : void {
-
-		$basePath = Vars::getPluginsFolder();
-		$fullPath = $basePath . $this->pluginName;
-		$normalizedPath = realpath($basePath . $this->pluginName . ".phar");
-
-		if ($normalizedPath === false || !str_starts_with($normalizedPath, $basePath)) {
-			$this->sender->sendMessage(OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.name.invalid"));
-			return;
-		}
-
 		$pluginManager = OhMyPMMP::getInstance()->getServer()->getPluginManager();
 		$plugin = $pluginManager->getPlugin($this->pluginName);
 
@@ -57,8 +45,8 @@ class RemovePluginTask extends Task {
 
 		$pluginManager->disablePlugin($plugin);
 
-		if (is_file($fullPath . ".phar")) {
-			Filesystem::unlinkPhar($fullPath . ".phar")->then(
+		if (is_file(Vars::getPluginsFolder() . "$this->pluginName.phar")) {
+			Filesystem::unlinkPhar(OhMyPMMP::getInstance()->getServer()->getDataPath() . "plugins/$this->pluginName.phar")->then(
 				function () {
 					if (!$this->silent) {
 						$this->sender->sendMessage(str_replace("{{plugin}}", $this->pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.removed")));
