@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6d58bf9dbf7504a61f68219783f05a11",
+    "content-hash": "72d004eef2b9a2380f18180c9dc3dee7",
     "packages": [
         {
             "name": "adhocore/json-comment",
@@ -1329,17 +1329,17 @@
             "time": "2023-06-09T00:45:43+00:00"
         },
         {
-            "name": "thebigcrafters/promise",
+            "name": "thebigcrafterx/promise",
             "version": "3.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thebigcrafter/promise.git",
-                "reference": "add2b355f3997e497182299ca014f7059436eb0e"
+                "reference": "2fc739ecb34670ea02d7717bae4e48045b7f6536"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thebigcrafter/promise/zipball/add2b355f3997e497182299ca014f7059436eb0e",
-                "reference": "add2b355f3997e497182299ca014f7059436eb0e",
+                "url": "https://api.github.com/repos/thebigcrafter/promise/zipball/2fc739ecb34670ea02d7717bae4e48045b7f6536",
+                "reference": "2fc739ecb34670ea02d7717bae4e48045b7f6536",
                 "shasum": ""
             },
             "require": {
@@ -1393,7 +1393,7 @@
             "support": {
                 "source": "https://github.com/thebigcrafter/promise/tree/3.x"
             },
-            "time": "2023-08-27T12:44:48+00:00"
+            "time": "2023-08-29T06:17:40+00:00"
         }
     ],
     "packages-dev": [
@@ -3262,7 +3262,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "thebigcrafters/promise": 20
+        "thebigcrafterx/promise": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
