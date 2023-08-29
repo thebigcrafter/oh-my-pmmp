@@ -20,6 +20,7 @@ use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use thebigcrafter\OhMyPMMP\tasks\InstallPluginTask;
 
 class InstallCommand extends BaseSubCommand {
+
 	/**
 	 * @param array<string> $args
 	 */

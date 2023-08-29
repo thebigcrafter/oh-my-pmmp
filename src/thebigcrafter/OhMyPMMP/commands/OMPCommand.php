@@ -22,6 +22,7 @@ use thebigcrafter\OhMyPMMP\commands\subcommands\UpgradeCommand;
 use thebigcrafter\OhMyPMMP\commands\subcommands\VersionCommand;
 
 class OMPCommand extends BaseCommand {
+
 	/**
 	 * @param array<string> $args
 	 */

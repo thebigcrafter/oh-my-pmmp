@@ -16,7 +16,6 @@ use pocketmine\plugin\PluginBase;
 use thebigcrafter\OhMyPMMP\commands\OMPCommand;
 use thebigcrafter\OhMyPMMP\tasks\CachePoggitPlugins;
 use thebigcrafter\OhMyPMMP\utils\SingletonTrait;
-
 use function is_dir;
 use function is_file;
 use function mkdir;

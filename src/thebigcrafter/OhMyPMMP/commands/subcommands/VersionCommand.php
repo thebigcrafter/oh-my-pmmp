@@ -18,6 +18,7 @@ use function phpversion;
 use function str_replace;
 
 class VersionCommand extends BaseSubCommand {
+
 	/**
 	 * @param array<string> $args
 	 */

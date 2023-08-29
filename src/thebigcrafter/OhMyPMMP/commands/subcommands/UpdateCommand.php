@@ -17,6 +17,7 @@ use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use thebigcrafter\OhMyPMMP\tasks\CachePoggitPlugins;
 
 class UpdateCommand extends BaseSubCommand {
+
 	/**
 	 * @param array<string> $args
 	 */

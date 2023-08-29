@@ -21,6 +21,7 @@ use thebigcrafter\OhMyPMMP\tasks\RemovePluginTask;
 use function str_replace;
 
 class UpgradeCommand extends BaseSubCommand {
+
 	/**
 	 * @param array<string> $args
 	 */

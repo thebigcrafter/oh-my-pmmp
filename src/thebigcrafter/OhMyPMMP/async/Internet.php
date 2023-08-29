@@ -32,6 +32,7 @@ use const CURLOPT_RETURNTRANSFER;
 use const CURLOPT_SSL_VERIFYPEER;
 
 class Internet {
+
 	/**
 	 * Fetch a resource from the specified URL asynchronously.
 	 *
