@@ -7,7 +7,7 @@
         "pocketmine/pocketmine-mp": "^5.0",
         "thebigcrafter/commando": "^3.2",
         "thebigcrafter/hydrogen": "^1.0",
-        "thebigcrafter/promise": "^3.0"
+        "thebigcrafterx/promise": "dev-main"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.17",
@@ -18,9 +18,9 @@
         "sort-packages": true
     },
     "autoload": {
-        "psr-4": {
-            "thebigcrafter\\OhMyPMMP\\": "src/thebigcrafter/OhMyPMMP"
-        }
+        "classmap": [
+            "src"
+        ]
     },
     "authors": [
         {

@@ -7,13 +7,10 @@ projects:
     path: ""
     icon: assets/icon.png
     libs:
-      - src: thebigcrafter/promise/promise
-        version: ^2.10.1
-      - src: CortexPE/Commando/Commando
-        version: ^3.0.0
-        branch: PM4
+      - src: thebigcrafter/Promise/Promise
+        version: ^0.0.1
+      - src: thebigcrafter/Commando/Commando
+        version: ^3.3.0
       - src: thebigcrafter/Hydrogen/Hydrogen
         version: ^1.0.0
-    lint:
-      phpstan: false
 ...

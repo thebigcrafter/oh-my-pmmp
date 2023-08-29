@@ -2,7 +2,7 @@
 
 /*
  * This file is part of oh-my-pmmp.
- * (c) thebigcrafter <hello@thebigcrafter.xyz>
+ * (c) thebigcrafter <hello.thebigcrafter@gmail.com>
  * This source file is subject to the GPL-3.0 license that is bundled
  * with this source code in the file LICENSE.
  */
@@ -16,7 +16,6 @@ use pocketmine\plugin\PluginBase;
 use thebigcrafter\OhMyPMMP\commands\OMPCommand;
 use thebigcrafter\OhMyPMMP\tasks\CachePoggitPlugins;
 use thebigcrafter\OhMyPMMP\utils\SingletonTrait;
-
 use function is_dir;
 use function is_file;
 use function mkdir;

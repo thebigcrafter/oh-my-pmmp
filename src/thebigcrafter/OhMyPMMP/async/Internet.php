@@ -2,7 +2,7 @@
 
 /*
  * This file is part of oh-my-pmmp.
- * (c) thebigcrafter <hello@thebigcrafter.xyz>
+ * (c) thebigcrafter <hello.thebigcrafter@gmail.com>
  * This source file is subject to the GPL-3.0 license that is bundled
  * with this source code in the file LICENSE.
  */
@@ -32,12 +32,15 @@ use const CURLOPT_RETURNTRANSFER;
 use const CURLOPT_SSL_VERIFYPEER;
 
 class Internet {
+
 	/**
-	 * Get resource from the URL
+	 * Fetch a resource from the specified URL asynchronously.
 	 *
-	 * @retrun PromiseInterface|Promise
+	 * @param string $url The URL from which to fetch the resource.
+	 * @return PromiseInterface A promise that resolves with the fetched resource as a string,
+	 *                                 or rejects with an InternetException if there's an error.
 	 */
-	public static function fetch(string $url) : Promise|PromiseInterface {
+	public static function fetch(string $url) : PromiseInterface {
 		$deferred = new Deferred();
 
 		try {
@@ -55,14 +58,14 @@ class Internet {
 	/**
 	 *  Get the file size of any remote resource (using curl)
 	 *
-	 *  @author  Stephan Schmitz <eyecatchup@gmail.com>
-	 *  @license MIT <http://eyecatchup.mit-license.org/>
-	 *  @url     <https://gist.github.com/eyecatchup/f26300ffd7e50a92bc4d>
+	 * @throws Exception
+	 * @license MIT <http://eyecatchup.mit-license.org/>
+	 * @url     <https://gist.github.com/eyecatchup/f26300ffd7e50a92bc4d>
 	 *
-	 * @param string $url
-	 * @return  Promise|PromiseInterface
+	 * @author  Stephan Schmitz <eyecatchup@gmail.com>
 	 */
-	public static function getRemoteFilesize($url) {
+	public static function getRemoteFilesize(string $url) : PromiseInterface
+	{
 		$deferred = new Deferred();
 		/** @param CurlHandle $ch */
 		$ch = curl_init($url);
@@ -87,7 +90,7 @@ class Internet {
 
 			// cannot retrieve file size, return "-1"
 			if (!$clen) {
-				$deferred->reject(-1);
+				$deferred->reject(new Exception("Unable to get remote filesize"));
 			}
 
 			$size = $clen;

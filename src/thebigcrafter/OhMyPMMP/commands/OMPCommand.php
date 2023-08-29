@@ -2,7 +2,7 @@
 
 /*
  * This file is part of oh-my-pmmp.
- * (c) thebigcrafter <hello@thebigcrafter.xyz>
+ * (c) thebigcrafter <hello.thebigcrafter@gmail.com>
  * This source file is subject to the GPL-3.0 license that is bundled
  * with this source code in the file LICENSE.
  */
@@ -22,6 +22,7 @@ use thebigcrafter\OhMyPMMP\commands\subcommands\UpgradeCommand;
 use thebigcrafter\OhMyPMMP\commands\subcommands\VersionCommand;
 
 class OMPCommand extends BaseCommand {
+
 	/**
 	 * @param array<string> $args
 	 */

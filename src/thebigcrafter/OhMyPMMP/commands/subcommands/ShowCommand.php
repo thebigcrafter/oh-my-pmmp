@@ -2,7 +2,7 @@
 
 /*
  * This file is part of oh-my-pmmp.
- * (c) thebigcrafter <hello@thebigcrafter.xyz>
+ * (c) thebigcrafter <hello.thebigcrafter@gmail.com>
  * This source file is subject to the GPL-3.0 license that is bundled
  * with this source code in the file LICENSE.
  */
@@ -14,8 +14,8 @@ namespace thebigcrafter\OhMyPMMP\commands\subcommands;
 use CortexPE\Commando\args\RawStringArgument;
 use CortexPE\Commando\BaseSubCommand;
 use CortexPE\Commando\exception\ArgumentOrderException;
+use Exception;
 use pocketmine\command\CommandSender;
-use React\Promise\Promise;
 use thebigcrafter\OhMyPMMP\async\Internet;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use function array_map;
@@ -34,8 +34,10 @@ class ShowCommand extends BaseSubCommand {
 		$this->registerArgument(0, new RawStringArgument("pluginName", false));
 		$this->registerArgument(1, new RawStringArgument("pluginVersion", false));
 	}
+
 	/**
 	 * @param array<string> $args
+	 * @throws Exception
 	 */
 	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void {
 		if (OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning) {
@@ -73,11 +75,10 @@ class ShowCommand extends BaseSubCommand {
 			}, (array) $pluginDeps);
 			$deps = implode(", ", $deps);
 		}
-		/** @var Promise $RemoteFilesize */
 		$RemoteFilesize = Internet::getRemoteFilesize(
 			$pluginInfo["artifact_url"],
 		);
-		$RemoteFilesize->done(
+		$RemoteFilesize->then(
 			function (string $size) use ($pluginScore, $pluginDownloads, $pluginHomepage, $pluginLicense, $sender, $pluginName, $pluginVersion, $deps, $pluginAPI) {
 				/** @var array<string> $pluginAPI */
 				$pluginAPI = (array) $pluginAPI[0];
