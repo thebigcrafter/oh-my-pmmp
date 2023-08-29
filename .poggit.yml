@@ -7,7 +7,7 @@ projects:
     path: ""
     icon: assets/icon.png
     libs:
-      - src: React/Promise/Promise
+      - src: thebigcrafter/React/Promise
         version: ^0.0.1
       - src: CortexPE/Commando/Commando
         version: ^3.0.0
