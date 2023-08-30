@@ -17,6 +17,7 @@ use CortexPE\Commando\exception\ArgumentOrderException;
 use pocketmine\command\CommandSender;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use thebigcrafter\OhMyPMMP\tasks\RemovePluginTask;
+use thebigcrafter\OhMyPMMP\utils\Utils;
 
 class RemoveCommand extends BaseSubCommand {
 
@@ -25,6 +26,11 @@ class RemoveCommand extends BaseSubCommand {
 	 */
 	public function onRun(CommandSender $sender,string $aliasUsed,array $args) : void {
 		$plugin = $args["pluginName"];
+
+		if(!Utils::validatePluginName($plugin)) {
+			$sender->sendMessage(OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.name.invalid"));
+			return;
+		}
 
 		OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new RemovePluginTask($sender, $plugin));
 	}

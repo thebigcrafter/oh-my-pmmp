@@ -11,17 +11,17 @@ declare(strict_types=1);
 
 namespace thebigcrafter\OhMyPMMP\tasks;
 
+use Closure;
 use pocketmine\command\CommandSender;
 use pocketmine\scheduler\Task;
+use pocketmine\utils\Utils;
 use thebigcrafter\OhMyPMMP\async\Filesystem;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use thebigcrafter\OhMyPMMP\Vars;
 use Throwable;
 use function is_file;
 use function is_null;
-use function realpath;
 use function str_replace;
-use function str_starts_with;
 
 class RemovePluginTask extends Task {
 	private CommandSender $sender;
@@ -29,23 +29,22 @@ class RemovePluginTask extends Task {
 	private string $pluginName;
 
 	private bool $silent;
+	private ?Closure $onSuccess;
+	private ?Closure $onFail;
 
-	public function __construct(CommandSender $sender, string $pluginName, bool $silent = false) {
+
+	public function __construct(CommandSender $sender, string $pluginName, bool $silent = false, ?Closure $onSuccess = null, ?Closure $onFail = null) {
 		$this->sender = $sender;
 		$this->pluginName = $pluginName;
 		$this->silent = $silent;
+		$this->onSuccess = $onSuccess;
+		$this->onFail = $onFail;
 	}
 
 	public function onRun() : void {
 
 		$basePath = Vars::getPluginsFolder();
 		$fullPath = $basePath . $this->pluginName;
-		$normalizedPath = realpath($basePath . $this->pluginName . ".phar");
-
-		if ($normalizedPath === false || !str_starts_with($normalizedPath, $basePath)) {
-			$this->sender->sendMessage(OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.name.invalid"));
-			return;
-		}
 
 		$pluginManager = OhMyPMMP::getInstance()->getServer()->getPluginManager();
 		$plugin = $pluginManager->getPlugin($this->pluginName);
@@ -68,6 +67,9 @@ class RemovePluginTask extends Task {
 					if (!$this->silent) {
 						$this->sender->sendMessage(str_replace("{{plugin}}", $this->pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.not.found")));
 					}
+					if($this->onFail !== null) {
+						($this->onFail)($e);
+					}
 				},
 			);
 		} else {
@@ -75,6 +77,11 @@ class RemovePluginTask extends Task {
 			if (!$this->silent) {
 				$this->sender->sendMessage(str_replace("{{plugin}}", $this->pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.removed")));
 			}
+		}
+
+		$onSuccess = $this->onSuccess;
+		if($onSuccess !== null) {
+			$onSuccess();
 		}
 	}
 }
