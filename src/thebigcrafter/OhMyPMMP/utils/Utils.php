@@ -1,6 +1,5 @@
 <?php
 
-
 /*
  * This file is part of oh-my-pmmp.
  * (c) thebigcrafter <hello.thebigcrafter@gmail.com>
@@ -18,15 +17,11 @@ class Utils {
 
 	/**
 	 * Validate the plugin name
-	 *
-	 * @param string $pluginName
-	 * @return bool
 	 */
-	public static function validatePluginName(string $pluginName) :bool {
+	public static function validatePluginName(string $pluginName) : bool {
 		if(preg_match('#\.\./#', $pluginName)) {
 			return false;
 		}
 		return true;
 	}
-
 }

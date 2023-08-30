@@ -14,7 +14,6 @@ namespace thebigcrafter\OhMyPMMP\tasks;
 use Closure;
 use pocketmine\command\CommandSender;
 use pocketmine\scheduler\Task;
-use pocketmine\utils\Utils;
 use thebigcrafter\OhMyPMMP\async\Filesystem;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use thebigcrafter\OhMyPMMP\Vars;
@@ -24,14 +23,16 @@ use function is_null;
 use function str_replace;
 
 class RemovePluginTask extends Task {
+
 	private CommandSender $sender;
 
 	private string $pluginName;
 
 	private bool $silent;
-	private ?Closure $onSuccess;
-	private ?Closure $onFail;
 
+	private ?Closure $onSuccess;
+
+	private ?Closure $onFail;
 
 	public function __construct(CommandSender $sender, string $pluginName, bool $silent = false, ?Closure $onSuccess = null, ?Closure $onFail = null) {
 		$this->sender = $sender;
