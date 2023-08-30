@@ -1334,12 +1334,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thebigcrafter/promise.git",
-                "reference": "f1b89c977e9d36c26d560c74a69c5061cfa9703f"
+                "reference": "1b4e63a9ce6f307978a20fba0f4f4f00bf6f6626"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thebigcrafter/promise/zipball/f1b89c977e9d36c26d560c74a69c5061cfa9703f",
-                "reference": "f1b89c977e9d36c26d560c74a69c5061cfa9703f",
+                "url": "https://api.github.com/repos/thebigcrafter/promise/zipball/1b4e63a9ce6f307978a20fba0f4f4f00bf6f6626",
+                "reference": "1b4e63a9ce6f307978a20fba0f4f4f00bf6f6626",
                 "shasum": ""
             },
             "require": {
@@ -1347,6 +1347,12 @@
             },
             "default-branch": true,
             "type": "library",
+            "extra": {
+                "virion": {
+                    "spec": "3.0",
+                    "namespace-root": "React\\Promise"
+                }
+            },
             "autoload": {
                 "files": [
                     "src/React/Promise/functions_include.php"
@@ -1386,7 +1392,7 @@
                 "issues": "https://github.com/thebigcrafter/promise/issues",
                 "source": "https://github.com/thebigcrafter/promise/tree/main"
             },
-            "time": "2023-08-29T13:01:23+00:00"
+            "time": "2023-08-29T13:29:43+00:00"
         }
     ],
     "packages-dev": [
