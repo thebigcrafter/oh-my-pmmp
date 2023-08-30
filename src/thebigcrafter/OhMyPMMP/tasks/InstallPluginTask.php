@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace thebigcrafter\OhMyPMMP\tasks;
 
+use Closure;
 use pocketmine\command\CommandSender;
 use pocketmine\scheduler\Task;
 use pocketmine\utils\TextFormat;
@@ -34,12 +35,15 @@ class InstallPluginTask extends Task {
 
 	private bool $extract;
 
-	public function __construct(CommandSender $sender, string $pluginName, string $pluginVersion, bool $silent = false, bool $extract = false) {
+	private ?Closure $onSuccess;
+
+	public function __construct(CommandSender $sender, string $pluginName, string $pluginVersion, bool $silent = false, bool $extract = false, ?Closure $onSuccess = null) {
 		$this->sender = $sender;
 		$this->pluginName = $pluginName;
 		$this->pluginVersion = $pluginVersion;
 		$this->silent = $silent;
 		$this->extract = $extract;
+		$this->onSuccess = $onSuccess;
 	}
 
 	public function onRun() : void {
@@ -99,6 +103,9 @@ class InstallPluginTask extends Task {
 									);
 								}
 							);
+						}
+						if ($this->onSuccess !== null) {
+							($this->onSuccess)();
 						}
 					},
 					function (Throwable $e) {

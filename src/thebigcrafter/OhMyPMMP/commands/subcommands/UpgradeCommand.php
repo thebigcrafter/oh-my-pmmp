@@ -18,6 +18,7 @@ use pocketmine\command\CommandSender;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use thebigcrafter\OhMyPMMP\tasks\InstallPluginTask;
 use thebigcrafter\OhMyPMMP\tasks\RemovePluginTask;
+use thebigcrafter\OhMyPMMP\utils\Utils;
 use function str_replace;
 
 class UpgradeCommand extends BaseSubCommand {
@@ -33,10 +34,20 @@ class UpgradeCommand extends BaseSubCommand {
 
 		$pluginName = $args["pluginName"];
 
-		OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new RemovePluginTask($sender, $pluginName, true));
-		OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new InstallPluginTask($sender, $pluginName, "latest", true));
+		if(!Utils::validatePluginName($pluginName)) {
+			$sender->sendMessage(OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.name.invalid"));
+			return;
+		}
 
-		$sender->sendMessage(str_replace("{{plugin}}", $pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.updated")));
+		$removeTask = new RemovePluginTask($sender, $pluginName, true, function() use ($pluginName, $sender) {
+			$installTask = new InstallPluginTask($sender, $pluginName, "latest", true, false,
+				function() use ($sender, $pluginName) {
+				$sender->sendMessage(str_replace("{{plugin}}", $pluginName, OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.updated")));
+			});
+			OhMyPMMP::getInstance()->getScheduler()->scheduleTask($installTask);
+		});
+
+		OhMyPMMP::getInstance()->getScheduler()->scheduleTask($removeTask);
 	}
 
 	/**
