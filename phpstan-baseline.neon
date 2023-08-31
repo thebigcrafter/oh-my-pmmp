@@ -1,0 +1,10 @@
+parameters:
+    ignoreErrors:
+        -
+            message: '/^Parameter #1 \$closure of static method SOFe\\AwaitGenerator\\Await<mixed>::f2c\(\) expects callable\(\): Generator<mixed.*$/'
+            count: 1
+            path: 'src/thebigcrafter/OhMyPMMP/async/CachePlugins.php'
+        -
+            message: '/^Parameter #1 \$closure of static method SOFe\\AwaitGenerator\\Await<mixed>::f2c\(\) expects callable\(\): Generator<mixed.*$/'
+            count: 1
+            path: 'src/thebigcrafter/OhMyPMMP/async/RemovePlugin.php'

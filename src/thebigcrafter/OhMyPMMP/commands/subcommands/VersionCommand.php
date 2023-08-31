@@ -14,10 +14,14 @@ namespace thebigcrafter\OhMyPMMP\commands\subcommands;
 use CortexPE\Commando\BaseSubCommand;
 use pocketmine\command\CommandSender;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
+use thebigcrafter\OhMyPMMP\utils\Utils;
 use function phpversion;
-use function str_replace;
 
 class VersionCommand extends BaseSubCommand {
+
+	protected function prepare() : void {
+		$this->setPermission("oh-my-pmmp.version");
+	}
 
 	/**
 	 * @param array<string> $args
@@ -26,11 +30,7 @@ class VersionCommand extends BaseSubCommand {
 		$phpVersion = phpversion();
 		$pluginVersion = OhMyPMMP::getInstance()->getDescription()->getVersion();
 
-		$sender->sendMessage(str_replace("{{version}}",$phpVersion,OhMyPMMP::getInstance()->getLanguage()->translateString("version.php")));
-		$sender->sendMessage(str_replace("{{version}}",$pluginVersion,OhMyPMMP::getInstance()->getLanguage()->translateString("version.ohmypmmp")));
-	}
-
-	protected function prepare() : void {
-		$this->setPermission("oh-my-pmmp.version");
+		$sender->sendMessage(Utils::translate("version.php", ["version" => $phpVersion]));
+		$sender->sendMessage(Utils::translate("version.ohmypmmp", ["version" => $pluginVersion]));
 	}
 }

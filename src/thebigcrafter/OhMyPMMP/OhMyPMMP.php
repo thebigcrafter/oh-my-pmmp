@@ -13,9 +13,10 @@ namespace thebigcrafter\OhMyPMMP;
 
 use pocketmine\lang\Language;
 use pocketmine\plugin\PluginBase;
+use pocketmine\utils\SingletonTrait;
+use thebigcrafter\OhMyPMMP\async\CachePlugins;
+use thebigcrafter\OhMyPMMP\cache\PluginsPool;
 use thebigcrafter\OhMyPMMP\commands\OMPCommand;
-use thebigcrafter\OhMyPMMP\tasks\CachePoggitPlugins;
-use thebigcrafter\OhMyPMMP\utils\SingletonTrait;
 use function is_dir;
 use function is_file;
 use function mkdir;
@@ -31,14 +32,17 @@ class OhMyPMMP extends PluginBase {
 	/** @var array<string, array<string>> */
 	public array $pluginsList = [];
 
-	public function onEnable() : void {
+	public function onLoad() : void {
 		self::setInstance($this);
+	}
+
+	public function onEnable() : void {
 
 		$this->saveDefaultConfig();
 		$this->loadLanguage();
 
-		$this->isCachePoggitPluginsTaskRunning = true;
-		$this->getServer()->getAsyncPool()->submitTask(new CachePoggitPlugins());
+		PluginsPool::init();
+		CachePlugins::Cache();
 
 		$this->getServer()->getCommandMap()->register("OhMyPMMP", new OMPCommand($this, "ohmypmmp", "Oh My PMMP", ["omp", "oh-my-pmmp"]));
 	}

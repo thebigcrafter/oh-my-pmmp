@@ -16,8 +16,11 @@ use CortexPE\Commando\BaseSubCommand;
 use CortexPE\Commando\exception\ArgumentOrderException;
 use pocketmine\command\CommandSender;
 use pocketmine\utils\TextFormat;
+use thebigcrafter\OhMyPMMP\cache\PluginsPool;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
-use function array_unique;
+use thebigcrafter\OhMyPMMP\utils\Utils;
+use function count;
+use function implode;
 use function in_array;
 
 class ListCommand extends BaseSubCommand {
@@ -36,15 +39,19 @@ class ListCommand extends BaseSubCommand {
 	 */
 	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void {
 		if (empty($args["installedPlugins"])) {
-			$pluginsName = [];
 
-			foreach (OhMyPMMP::getInstance()->getPluginsList() as $plugin) {
-				$pluginsName[] = $plugin["name"];
+			$plugins = [];
+
+			foreach(PluginsPool::getNamePlugins() as $pluginName) {
+				$plugins[] = $pluginName;
 			}
 
-			foreach (array_unique($pluginsName) as $name) {
-				$sender->sendMessage($name);
-			}
+			$sender->sendMessage(Utils::translate("plugins.list", [
+				"count" => count($plugins),
+				"plugins" => implode(", ", $plugins)
+			]));
+
+		//Why not use `/plugins` instead? @NhanAZ
 		} elseif (in_array($args["installedPlugins"], ["i", "-installed", "--installed"], true)) {
 			foreach (OhMyPMMP::getInstance()->getServer()->getPluginManager()->getPlugins() as $plugin) {
 				$sender->sendMessage($plugin->getName());

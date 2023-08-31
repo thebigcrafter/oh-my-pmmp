@@ -23,13 +23,6 @@ use thebigcrafter\OhMyPMMP\commands\subcommands\VersionCommand;
 
 class OMPCommand extends BaseCommand {
 
-	/**
-	 * @param array<string> $args
-	 */
-	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void {
-		$this->sendUsage();
-	}
-
 	protected function prepare() : void {
 		$this->setPermission("oh-my-pmmp.cmds");
 
@@ -46,6 +39,13 @@ class OMPCommand extends BaseCommand {
 		foreach ($subcommands as $subcommand) {
 			$this->registerSubcommand($subcommand);
 		}
+	}
+
+	/**
+	 * @param array<string> $args
+	 */
+	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void {
+		$this->sendUsage();
 	}
 
 	public function getPermission() : string {

@@ -16,32 +16,11 @@ use CortexPE\Commando\args\RawStringArgument;
 use CortexPE\Commando\BaseSubCommand;
 use CortexPE\Commando\exception\ArgumentOrderException;
 use pocketmine\command\CommandSender;
+use thebigcrafter\OhMyPMMP\async\InstallPlugin;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
-use thebigcrafter\OhMyPMMP\tasks\InstallPluginTask;
+use thebigcrafter\OhMyPMMP\utils\Utils;
 
 class InstallCommand extends BaseSubCommand {
-
-	/**
-	 * @param array<string> $args
-	 */
-	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void {
-		if (OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning) {
-			$sender->sendMessage(OhMyPMMP::getInstance()->getLanguage()->translateString("cache.running"));
-			return;
-		}
-
-		$pluginName = $args["pluginName"];
-		$pluginVersion = $args["pluginVersion"] ?? "latest";
-		if (!isset($args["extract"])) {
-			OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new InstallPluginTask($sender, $pluginName, $pluginVersion));
-		} else {
-			if ($args["extract"] == "true") {
-				OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new InstallPluginTask($sender, $pluginName, $pluginVersion, false, true));
-			} else {
-				OhMyPMMP::getInstance()->getScheduler()->scheduleTask(new InstallPluginTask($sender, $pluginName, $pluginVersion));
-			}
-		}
-	}
 
 	/**
 	 * @throws ArgumentOrderException
@@ -56,4 +35,22 @@ class InstallCommand extends BaseSubCommand {
 			$this->registerArgument(2, new BooleanArgument("extract", true));
 		}
 	}
+
+	/**
+	 * @param array<string> $args
+	 */
+	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void {
+		if (OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning) {
+			$sender->sendMessage(Utils::translate("cache.running"));
+			return;
+		}
+
+		$pluginName = $args["pluginName"];
+		$pluginVersion = $args["pluginVersion"] ?? "latest";
+		$extract = isset($args["extract"]) && $args["extract"] === "true";
+
+		$installAction = new InstallPlugin($sender, $pluginName, $pluginVersion, false, $extract);
+		$installAction->execute();
+	}
+
 }
