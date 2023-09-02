@@ -16,9 +16,9 @@ use CortexPE\Commando\BaseSubCommand;
 use CortexPE\Commando\exception\ArgumentOrderException;
 use Exception;
 use pocketmine\command\CommandSender;
+use pocketmine\player\Player;
 use thebigcrafter\OhMyPMMP\async\CachePlugins;
 use thebigcrafter\OhMyPMMP\cache\PluginsPool;
-use thebigcrafter\OhMyPMMP\utils\Internet;
 use thebigcrafter\OhMyPMMP\utils\Utils;
 use function array_map;
 use function implode;
@@ -48,6 +48,10 @@ class ShowCommand extends BaseSubCommand {
 		$pluginName = $args["pluginName"];
 		$pluginVersion = $args["pluginVersion"] ?? "latest";
 
+		if($sender instanceof Player) {
+			return;
+		}
+
 		$plugin = PluginsPool::getPluginCacheByName($pluginName);
 
 		if(!$plugin) {
@@ -75,7 +79,7 @@ class ShowCommand extends BaseSubCommand {
 			return $item["name"] . " v" . $item["version"];
 		}, $version->getDepends());
 		$deps = implode(", ", $deps);
-		$size = Internet::fetchRemoteFileSize($version->getArtifactUrl());
+		$size = $version->getSize();
 		$pluginAPI = $version->getAPI();
 		$sender->sendMessage("Name: $pluginName\nVersion: $pluginVersion\nHomepage: $pluginHomepage\nLicense: $pluginLicense\nDownloads: $pluginDownloads\nScore: $pluginScore\nAPI: " . $pluginAPI["from"] . " <= PocketMine-MP <= " . $pluginAPI["to"] . "\nDepends: $deps\nDownload Size: $size");
 	}

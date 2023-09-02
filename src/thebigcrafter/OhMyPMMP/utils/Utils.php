@@ -13,8 +13,11 @@ namespace thebigcrafter\OhMyPMMP\utils;
 
 use pocketmine\lang\Translatable;
 use pocketmine\plugin\Plugin;
+use thebigcrafter\OhMyPMMP\cache\PluginsPool;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use function preg_match;
+use function strtoupper;
+use function substr;
 use const DIRECTORY_SEPARATOR;
 
 class Utils {
@@ -41,5 +44,18 @@ class Utils {
 	public static function getPlugin(string $pluginName) : ?Plugin {
 		$pluginManager = OhMyPMMP::getInstance()->getServer()->getPluginManager();
 		return $pluginManager->getPlugin($pluginName);
+	}
+
+	/**
+	 * @return array<string, string[]>
+	 */
+	public static function groupByFirstLetter() : array {
+		$groups = [];
+		foreach (PluginsPool::getNamePlugins() as $pluginName) {
+			/** @phpstan-var string $pluginName */
+			$firstChar = strtoupper(substr($pluginName, 0, 1));
+			$groups[strtoupper($firstChar)][] = $pluginName;
+		}
+		return $groups;
 	}
 }

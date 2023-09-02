@@ -4,10 +4,11 @@
     "type": "project",
     "require": {
         "php": "^8.1",
+        "dktapps/pmforms": "dev-master",
         "pocketmine/pocketmine-mp": "^5.0",
+        "sof3/await-generator": "^3.4.3",
         "thebigcrafter/commando": "^3.2",
-        "thebigcrafter/hydrogen": "^1.0",
-        "sof3/await-generator": "^3.4.3"
+        "thebigcrafter/hydrogen": "^1.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.17",

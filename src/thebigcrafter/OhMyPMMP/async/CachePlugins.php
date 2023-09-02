@@ -69,8 +69,8 @@ class CachePlugins {
 					if (!isset($pluginCaches[$name])) {
 						$pluginCaches[$name] = new PluginCache($name, $license, $downloads, [], $score);
 					}
-
-					$version = new Version($plugin["version"], $artifactUrl, $apiShift, $deps);
+					$description_url = $plugin["description_url"];
+					$version = new Version($plugin["version"], $artifactUrl, $description_url, $apiShift, $deps);
 					$pluginCache = $pluginCaches[$name];
 					$pluginCache->pushVersion($version);
 				}

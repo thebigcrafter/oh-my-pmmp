@@ -40,10 +40,14 @@ class PluginCache {
 	}
 
 	/**
-	 * @return Version[]
+	 * @return string[]
 	 */
 	public function getVersions() : array {
-		return $this->versions;
+		$versions = [];
+		foreach ($this->versions as $version) {
+			$versions[] = $version->getVersion();
+		}
+		return $versions;
 	}
 
 	public function getScore() : int {
@@ -56,19 +60,25 @@ class PluginCache {
 
 	public function getVersion(string $version) : ?Version {
 		if($version === "latest") {
-			return $this->getLatestVersion();
+			$version = $this->getLatestVersion();
 		}
-
 		if(isset($this->versions[$version])) {
-			return $this->versions[$version];
+			$versionObj = $this->versions[$version];
+			if($versionObj->getSize() == null) {
+				$versionObj->fetchSize();
+				$versionObj->fetchDescriptions();
+				$this->versions[$version] = $versionObj;
+			}
+			return $versionObj;
 		}
 		return null;
 	}
 
-	public function getLatestVersion() : Version {
+	public function getLatestVersion() : string {
 		$versions = $this->versions;
 		sort($versions);
-		return $versions[count($versions) - 1];
+		$version = $versions[count($versions) - 1];
+		return $version->getVersion();
 	}
 
 	public function getHomePageByVersion(string $version) : string {

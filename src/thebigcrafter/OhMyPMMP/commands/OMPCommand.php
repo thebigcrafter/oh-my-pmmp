@@ -13,6 +13,9 @@ namespace thebigcrafter\OhMyPMMP\commands;
 
 use CortexPE\Commando\BaseCommand;
 use pocketmine\command\CommandSender;
+use pocketmine\player\Player;
+use SOFe\AwaitGenerator\Await;
+use thebigcrafter\OhMyPMMP\async\AsyncForm;
 use thebigcrafter\OhMyPMMP\commands\subcommands\InstallCommand;
 use thebigcrafter\OhMyPMMP\commands\subcommands\ListCommand;
 use thebigcrafter\OhMyPMMP\commands\subcommands\RemoveCommand;
@@ -45,7 +48,9 @@ class OMPCommand extends BaseCommand {
 	 * @param array<string> $args
 	 */
 	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void {
-		$this->sendUsage();
+		if($sender instanceof Player) {
+			Await::g2c(AsyncForm::groupsForm($sender));
+		}
 	}
 
 	public function getPermission() : string {

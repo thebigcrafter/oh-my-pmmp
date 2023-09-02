@@ -11,13 +11,20 @@ declare(strict_types=1);
 
 namespace thebigcrafter\OhMyPMMP\utils;
 
+use DOMDocument;
 use Generator;
 use pocketmine\utils\InternetException;
 use pocketmine\utils\InternetRequestResult;
 use SOFe\AwaitGenerator\Await;
+use function file_get_contents;
 use function get_headers;
+use function is_bool;
 use function is_numeric;
+use function libxml_clear_errors;
+use function libxml_use_internal_errors;
 use function round;
+use function strip_tags;
+use function trim;
 
 class Internet {
 
@@ -50,6 +57,35 @@ class Internet {
 		}
 
 		return 'Unknown'; // Default value if Content-Length header is not present or not numeric
+	}
+
+	/**
+	 * @return null|array<string, string>
+	 */
+	public static function fetchDescription(string $url) : ?array {
+		$raw_text = file_get_contents($url);
+		$sections = [];
+		if ($raw_text !== false) {
+			$doc = new DOMDocument();
+			libxml_use_internal_errors(true);
+			$doc->loadHTML($raw_text);
+			libxml_clear_errors();
+			foreach ($doc->getElementsByTagName('*') as $element) {
+				if ($element->tagName == 'h1') {
+					$current_h1 = trim($element->textContent);
+				} elseif (!empty($current_h1)) {
+					$node = $doc->saveHTML($element);
+					$content = (is_bool($node)) ? "" : $node;
+					$section_content = strip_tags($content);
+					if (!isset($sections[$current_h1])) {
+						$sections[$current_h1] = '';
+					}
+					$sections[$current_h1] .= $section_content;
+				}
+			}
+			return $sections;
+		}
+		return null;
 	}
 
 	private static function formatFileSize(int $bytes) : string {

@@ -11,13 +11,15 @@ declare(strict_types=1);
 
 namespace thebigcrafter\OhMyPMMP\cache;
 
+use thebigcrafter\OhMyPMMP\utils\Internet;
+use function array_map;
+use function is_null;
+
 final class Version {
 
-	/** @phpstan-var array{from: string, to: string} $api */
-	private array $api;
-
-	/** @phpstan-var array<array{name: string, version: string, depRelId: int, isHard: bool}> $deps */
-	private array $deps;
+	private ?string $fileSize = null;
+	/** @phpstan-var  null|array<string, string>*/
+	private ?array $descriptions = null;
 
 	/**
 	 * @param array{from: string, to: string}                                          $api
@@ -26,10 +28,9 @@ final class Version {
 	public function __construct(
 		private string $version,
 		private string $artifact_url,
-		array $api,
-		array $deps){
-		$this->api = $api;
-		$this->deps = $deps;
+		private string $descriptionURL,
+		private array $api,
+		private array $deps){
 	}
 
 	public function getVersion() : string {
@@ -52,5 +53,42 @@ final class Version {
 	 */
 	public function getDepends() : array {
 		return $this->deps;
+	}
+
+	public function getSize() : string {
+		$size = $this->fileSize;
+		return (is_null($size)) ? $this->fetchSize() : $size;
+	}
+
+	/**
+	 * @return array<string, string>
+	 */
+	public function getDescriptions() : array {
+		$descriptions = $this->descriptions;
+		return (is_null($descriptions)) ? $this->fetchDescriptions() : $descriptions;
+	}
+
+	/**
+	 * @return array<string, string>
+	 */
+	public function fetchDescriptions() : array {
+		$descriptions = Internet::fetchDescription($this->descriptionURL);
+
+		if (is_null($descriptions)) {
+			$descriptions = ["No Description" => ""];
+		} else {
+			$descriptions = array_map(function($value) {
+				return (string) $value;
+			}, $descriptions);
+		}
+
+		$this->descriptions = $descriptions;
+		return $descriptions;
+	}
+
+	public function fetchSize() : string {
+		$size = Internet::fetchRemoteFileSize($this->getArtifactUrl());
+		$this->fileSize = $size;
+		return $size;
 	}
 }
