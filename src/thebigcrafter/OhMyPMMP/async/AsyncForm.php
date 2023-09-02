@@ -31,7 +31,7 @@ use function implode;
 use function is_null;
 use function version_compare;
 
-class AsyncForm {
+final class AsyncForm {
 
 	private const ACTION_SHOW = 0;
 	private const ACTION_INSTALL = 1;
@@ -39,11 +39,11 @@ class AsyncForm {
 	public static function groupsForm(Player $player) : Generator {
 		$listGroups = array_keys(Utils::groupByFirstLetter());
 
-		$formResult = yield from self::menu($player, "Plugins - List", "Choose group first", array_map(function(string $group){
+		$groupChoose = yield from self::menu($player, "Plugins - List", "Choose group first", array_map(function(string $group){
 			return new MenuOption($group);
 		}, $listGroups));
-		if($formResult !== null) {
-			yield self::pluginsForm($player, (string) $listGroups[$formResult]);
+		if($groupChoose !== null) {
+			yield self::pluginsForm($player, (string) $listGroups[$groupChoose]);
 		}
 	}
 
@@ -54,10 +54,10 @@ class AsyncForm {
 			/** @phpstan-var string $plugin */
 			$options[] = new MenuOption($plugin);
 		}
-		$formResult = yield from self::menu($player, "Plugins - List - $group", "Choose plugin", $options);
+		$pluginChoose = yield from self::menu($player, "Plugins - List - $group", "Choose plugin", $options);
 
-		if(!is_null($formResult)) {
-			$pluginName = $listPlugins[$formResult];
+		if(!is_null($pluginChoose)) {
+			$pluginName = $listPlugins[$pluginChoose];
 			$plugin = PluginsPool::getPluginCacheByName($pluginName);
 			if($plugin !== null) {
 				yield self::versionsForm($player, $plugin, $group);
@@ -139,13 +139,13 @@ class AsyncForm {
 		$descriptions = $version->getDescriptions();
 		$infomation = "Version: $pluginVersion\nHomepage: $pluginHomepage\nLicense: $pluginLicense\nDownloads: $pluginDownloads\nScore: $pluginScore\nAPI: " . $pluginAPI["from"] . " <= PocketMine-MP <= " . $pluginAPI["to"] . "\nDepends: $deps\nDownload Size: $size";
 
-		$formResult = yield from self::menu($player, $pluginName, $infomation . "\nDescriptions: ",
+		$descriptionChoose = yield from self::menu($player, $pluginName, $infomation . "\nDescriptions: ",
 			array_map(function($keyDescription){
 				return new MenuOption($keyDescription);
 			}, array_keys($descriptions))
 		);
-		if(!is_null($formResult)) {
-			$keyDescription = array_keys($descriptions)[$formResult];
+		if(!is_null($descriptionChoose)) {
+			$keyDescription = array_keys($descriptions)[$descriptionChoose];
 			yield from self::custom($player, $keyDescription, [new Label("des", $descriptions[$keyDescription])]);
 			yield from self::showForm($player, $pluginName, $pluginVersion, $group);
 		}
