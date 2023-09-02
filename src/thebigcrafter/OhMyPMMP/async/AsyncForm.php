@@ -15,6 +15,7 @@ use dktapps\pmforms\CustomForm;
 use dktapps\pmforms\CustomFormResponse;
 use dktapps\pmforms\element\CustomFormElement;
 use dktapps\pmforms\element\Label;
+use dktapps\pmforms\FormIcon;
 use dktapps\pmforms\MenuForm;
 use dktapps\pmforms\MenuOption;
 use dktapps\pmforms\ModalForm;
@@ -51,8 +52,10 @@ final class AsyncForm {
 		$listPlugins = Utils::groupByFirstLetter()[$group];
 		$options = [];
 		foreach($listPlugins as $plugin) {
-			/** @phpstan-var string $plugin */
-			$options[] = new MenuOption($plugin);
+			$pluginObj = PluginsPool::getPluginCacheByName($plugin);
+			if($pluginObj !== null) {
+				$options[] = new MenuOption($plugin, new FormIcon($pluginObj->getIconURL(), FormIcon::IMAGE_TYPE_URL));
+			}
 		}
 		$pluginChoose = yield from self::menu($player, "Plugins - List - $group", "Choose plugin", $options);
 

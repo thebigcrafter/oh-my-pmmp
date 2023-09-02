@@ -13,6 +13,6 @@ namespace thebigcrafter\OhMyPMMP\utils;
 
 final class Vars {
 
-	public const POGGIT_REPO_URL = "https://poggit.pmmp.io/releases.min.json?fields=name,version,artifact_url,html_url,license,downloads,score,api,deps,description_url";
+	public const POGGIT_REPO_URL = "https://poggit.pmmp.io/releases.min.json?fields=name,version,artifact_url,html_url,license,downloads,score,api,deps,description_url,icon_url";
 
 }

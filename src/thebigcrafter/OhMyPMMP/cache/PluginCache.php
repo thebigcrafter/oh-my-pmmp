@@ -24,6 +24,7 @@ class PluginCache {
 		private string $license,
 		private int $downloads,
 		private array $versions,
+		private string $iconUrl,
 		private int $score
 	) {}
 
@@ -52,6 +53,10 @@ class PluginCache {
 
 	public function getScore() : int {
 		return $this->score;
+	}
+
+	public function getIconURL() : string {
+		return $this->iconUrl;
 	}
 
 	public function pushVersion(Version $version) : void {

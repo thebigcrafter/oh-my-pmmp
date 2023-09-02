@@ -65,9 +65,10 @@ class CachePlugins {
 					/** @phpstan-var array<array{name: string, version: string, depRelId: int, isHard: bool}> $deps */
 					$deps = (array) $plugin["deps"];
 					$score = (int) $plugin["score"];
+					$iconURL = $plugin["icon_url"] ?? "";
 
 					if (!isset($pluginCaches[$name])) {
-						$pluginCaches[$name] = new PluginCache($name, $license, $downloads, [], $score);
+						$pluginCaches[$name] = new PluginCache($name, $license, $downloads, [], $iconURL, $score);
 					}
 					$description_url = $plugin["description_url"];
 					$version = new Version($plugin["version"], $artifactUrl, $description_url, $apiShift, $deps);
