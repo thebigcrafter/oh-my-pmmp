@@ -40,7 +40,7 @@ final class AsyncForm {
 	public static function groupsForm(Player $player) : Generator {
 		$listGroups = array_keys(Utils::groupByFirstLetter());
 
-		$groupChoose = yield from self::menu($player, "Plugins - List", "Choose group first", array_map(function(string $group){
+		$groupChoose = yield from self::menu($player, Utils::translate("list.group.title"), Utils::translate("list.group.content"), array_map(function(string $group){
 			return new MenuOption($group);
 		}, $listGroups));
 		if($groupChoose !== null) {
@@ -57,7 +57,7 @@ final class AsyncForm {
 				$options[] = new MenuOption($plugin, new FormIcon($pluginObj->getIconURL(), FormIcon::IMAGE_TYPE_URL));
 			}
 		}
-		$pluginChoose = yield from self::menu($player, "Plugins - List - $group", "Choose plugin", $options);
+		$pluginChoose = yield from self::menu($player, Utils::translate("list.plugin.of.group.title"), Utils::translate("list.plugin.of.group.content"), $options);
 
 		if(!is_null($pluginChoose)) {
 			$pluginName = $listPlugins[$pluginChoose];
@@ -69,9 +69,9 @@ final class AsyncForm {
 	}
 
 	public static function actionForm(Player $player, PluginCache $plugin, string $version, string $group) : Generator {
-		$actionChoose = yield from self::menu($player, $plugin->getName(), "Choose a version", [
-			new MenuOption("Show info"),
-			new MenuOption("Install"),
+		$actionChoose = yield from self::menu($player, $plugin->getName(), Utils::translate("action.title"), [
+			new MenuOption(Utils::translate("action.button.info")),
+			new MenuOption(Utils::translate("action.button.install")),
 		]);
 		switch ($actionChoose) {
 			case self::ACTION_INSTALL:
@@ -90,10 +90,10 @@ final class AsyncForm {
 
 					$modal = yield from self::modal(
 						$player,
-						"NO VERSION COMPARE",
-						"$pluginName will encounter errors when installed on your server due to API incompatibility\nServer API: $serverAPI\n$pluginName API: $pluginAPI",
-						"Continue",
-						"Cancel"
+						Utils::translate("version.not.compare"),
+						Utils::translate("version.not.compare.content", ["plugin" => $pluginName, "serverAPI" => $serverAPI, "pluginAPI" => $pluginAPI]),
+						Utils::translate("version.not.compare.continue"),
+						Utils::translate("version.not.compare.cancel")
 					);
 
 					if ($modal) {
@@ -113,7 +113,8 @@ final class AsyncForm {
 
 	public static function versionsForm(Player $player, PluginCache $plugin, string $group) : Generator {
 		$versions = $plugin->getVersions();
-		$versionChoose = yield from self::menu($player, $plugin->getName(), "Choose a version", array_map(function(string $version){
+		$pluginName = $plugin->getName();
+		$versionChoose = yield from self::menu($player, Utils::translate("version.title", ["plugin" => $pluginName]), Utils::translate("version.content", ["plugin" => $pluginName]), array_map(function(string $version){
 			return new MenuOption($version);
 		}, $versions));
 		if(!is_null($versionChoose)) {
@@ -140,9 +141,18 @@ final class AsyncForm {
 		$size = $version->getSize();
 		$pluginAPI = $version->getAPI();
 		$descriptions = $version->getDescriptions();
-		$infomation = "Version: $pluginVersion\nHomepage: $pluginHomepage\nLicense: $pluginLicense\nDownloads: $pluginDownloads\nScore: $pluginScore\nAPI: " . $pluginAPI["from"] . " <= PocketMine-MP <= " . $pluginAPI["to"] . "\nDepends: $deps\nDownload Size: $size";
-
-		$descriptionChoose = yield from self::menu($player, $pluginName, $infomation . "\nDescriptions: ",
+		$information = Utils::translate("information.content", [
+			"version" => $pluginVersion,
+			"homepage" => $pluginHomepage,
+			"license" => $pluginLicense,
+			"downloads" => $pluginDownloads,
+			"score" => $pluginScore,
+			"api_from" => $pluginAPI["from"],
+			"api_to" => $pluginAPI["to"],
+			"depends" => $deps,
+			"size" => $size
+		]);
+		$descriptionChoose = yield from self::menu($player, $pluginName, $information,
 			array_map(function($keyDescription){
 				return new MenuOption($keyDescription);
 			}, array_keys($descriptions))
