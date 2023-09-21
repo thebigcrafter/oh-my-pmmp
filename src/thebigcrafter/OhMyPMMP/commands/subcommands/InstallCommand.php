@@ -16,6 +16,7 @@ use CortexPE\Commando\args\RawStringArgument;
 use CortexPE\Commando\BaseSubCommand;
 use CortexPE\Commando\exception\ArgumentOrderException;
 use pocketmine\command\CommandSender;
+use thebigcrafter\OhMyPMMP\async\CachePlugins;
 use thebigcrafter\OhMyPMMP\async\InstallPlugin;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use thebigcrafter\OhMyPMMP\utils\Utils;
@@ -40,7 +41,7 @@ class InstallCommand extends BaseSubCommand {
 	 * @param array<string> $args
 	 */
 	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void {
-		if (OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning) {
+		if (!CachePlugins::hasCached()) {
 			$sender->sendMessage(Utils::translate("cache.running"));
 			return;
 		}

@@ -30,7 +30,6 @@ use function array_keys;
 use function array_map;
 use function implode;
 use function is_null;
-use function version_compare;
 
 final class AsyncForm {
 
@@ -81,7 +80,7 @@ final class AsyncForm {
 				if(is_null($versionAPI)) {
 					return;
 				}
-				if (version_compare($versionAPI["from"], $serverAPI, ">=")) {
+				if (Utils::compareVersion($plugin, $version)) {
 					$installAction = new InstallPlugin($player, $plugin->getName(), $version);
 					$installAction->execute();
 				} else {

@@ -32,6 +32,6 @@ class UpdateCommand extends BaseSubCommand {
 		}
 
 		CachePlugins::setHasCached(false);
-		CachePlugins::Cache();
+		CachePlugins::cachePlugins();
 	}
 }

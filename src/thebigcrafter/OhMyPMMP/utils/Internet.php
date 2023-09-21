@@ -33,7 +33,6 @@ class Internet {
 	 *
 	 * @param string $url The URL from which to fetch the resource.
 	 */
-
 	public static function awaitFetch(string $url) : Generator {
 		$f = yield Await::RESOLVE;
 		$r = yield Await::REJECT;

@@ -26,8 +26,10 @@ use thebigcrafter\OhMyPMMP\commands\subcommands\VersionCommand;
 
 class OMPCommand extends BaseCommand {
 
+	private string $permission = "oh-my-pmmp.cmds";
+
 	protected function prepare() : void {
-		$this->setPermission("oh-my-pmmp.cmds");
+		$this->setPermission($this->permission);
 
 		$subcommands = [
 			new VersionCommand("version", "Get plugin version", ["v", "-v", "--version"]),
@@ -50,10 +52,12 @@ class OMPCommand extends BaseCommand {
 	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void {
 		if($sender instanceof Player) {
 			Await::g2c(AsyncForm::groupsForm($sender));
+			return;
 		}
+		$this->sendUsage();
 	}
 
 	public function getPermission() : string {
-		return $this->getPermission();
+		return $this->permission;
 	}
 }

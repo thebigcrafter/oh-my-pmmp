@@ -14,11 +14,13 @@ namespace thebigcrafter\OhMyPMMP\async;
 use Closure;
 use Generator;
 use pocketmine\command\CommandSender;
+use pocketmine\Server;
 use SOFe\AwaitGenerator\Await;
 use thebigcrafter\OhMyPMMP\cache\PluginsPool;
 use thebigcrafter\OhMyPMMP\utils\Filesystem;
 use thebigcrafter\OhMyPMMP\utils\Internet;
 use thebigcrafter\OhMyPMMP\utils\Utils;
+use function is_null;
 use const DIRECTORY_SEPARATOR;
 
 class InstallPlugin extends PluginAction {
@@ -60,7 +62,23 @@ class InstallPlugin extends PluginAction {
 			return;
 		}
 
-		Await::f2c(fn() => $this->installPlugin($version->getArtifactUrl(), $this->getPluginName()));
+		if(!Utils::compareVersion($plugin, $pluginVersion)) {
+			$serverAPI = Server::getInstance()->getApiVersion();
+			/** @var null|array{from: string, to: string} $versionAPI */
+			$versionAPI = $plugin->getVersion($pluginVersion)?->getAPI();
+
+			if(is_null($versionAPI)) {
+				return;
+			}
+
+			$pluginAPI = "{$versionAPI["from"]} -> {$versionAPI["to"]}";
+			$warningMessage = Utils::translate("version.not.compare.content", ["plugin" => $pluginName, "serverAPI" => $serverAPI, "pluginAPI" => $pluginAPI]);
+			if(!$this->isSilent()) {
+				Server::getInstance()->getLogger()->warning($warningMessage);
+			}
+		}
+
+		Await::g2c($this->installPlugin($version->getArtifactUrl(), $this->getPluginName()));
 	}
 
 	private function installPlugin(string $downloadURL, string $pluginName) : Generator {

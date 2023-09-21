@@ -13,15 +13,16 @@ namespace thebigcrafter\OhMyPMMP\async;
 
 use pocketmine\scheduler\AsyncTask;
 use pocketmine\Server;
-use SOFe\AwaitGenerator\Await;
+use pocketmine\utils\Internet;
+use pocketmine\utils\InternetRequestResult;
 use thebigcrafter\OhMyPMMP\cache\PluginCache;
 use thebigcrafter\OhMyPMMP\cache\PluginsPool;
 use thebigcrafter\OhMyPMMP\cache\Version;
 use thebigcrafter\OhMyPMMP\OhMyPMMP;
-use thebigcrafter\OhMyPMMP\utils\Internet;
 use thebigcrafter\OhMyPMMP\utils\Utils;
 use thebigcrafter\OhMyPMMP\utils\Vars;
 use function array_merge;
+use function count;
 use function json_decode;
 use function sort;
 
@@ -37,15 +38,16 @@ class CachePlugins {
 		self::$hasCached = $status;
 	}
 
-	public static function Cache() : void {
+	public static function cachePlugins() : void {
 
 		$cacheTask = new class extends AsyncTask {
 			public function onRun() : void {
-				Await::f2c(function () {
-					$response = yield from Internet::awaitFetch(Vars::POGGIT_REPO_URL);
-					$plugins = json_decode($response, true);
+				$response = Internet::getURL(Vars::POGGIT_REPO_URL);
+				if($response instanceof InternetRequestResult) {
+					/** @var array<string, array<string>> $plugins */
+					$plugins = json_decode($response->getBody(), true);
 					$this->setResult($plugins);
-				});
+				}
 			}
 
 			public function onCompletion() : void {
@@ -58,11 +60,11 @@ class CachePlugins {
 					$license = $plugin["license"] ?? "None";
 					$downloads = (int) $plugin["downloads"];
 					$artifactUrl = $plugin["artifact_url"];
-					/** @phpstan-var array<array{from: string, to: string}> $api */
+					/** @var array<array{from: string, to: string}> $api */
 					$api = (array) $plugin["api"];
-					/** @phpstan-var array{from: string, to: string} $apiShift */
+					/** @var array{from: string, to: string} $apiShift */
 					$apiShift = array_merge(...$api);
-					/** @phpstan-var array<array{name: string, version: string, depRelId: int, isHard: bool}> $deps */
+					/** @var array<array{name: string, version: string, depRelId: int, isHard: bool}> $deps */
 					$deps = (array) $plugin["deps"];
 					$score = (int) $plugin["score"];
 					$iconURL = $plugin["icon_url"] ?? "";
@@ -77,7 +79,7 @@ class CachePlugins {
 				}
 				CachePlugins::setHasCached(true);
 				PluginsPool::addMultiple($pluginCaches);
-				OhMyPMMP::getInstance()->getLogger()->info(Utils::translate("cache.successfully"));
+				OhMyPMMP::getInstance()->getLogger()->info(Utils::translate("cache.successfully", ["count" => count($pluginCaches)]));
 			}
 		};
 
