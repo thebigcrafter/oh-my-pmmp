@@ -12,6 +12,7 @@ namespace thebigcrafter\OhMyPMMP\async;
 
 use pocketmine\Server;
 use SOFe\AwaitGenerator\Await;
+use thebigcrafter\OhMyPMMP\OhMyPMMP;
 use thebigcrafter\OhMyPMMP\utils\Filesystem;
 use thebigcrafter\OhMyPMMP\utils\Utils;
 use function is_file;
@@ -27,8 +28,15 @@ class RemovePlugin extends PluginAction {
 		$pluginManager = Server::getInstance()->getPluginManager();
 		$plugin = $pluginManager->getPlugin($pluginName);
 
+		$sender = $this->getCommandSender();
+
+		if($plugin instanceof OhMyPMMP) {
+			$sender->sendMessage(Utils::translate("cant.remove.self"));
+			return;
+		}
+
 		if(!$plugin) {
-			$this->sender->sendMessage(Utils::translate("plugin.not.found", ["plugin" => $pluginName]));
+			$sender->sendMessage(Utils::translate("plugin.not.found", ["plugin" => $pluginName]));
 			return;
 		}
 
