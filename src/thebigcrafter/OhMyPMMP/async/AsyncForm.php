@@ -87,18 +87,14 @@ final class AsyncForm {
 					$pluginName = $plugin->getName();
 					$pluginAPI = "{$versionAPI["from"]} -> {$versionAPI["to"]}";
 
-					$modal = yield from self::modal(
+					$cancelInstall = yield from self::custom(
 						$player,
 						Utils::translate("version.not.compare"),
-						Utils::translate("version.not.compare.content", ["plugin" => $pluginName, "serverAPI" => $serverAPI, "pluginAPI" => $pluginAPI]),
-						Utils::translate("version.not.compare.continue"),
-						Utils::translate("version.not.compare.cancel")
+						[
+							new Label("warning_label", Utils::translate("version.not.compare.content", ["plugin" => $pluginName, "serverAPI" => $serverAPI, "pluginAPI" => $pluginAPI]))
+						]
 					);
-
-					if ($modal) {
-						$installAction = new InstallPlugin($player, $pluginName, $version);
-						$installAction->execute();
-					}
+					return;
 				}
 
 				break;

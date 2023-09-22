@@ -76,6 +76,7 @@ class InstallPlugin extends PluginAction {
 			if(!$this->isSilent()) {
 				Server::getInstance()->getLogger()->warning($warningMessage);
 			}
+			return;
 		}
 
 		Await::g2c($this->installPlugin($version->getArtifactUrl(), $this->getPluginName()));
