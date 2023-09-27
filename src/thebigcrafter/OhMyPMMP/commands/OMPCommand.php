@@ -23,6 +23,7 @@ use thebigcrafter\OhMyPMMP\commands\subcommands\ShowCommand;
 use thebigcrafter\OhMyPMMP\commands\subcommands\UpdateCommand;
 use thebigcrafter\OhMyPMMP\commands\subcommands\UpgradeCommand;
 use thebigcrafter\OhMyPMMP\commands\subcommands\VersionCommand;
+use thebigcrafter\OhMyPMMP\OhMyPMMP;
 
 class OMPCommand extends BaseCommand {
 
@@ -31,14 +32,15 @@ class OMPCommand extends BaseCommand {
 	protected function prepare() : void {
 		$this->setPermission($this->permission);
 
+		$plugin = OhMyPMMP::getInstance();
 		$subcommands = [
-			new VersionCommand("version", "Get plugin version", ["v", "-v", "--version"]),
-			new InstallCommand("install", "Install a plugin", ["i", "-i", "--install"]),
-			new UpdateCommand("update", "Update cached data", ["ud", "-ud", "--update"]),
-			new RemoveCommand("remove", "Remove a plugin", ["r", "-r", "--remove"]),
-			new ListCommand("list", "List all available plugins", ["l", "-l", "--list"]),
-			new ShowCommand("show", "Get details of a plugin", ["s", "-s", "--show"]),
-			new UpgradeCommand("upgrade", "Upgrade a plugin", ["u", "-u", "--upgrade"]),
+			new VersionCommand($plugin, "version", "Get plugin version", ["v", "-v", "--version"]),
+			new InstallCommand($plugin, "install", "Install a plugin", ["i", "-i", "--install"]),
+			new UpdateCommand($plugin, "update", "Update cached data", ["ud", "-ud", "--update"]),
+			new RemoveCommand($plugin, "remove", "Remove a plugin", ["r", "-r", "--remove"]),
+			new ListCommand($plugin, "list", "List all available plugins", ["l", "-l", "--list"]),
+			new ShowCommand($plugin, "show", "Get details of a plugin", ["s", "-s", "--show"]),
+			new UpgradeCommand($plugin, "upgrade", "Upgrade a plugin", ["u", "-u", "--upgrade"]),
 		];
 
 		foreach ($subcommands as $subcommand) {

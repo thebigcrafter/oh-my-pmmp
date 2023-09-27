@@ -7,7 +7,7 @@
         "dktapps/pmforms": "dev-master",
         "pocketmine/pocketmine-mp": "^5.0",
         "sof3/await-generator": "^3.4.3",
-        "thebigcrafter/commando": "^3.2",
+        "thebigcrafter/commando": "dev-master",
         "thebigcrafter/hydrogen": "^1.0"
     },
     "require-dev": {

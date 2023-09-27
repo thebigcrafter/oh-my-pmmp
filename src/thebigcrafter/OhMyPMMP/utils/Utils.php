@@ -64,12 +64,19 @@ class Utils {
 	}
 
 	public static function compareVersion(PluginCache $plugin, string $version) : bool {
-		$serverAPI = Server::getInstance()->getApiVersion();
+		$versionInfo = $plugin->getVersion($version);
+
 		/** @var null|array{from: string, to: string} $versionAPI */
-		$versionAPI = $plugin->getVersion($version)?->getAPI();
-		if(is_null($versionAPI)) {
+		$versionAPI = $versionInfo?->getAPI();
+		if (!$versionInfo || is_null($versionAPI)) {
 			return false;
 		}
-		return version_compare($versionAPI["from"], $serverAPI, ">=");
+
+		$serverAPI = Server::getInstance()->getApiVersion();
+
+		$from = $versionAPI["from"];
+		$to = $versionAPI["to"];
+
+		return version_compare($serverAPI, $from, '>=') && version_compare($serverAPI, $to, '<=');
 	}
 }

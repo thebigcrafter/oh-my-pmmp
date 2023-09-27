@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace thebigcrafter\OhMyPMMP\utils;
 
+use Closure;
 use Generator;
 use Phar;
 use SOFe\AwaitGenerator\Await;
@@ -25,46 +26,37 @@ use const DIRECTORY_SEPARATOR;
 class Filesystem {
 
 	public static function awaitWrite(string $file, string $data) : Generator {
-		$f = yield Await::RESOLVE;
-		$r = yield Await::REJECT;
-
-		try {
-			$result = file_put_contents($file, $data);
-			$f($result !== false);
-		} catch (Throwable $e) {
-			$r($e);
-		}
-
-		return yield Await::ONCE;
+		return yield from Await::promise(function(Closure $resolve, Closure $reject) use ($data, $file) {
+			try {
+				$result = file_put_contents($file, $data);
+				$resolve($result !== false);
+			} catch (Throwable $e) {
+				$reject($e);
+			}
+		});
 	}
 
 	public static function awaitUnlinkPhar(string $file) : Generator {
-		$f = yield Await::RESOLVE;
-		$r = yield Await::REJECT;
-
-		try {
-			$result = Phar::unlinkArchive($file);
-			$f($result);
-		} catch (Throwable $e) {
-			$r($e);
-		}
-
-		return yield Await::ONCE;
+		return yield from Await::promise(function(Closure $resolve,  Closure $reject) use ($file) {
+			try {
+				$result = Phar::unlinkArchive($file);
+				$resolve($result);
+			} catch (Throwable $e) {
+				$reject($e);
+			}
+		});
 	}
 
 	public static function awaitExtractPhar(string $file, string $to) : Generator {
-		$f = yield Await::RESOLVE;
-		$r = yield Await::REJECT;
-
-		try {
-			$phar = new Phar($file);
-			$result = $phar->extractTo($to);
-			$f($result);
-		} catch (Throwable $e) {
-			$r($e);
-		}
-
-		return yield Await::ONCE;
+		return yield from Await::promise(function(Closure $resolve,  Closure $reject) use ($to, $file) {
+			try {
+				$phar = new Phar($file);
+				$result = $phar->extractTo($to);
+				$resolve($result);
+			} catch (Throwable $e) {
+				$reject($e);
+			}
+		});
 	}
 
 	/**
