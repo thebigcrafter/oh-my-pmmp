@@ -13,25 +13,25 @@ namespace thebigcrafter\OhMyPMMP\commands\subcommands;
 
 use CortexPE\Commando\BaseSubCommand;
 use pocketmine\command\CommandSender;
-use thebigcrafter\OhMyPMMP\OhMyPMMP;
-use thebigcrafter\OhMyPMMP\tasks\CachePoggitPlugins;
+use thebigcrafter\OhMyPMMP\async\CachePlugins;
+use thebigcrafter\OhMyPMMP\utils\Utils;
 
 class UpdateCommand extends BaseSubCommand {
+
+	protected function prepare() : void {
+		$this->setPermission("oh-my-pmmp.update");
+	}
 
 	/**
 	 * @param array<string> $args
 	 */
 	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void {
-		if (OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning) {
-			$sender->sendMessage(OhMyPMMP::getInstance()->getLanguage()->translateString("cache.running"));
+		if (!CachePlugins::hasCached()) {
+			$sender->sendMessage(Utils::translate("cache.running"));
 			return;
 		}
 
-		OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning = true;
-		OhMyPMMP::getInstance()->getServer()->getAsyncPool()->submitTask(new CachePoggitPlugins());
-	}
-
-	protected function prepare() : void {
-		$this->setPermission("oh-my-pmmp.update");
+		CachePlugins::setHasCached(false);
+		CachePlugins::cachePlugins();
 	}
 }

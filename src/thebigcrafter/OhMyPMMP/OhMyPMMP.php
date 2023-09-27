@@ -13,32 +13,29 @@ namespace thebigcrafter\OhMyPMMP;
 
 use pocketmine\lang\Language;
 use pocketmine\plugin\PluginBase;
+use pocketmine\utils\SingletonTrait;
+use thebigcrafter\OhMyPMMP\async\CachePlugins;
+use thebigcrafter\OhMyPMMP\cache\PluginsPool;
 use thebigcrafter\OhMyPMMP\commands\OMPCommand;
-use thebigcrafter\OhMyPMMP\tasks\CachePoggitPlugins;
-use thebigcrafter\OhMyPMMP\utils\SingletonTrait;
 use function is_dir;
 use function is_file;
 use function mkdir;
-use function strval;
 
 class OhMyPMMP extends PluginBase {
 	use SingletonTrait;
 
 	public Language $language;
 
-	public bool $isCachePoggitPluginsTaskRunning = false;
-
-	/** @var array<string, array<string>> */
-	public array $pluginsList = [];
+	public function onLoad() : void {
+		self::setInstance($this);
+	}
 
 	public function onEnable() : void {
-		self::setInstance($this);
-
 		$this->saveDefaultConfig();
 		$this->loadLanguage();
 
-		$this->isCachePoggitPluginsTaskRunning = true;
-		$this->getServer()->getAsyncPool()->submitTask(new CachePoggitPlugins());
+		PluginsPool::init();
+		CachePlugins::cachePlugins();
 
 		$this->getServer()->getCommandMap()->register("OhMyPMMP", new OMPCommand($this, "ohmypmmp", "Oh My PMMP", ["omp", "oh-my-pmmp"]));
 	}
@@ -52,27 +49,13 @@ class OhMyPMMP extends PluginBase {
 
 		/** @var string $lang */
 		foreach ((array) $this->getConfig()->get("availableLanguages") as $lang) {
-			if (!is_file(strval($lang))) {
-				$this->saveResource("lang/" . strval($lang) . ".ini");
+			if (!is_file($lang)) {
+				$this->saveResource("lang/" . $lang . ".ini");
 			}
 		}
 		/** @var string $lang */
 		$lang = $this->getConfig()->get("language");
 		$this->language = new Language($lang, $langFolder);
-	}
-
-	/**
-	 * @return array<string, array<string>>
-	 */
-	public function getPluginsList() : array {
-		return $this->pluginsList;
-	}
-
-	/**
-	 * @param array<string, array<string>> $pluginsList
-	 */
-	public function setPluginsList(array $pluginsList) : void {
-		$this->pluginsList = $pluginsList;
 	}
 
 	public function getLanguage() : Language {

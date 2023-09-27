@@ -16,14 +16,14 @@ use CortexPE\Commando\BaseSubCommand;
 use CortexPE\Commando\exception\ArgumentOrderException;
 use Exception;
 use pocketmine\command\CommandSender;
-use thebigcrafter\OhMyPMMP\async\Internet;
-use thebigcrafter\OhMyPMMP\OhMyPMMP;
+use pocketmine\player\Player;
+use thebigcrafter\OhMyPMMP\async\CachePlugins;
+use thebigcrafter\OhMyPMMP\cache\PluginsPool;
+use thebigcrafter\OhMyPMMP\utils\Utils;
 use function array_map;
 use function implode;
-use function str_replace;
 
 class ShowCommand extends BaseSubCommand {
-	// Usage /omp show XPShop 1.0.0
 
 	/**
 	 * @throws ArgumentOrderException
@@ -31,8 +31,8 @@ class ShowCommand extends BaseSubCommand {
 	protected function prepare() : void {
 		$this->setPermission("oh-my-pmmp.show");
 
-		$this->registerArgument(0, new RawStringArgument("pluginName", false));
-		$this->registerArgument(1, new RawStringArgument("pluginVersion", false));
+		$this->registerArgument(0, new RawStringArgument("pluginName"));
+		$this->registerArgument(1, new RawStringArgument("pluginVersion", true));
 	}
 
 	/**
@@ -40,53 +40,47 @@ class ShowCommand extends BaseSubCommand {
 	 * @throws Exception
 	 */
 	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void {
-		if (OhMyPMMP::getInstance()->isCachePoggitPluginsTaskRunning) {
-			$sender->sendMessage(OhMyPMMP::getInstance()->getLanguage()->translateString("cache.running"));
-			return;
-		}
-
-		$pluginInfo = [];
-
-		foreach (OhMyPMMP::getInstance()->getPluginsList() as $plugin) {
-			if ($args["pluginName"] == $plugin["name"] && $args["pluginVersion"] == $plugin["version"]) {
-				$pluginInfo = $plugin;
-			}
-		}
-
-		if (empty($pluginInfo)) {
-			$sender->sendMessage(str_replace("{{plugin}}", $args["pluginName"], OhMyPMMP::getInstance()->getLanguage()->translateString("plugin.not.found")));
+		if (!CachePlugins::hasCached()) {
+			$sender->sendMessage(Utils::translate("cache.running"));
 			return;
 		}
 
 		$pluginName = $args["pluginName"];
-		$pluginVersion = $args["pluginVersion"];
-		$pluginHomepage = $pluginInfo["homepage"];
-		$pluginDownloads = $pluginInfo["downloads"];
-		$pluginScore = $pluginInfo["score"];
-		$pluginLicense = $pluginInfo["license"];
-		$pluginAPI = $pluginInfo["api"];
-		$pluginDeps = $pluginInfo["deps"];
-		if (empty($pluginDeps)) {
-			$deps = "[]";
-		} else {
-			$deps = array_map(function ($item) {
-				/** @var array<string> $item */
-				return $item["name"] . " v" . $item["version"];
-			}, (array) $pluginDeps);
-			$deps = implode(", ", $deps);
+		$pluginVersion = $args["pluginVersion"] ?? "latest";
+
+		if($sender instanceof Player) {
+			return;
 		}
-		$RemoteFilesize = Internet::getRemoteFilesize(
-			$pluginInfo["artifact_url"],
-		);
-		$RemoteFilesize->then(
-			function (string $size) use ($pluginScore, $pluginDownloads, $pluginHomepage, $pluginLicense, $sender, $pluginName, $pluginVersion, $deps, $pluginAPI) {
-				/** @var array<string> $pluginAPI */
-				$pluginAPI = (array) $pluginAPI[0];
-				$sender->sendMessage("Name: $pluginName\nVersion: $pluginVersion\nHomepage: $pluginHomepage\nLicense: $pluginLicense\nDownloads: $pluginDownloads\nScore: $pluginScore\nAPI: " . $pluginAPI["from"] . " <= PocketMine-MP <= " . $pluginAPI["to"] . "\nDepends: $deps\nDownload Size: $size");
-			},
-			function () use ($sender) {
-				$sender->sendMessage(OhMyPMMP::getInstance()->getLanguage()->translateString("poggit.api.error"));
-			},
-		);
+
+		$plugin = PluginsPool::getPluginCacheByName($pluginName);
+
+		if(!$plugin) {
+			$sender->sendMessage(Utils::translate("plugin.not.found", ["plugin" => $pluginName]));
+			return;
+		}
+
+		$version = $plugin->getVersion($pluginVersion);
+		if (!$version) {
+			$sender->sendMessage(Utils::translate("plugin.version.not.found", [
+				"plugin" => $pluginName,
+				"version" => $pluginVersion
+			]));
+			return;
+		}
+
+		$pluginName = $plugin->getName();
+		$pluginVersion = $version->getVersion();
+		$pluginHomepage = $plugin->getHomePageByVersion($pluginVersion);
+		$pluginLicense = $plugin->getLicense();
+		$pluginDownloads = $plugin->getDownloads();
+		$pluginScore = $plugin->getScore();
+		$deps = array_map(function ($item) {
+			/** @var array<string> $item */
+			return $item["name"] . " v" . $item["version"];
+		}, $version->getDepends());
+		$deps = implode(", ", $deps);
+		$size = $version->getSize();
+		$pluginAPI = $version->getAPI();
+		$sender->sendMessage("Name: $pluginName\nVersion: $pluginVersion\nHomepage: $pluginHomepage\nLicense: $pluginLicense\nDownloads: $pluginDownloads\nScore: $pluginScore\nAPI: " . $pluginAPI["from"] . " <= PocketMine-MP <= " . $pluginAPI["to"] . "\nDepends: $deps\nDownload Size: $size");
 	}
 }

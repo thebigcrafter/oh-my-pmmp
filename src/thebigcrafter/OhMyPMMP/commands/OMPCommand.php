@@ -13,6 +13,9 @@ namespace thebigcrafter\OhMyPMMP\commands;
 
 use CortexPE\Commando\BaseCommand;
 use pocketmine\command\CommandSender;
+use pocketmine\player\Player;
+use SOFe\AwaitGenerator\Await;
+use thebigcrafter\OhMyPMMP\async\AsyncForm;
 use thebigcrafter\OhMyPMMP\commands\subcommands\InstallCommand;
 use thebigcrafter\OhMyPMMP\commands\subcommands\ListCommand;
 use thebigcrafter\OhMyPMMP\commands\subcommands\RemoveCommand;
@@ -23,15 +26,10 @@ use thebigcrafter\OhMyPMMP\commands\subcommands\VersionCommand;
 
 class OMPCommand extends BaseCommand {
 
-	/**
-	 * @param array<string> $args
-	 */
-	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void {
-		$this->sendUsage();
-	}
+	private string $permission = "oh-my-pmmp.cmds";
 
 	protected function prepare() : void {
-		$this->setPermission("oh-my-pmmp.cmds");
+		$this->setPermission($this->permission);
 
 		$subcommands = [
 			new VersionCommand("version", "Get plugin version", ["v", "-v", "--version"]),
@@ -48,7 +46,18 @@ class OMPCommand extends BaseCommand {
 		}
 	}
 
+	/**
+	 * @param array<string> $args
+	 */
+	public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void {
+		if($sender instanceof Player) {
+			Await::g2c(AsyncForm::groupsForm($sender));
+			return;
+		}
+		$this->sendUsage();
+	}
+
 	public function getPermission() : string {
-		return $this->getPermission();
+		return $this->permission;
 	}
 }

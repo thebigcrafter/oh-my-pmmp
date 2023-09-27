@@ -11,17 +11,8 @@ declare(strict_types=1);
 
 namespace thebigcrafter\OhMyPMMP\utils;
 
-use thebigcrafter\OhMyPMMP\OhMyPMMP;
+final class Vars {
 
-trait SingletonTrait {
+	public const POGGIT_REPO_URL = "https://poggit.pmmp.io/releases.min.json?fields=name,version,artifact_url,html_url,license,downloads,score,api,deps,description_url,icon_url";
 
-	public static OhMyPMMP $instance;
-
-	public static function setInstance(OhMyPMMP $instance) : void {
-		self::$instance = $instance;
-	}
-
-	public static function getInstance() : OhMyPMMP {
-		return self::$instance;
-	}
 }

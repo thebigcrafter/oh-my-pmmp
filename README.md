@@ -86,7 +86,8 @@ Update cached data.
 
 List available plugins or installed plugins.
 
-- To list the installed plugins, you can add `i`, `-installed` or `--installed` behind the command, `omp list --installed`, for instance.
+- To display the list of plugins by page, use the command `omp list <page>`, default is `1`.
+- To display all plugins, use the command `omp list --all`.
 
 #### `omp show` `<plugin>` `<version>`
 
