@@ -1,6 +1,10 @@
 # Composer
 vendor/
+vendor-bin/*/vendor/
 composer.lock
 
 # Cache
 *.cache
+
+# Build
+*.phar

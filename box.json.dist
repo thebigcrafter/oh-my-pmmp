@@ -8,5 +8,5 @@
         "resources"
     ],
     "compression": "GZ",
-    "algorithm": "SHA256",
+    "algorithm": "SHA256"
 }
