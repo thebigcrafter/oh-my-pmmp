@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace thebigcrafter\omp\types;
 
-class Dependencies
+class Dependency
 {
     public function __construct(
         private string $name,

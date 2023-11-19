@@ -15,8 +15,7 @@ namespace thebigcrafter\omp\types;
 
 class PluginVersion {
     /**
-     * @param API[]          $api
-     * @param Dependencies[] $deps
+     * @param Dependency[] $deps
      */
     public function __construct(
         private string $html_url,
@@ -25,8 +24,8 @@ class PluginVersion {
         private ?int $score,
         private string $description_url,
         private string $changelog_url,
-        private array $api,
-        private array $deps
+        private API $api,
+        private array $deps = []
     ) {}
 
     public function getHtmlUrl() : string {
@@ -47,15 +46,13 @@ class PluginVersion {
     public function getChangelogUrl() : string {
         return $this->changelog_url;
     }
-    /**
-     * @return API[]
-     */
-    public function getSupportedAPI() : array {
+
+    public function getSupportedAPI() : API {
         return $this->api;
     }
 
     /**
-     * @return Dependencies[]
+     * @return Dependency[]
      */
     public function getDependencies() : array {
         return $this->deps;
