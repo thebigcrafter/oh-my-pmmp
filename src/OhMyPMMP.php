@@ -18,5 +18,6 @@ require __DIR__ . "/../vendor/autoload.php";
 use pocketmine\plugin\PluginBase;
 
 class OhMyPMMP extends PluginBase {
-    public function onEnable() : void {}
+    public function onEnable() : void {
+    }
 }
