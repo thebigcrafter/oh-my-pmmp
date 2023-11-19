@@ -18,6 +18,8 @@ require __DIR__ . "/../vendor/autoload.php";
 use Amp\Http\Client\HttpClientBuilder;
 use Amp\Http\Client\Request;
 use pocketmine\plugin\PluginBase;
+use pocketmine\utils\SingletonTrait;
+use thebigcrafter\omp\commands\OMPCommand;
 use thebigcrafter\omp\pool\PoggitPluginsPool;
 use thebigcrafter\omp\types\API;
 use thebigcrafter\omp\types\Dependency;
@@ -29,9 +31,16 @@ use function strval;
 
 class OhMyPMMP extends PluginBase
 {
+    use SingletonTrait;
+    public function onLoad() : void {
+        self::setInstance($this);
+    }
+
     public function onEnable() : void
     {
         $this->fetchData();
+
+        $this->getServer()->getCommandMap()->register("OhMyPMMP", new OMPCommand($this, "ohmypmmp", "Oh My PMMP", ["omp", "oh-my-pmmp"]));
     }
 
     private function fetchData() : void

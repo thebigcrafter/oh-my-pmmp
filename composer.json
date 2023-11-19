@@ -4,12 +4,12 @@
     "type": "project",
     "require": {
         "php": "^8.1",
-        "amphp/http-client": "^5.0"
+        "amphp/http-client": "^5.0",
+        "thebigcrafter/commando": "dev-master"
     },
     "require-dev": {
         "bamarni/composer-bin-plugin": "^1.8",
-        "friendsofphp/php-cs-fixer": "^3.38",
-        "pocketmine/pocketmine-mp": "^5.8"
+        "friendsofphp/php-cs-fixer": "^3.38"
     },
     "license": "GPL-3.0-only",
     "config": {

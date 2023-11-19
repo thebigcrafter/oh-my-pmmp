@@ -1,0 +1,39 @@
+<?php
+
+/*
+ * This file is part of oh-my-pmmp.
+ *
+ * (c) thebigcrafter <hello@thebigcrafter.team>
+ *
+ * This source file is subject to the GPL-3.0 license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
+declare(strict_types=1);
+
+namespace thebigcrafter\omp\commands;
+
+use CortexPE\Commando\BaseCommand;
+use pocketmine\command\CommandSender;
+use thebigcrafter\omp\commands\subcommands\VersionCommand;
+
+class OMPCommand extends BaseCommand {
+    protected function prepare() : void {
+        $this->setPermission("oh-my-pmmp.cmds");
+
+        $subcommands = [
+            new VersionCommand($this->getOwningPlugin(), "version", "Get plugin version", ["v", "-v", "--version"]),
+        ];
+
+        foreach ($subcommands as $subcommand) {
+            $this->registerSubcommand($subcommand);
+        }
+    }
+
+    /**
+     * @param array<string> $args
+     */
+    public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void {
+        $this->sendUsage();
+    }
+}
