@@ -1,0 +1,12 @@
+{
+    "main": false,
+    "files": [
+        "plugin.yml",
+        "LICENSE"
+    ],
+    "directories": [
+        "resources"
+    ],
+    "compression": "GZ",
+    "algorithm": "SHA256",
+}
