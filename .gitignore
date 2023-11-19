@@ -1,5 +1,5 @@
-.idea/
+# Composer
 vendor/
-node_modules/
-composer.lock
+
+# Cache
 *.cache

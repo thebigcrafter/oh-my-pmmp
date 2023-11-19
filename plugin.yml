@@ -1,10 +1,11 @@
 name: oh-my-pmmp
 author: thebigcrafter
-version: 2.1.0-alpha
+version: 2023.11
 load: STARTUP
 description: A plugin manager for PocketMine-MP
-api: 5.0.0
-main: thebigcrafter\OhMyPMMP\OhMyPMMP
+api: [5.0.0]
+src-namespace-prefix: thebigcrafter\omp
+main: thebigcrafter\omp\OhMyPMMP
 
 permissions:
   oh-my-pmmp.cmds:
