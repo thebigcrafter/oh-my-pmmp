@@ -15,6 +15,7 @@ namespace thebigcrafter\omp\commands\subcommands;
 
 use CortexPE\Commando\BaseSubCommand;
 use pocketmine\command\CommandSender;
+use thebigcrafter\omp\Language;
 use thebigcrafter\omp\OhMyPMMP;
 use function phpversion;
 use const PHP_INT_SIZE;
@@ -35,7 +36,7 @@ class VersionCommand extends BaseSubCommand
         $pluginVersion = OhMyPMMP::getInstance()->getDescription()->getVersion();
         $arch = PHP_INT_SIZE * 8 . "bit";
 
-        $sender->sendMessage("OMP v$pluginVersion");
-        $sender->sendMessage("PHP v$phpVersion $arch");
+        $sender->sendMessage(Language::translate("commands.version.message_1", ["version" => $pluginVersion]));
+        $sender->sendMessage(Language::translate("commands.version.message_2", ["phpVersion" => $phpVersion, "arch" => $arch]));
     }
 }

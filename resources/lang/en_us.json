@@ -1,3 +1,4 @@
 {
-    "commands.version.message": ""
+    "commands.version.message_1": "OMP v{{version}}",
+    "commands.version.message_2": "PHP v{{phpVersion}} {{arch}}"
 }

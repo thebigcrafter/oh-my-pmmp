@@ -20,11 +20,13 @@ use function mkdir;
 
 class Language
 {
+    private static ?Locale $language = null;
+
     public static function loadLanguages()
     {
-        self::saveAndLoadLanguageFiles();
-
         $selectedLanguage = OhMyPMMP::getInstance()->getConfig()->get("language");
+
+        self::saveAndLoadLanguageFiles();
         Locale::setLanguageFromJSON($selectedLanguage, OhMyPMMP::getInstance()->getDataFolder() . "lang/$selectedLanguage.json");
     }
 
@@ -44,5 +46,21 @@ class Language
                 OhMyPMMP::getInstance()->saveResource("lang/$lang.json");
             }
         }
+    }
+
+    public static function getLanguage() : Locale
+    {
+        if (self::$language === null) {
+            self::$language = new Locale(OhMyPMMP::getInstance()->getConfig()->get("language"));
+        }
+        return self::$language;
+    }
+
+    /**
+     * @param string[] $placeholders
+     */
+    public static function translate(string $key, array $placeholders) : string
+    {
+        return self::getLanguage()->getText($key, $placeholders);
     }
 }
