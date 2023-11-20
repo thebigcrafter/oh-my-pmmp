@@ -15,4 +15,5 @@ namespace thebigcrafter\omp;
 
 final class Vars {
     public const POGGIT_REPO_URL = "https://poggit.pmmp.io/releases.min.json?fields=name,version,artifact_url,html_url,license,downloads,score,api,deps,description_url,changelog_url";
+    public const AVAILABLE_LANGUAGES = ["en_us"];
 }
