@@ -1,4 +1,7 @@
 {
     "commands.version.message_1": "OMP v{{version}}",
-    "commands.version.message_2": "PHP v{{phpVersion}} {{arch}}"
+    "commands.version.message_2": "PHP v{{phpVersion}} {{arch}}",
+
+    "commands.remove.successfully": "{{name}} was removed successfully, please restart the server to apply changes",
+    "commands.remove.failed": "{{name}} not found"
 }
