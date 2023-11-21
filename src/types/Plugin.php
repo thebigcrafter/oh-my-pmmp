@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace thebigcrafter\omp\types;
 
+use function array_keys;
 use function is_null;
 use function version_compare;
 
@@ -36,6 +37,10 @@ class Plugin
     public function getVersions() : array
     {
         return $this->versions;
+    }
+
+    public function getVersionsOnly() : array {
+        return array_keys($this->getVersions());
     }
 
     /**

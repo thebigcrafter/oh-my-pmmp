@@ -21,26 +21,26 @@ use thebigcrafter\omp\commands\subcommands\VersionCommand;
 
 class OMPCommand extends BaseCommand
 {
-	protected function prepare(): void
-	{
-		$this->setPermission("oh-my-pmmp.cmds");
+    protected function prepare() : void
+    {
+        $this->setPermission("oh-my-pmmp.cmds");
 
-		$subcommands = [
-			new VersionCommand($this->getOwningPlugin(), "version", "Print oh-my-pmmp and PHP version", ["v", "-v", "--version"]),
-			new RemoveCommand($this->getOwningPlugin(), "remove", "Remove a plugin", ["r", "-r", "--remove"]),
-			new ListCommand($this->getOwningPlugin(), "list", "List available plugins", ["l", "-l", "--list"])
-		];
+        $subcommands = [
+            new VersionCommand($this->getOwningPlugin(), "version", "Print oh-my-pmmp and PHP version", ["v", "-v", "--version"]),
+            new RemoveCommand($this->getOwningPlugin(), "remove", "Remove a plugin", ["r", "-r", "--remove"]),
+            new ListCommand($this->getOwningPlugin(), "list", "List available plugins", ["l", "-l", "--list"])
+        ];
 
-		foreach ($subcommands as $subcommand) {
-			$this->registerSubcommand($subcommand);
-		}
-	}
+        foreach ($subcommands as $subcommand) {
+            $this->registerSubcommand($subcommand);
+        }
+    }
 
-	/**
-	 * @param array<string> $args
-	 */
-	public function onRun(CommandSender $sender, string $aliasUsed, array $args): void
-	{
-		$this->sendUsage();
-	}
+    /**
+     * @param array<string> $args
+     */
+    public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void
+    {
+        $this->sendUsage();
+    }
 }

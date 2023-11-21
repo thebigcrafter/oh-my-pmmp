@@ -26,6 +26,7 @@ use thebigcrafter\omp\types\Dependency;
 use thebigcrafter\omp\types\Plugin;
 use thebigcrafter\omp\types\PluginVersion;
 use function array_map;
+use function count;
 use function json_decode;
 use function strval;
 
@@ -35,19 +36,20 @@ class OhMyPMMP extends PluginBase
     public function onLoad() : void
     {
         self::setInstance($this);
+        Language::loadLanguages();
     }
 
     public function onEnable() : void
     {
         $this->fetchData();
         $this->saveDefaultConfig();
-        Language::loadLanguages();
 
         $this->getServer()->getCommandMap()->register("OhMyPMMP", new OMPCommand($this, "ohmypmmp", "Oh My PMMP", ["omp", "oh-my-pmmp"]));
     }
 
     private function fetchData() : void
     {
+        $this->getLogger()->info(Language::translate("messages.pool.fetching", []));
         $client = HttpClientBuilder::buildDefault();
 
         $res = $client->request(new Request(Vars::POGGIT_REPO_URL));
@@ -98,5 +100,7 @@ class OhMyPMMP extends PluginBase
                 );
             }
         }
+
+        $this->getLogger()->info(Language::translate("messages.pool.fetched", ["amount" => count(PoggitPluginsPool::getPool())]));
     }
 }

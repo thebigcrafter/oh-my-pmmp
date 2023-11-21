@@ -1,7 +1,14 @@
 {
+    "messages.pool.fetching": "Fetching data from Poggit...",
+    "messages.pool.fetched": "Fetched {{amount}} plugins from Poggit successfully",
+
     "commands.version.message_1": "OMP v{{version}}",
     "commands.version.message_2": "PHP v{{phpVersion}} {{arch}}",
 
     "commands.remove.successfully": "{{name}} was removed successfully, please restart the server to apply changes",
-    "commands.remove.failed": "{{name}} not found"
+    "commands.remove.failed": "{{name}} not found",
+
+    "commands.list.form.name": "Name: {{name}}",
+    "commands.list.form.license": "License: {{license}}",
+    "commands.list.form.versions": "Versions: {{versions}}"
 }
