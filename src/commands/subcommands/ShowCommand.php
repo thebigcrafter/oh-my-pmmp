@@ -58,7 +58,8 @@ class ShowCommand extends BaseSubCommand
         $latestVersion = $pluginVersion["version"];
 
         $sender->sendMessage(Language::translate("commands.show.form.name", ["name" => $name]));
-        $sender->sendMessage(Language::translate("commands.show.form.version", ["version" => $latestVersion]));
+		$sender->sendMessage(Language::translate("commands.show.form.version", ["version" => $latestVersion]));
+		$sender->sendMessage(Language::translate("commands.show.form.versions", ["versions" => implode(", ", $plugin->getVersionsOnly())]));
         $sender->sendMessage(Language::translate("commands.show.form.homepage", ["homepage" => $info->getHtmlUrl()]));
         $sender->sendMessage(Language::translate("commands.show.form.license", ["license" => $plugin->getLicense()]));
         $sender->sendMessage(Language::translate("commands.show.form.download_url", ["download_url" => $info->getArtifactUrl()]));
@@ -66,8 +67,17 @@ class ShowCommand extends BaseSubCommand
         $sender->sendMessage(Language::translate("commands.show.form.score", ["score" => $info->getScore()]));
         $sender->sendMessage(Language::translate("commands.show.form.description_url", ["description_url" => $info->getDescriptionUrl()]));
         $sender->sendMessage(Language::translate("commands.show.form.changelog_url", ["changelog_url" => $info->getChangelogUrl()]));
-        $sender->sendMessage(Language::translate("commands.show.form.api", ["name" => $name]));
-        $sender->sendMessage(Language::translate("commands.show.form.deps", ["name" => $name]));
+        $sender->sendMessage(Language::translate("commands.show.form.api", ["from" => $info->getSupportedAPI()->getMinimumSupportedVersion(), "to" => $info->getSupportedAPI()->getMaximumSupportedVersion()]));
+        $sender->sendMessage(Language::translate("commands.show.form.deps", []));
+
+		foreach($info->getDependencies() as $dep) {
+			if($dep->isHard()) {
+				$sender->sendMessage(Language::translate("commands.show.form.dep_2", ["name" => $dep->getName(), "version" => $dep->getVersion()]));
+				continue;
+			}
+			$sender->sendMessage(Language::translate("commands.show.form.dep_1", ["name" => $dep->getName(), "version" => $dep->getVersion()]));
+		}
+
         $sender->sendMessage("====================");
     }
 }

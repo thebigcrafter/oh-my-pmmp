@@ -16,6 +16,7 @@
     "commands.show.failed_1": "{{name}} not found",
     "commands.show.failed_2": "{{version}} not found",
     "commands.show.form.name": "Name: {{name}}",
+    "commands.show.form.versions": "Available versions: {{versions}}",
     "commands.show.form.version": "Version: {{version}}",
     "commands.show.form.license": "License: {{license}}",
     "commands.show.form.homepage": "Homepage: {{homepage}}",
@@ -26,6 +27,8 @@
     "commands.show.form.changelog_url": "Changelog URL: {{changelog_url}}",
     "commands.show.form.api": "Supports from {{from}} to {{to}}",
     "commands.show.form.deps": "Dependencies: ",
+    "commands.show.form.dep_1": "[OPTIONAL] {{name}} v{{version}}",
+    "commands.show.form.dep_2": "[REQUIRED] {{name}} v{{version}}",
 
     "commands.install.failed_1": "{{name}} not found",
     "commands.install.failed_2": "{{version}} not found",
