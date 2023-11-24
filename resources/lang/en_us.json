@@ -32,5 +32,8 @@
 
     "commands.install.failed_1": "{{name}} not found",
     "commands.install.failed_2": "{{version}} not found",
-    "commands.install.successfully": "Installed {{name}} v{{version}} successfully"
+    "commands.install.successfully": "Installed {{name}} v{{version}} successfully",
+
+    "commands.extract.failed": "{{name}} not found",
+    "commands.extract.successfully": "Extracted {{name}} successfully"
 }

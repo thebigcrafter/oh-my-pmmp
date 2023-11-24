@@ -15,6 +15,7 @@ namespace thebigcrafter\omp\commands;
 
 use CortexPE\Commando\BaseCommand;
 use pocketmine\command\CommandSender;
+use thebigcrafter\omp\commands\subcommands\ExtractCommand;
 use thebigcrafter\omp\commands\subcommands\InstallCommand;
 use thebigcrafter\omp\commands\subcommands\ListCommand;
 use thebigcrafter\omp\commands\subcommands\RemoveCommand;
@@ -32,7 +33,8 @@ class OMPCommand extends BaseCommand
             new RemoveCommand($this->getOwningPlugin(), "remove", "Remove a plugin", ["r", "-r", "--remove"]),
             new ListCommand($this->getOwningPlugin(), "list", "List available plugins", ["l", "-l", "--list"]),
             new ShowCommand($this->getOwningPlugin(), "show", "Get details about a plugin", ["s", "-s", "--show"]),
-            new InstallCommand($this->getOwningPlugin(), "install", "Install a plugin", ["i", "-i", "--install"])
+            new InstallCommand($this->getOwningPlugin(), "install", "Install a plugin", ["i", "-i", "--install"]),
+            new ExtractCommand($this->getOwningPlugin(), "extract", "Extract a plugin", ["e", "-e", "--extract"])
         ];
 
         foreach ($subcommands as $subcommand) {
