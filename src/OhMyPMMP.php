@@ -47,7 +47,7 @@ class OhMyPMMP extends PluginBase
         $this->getServer()->getCommandMap()->register("OhMyPMMP", new OMPCommand($this, "ohmypmmp", "Oh My PMMP", ["omp", "oh-my-pmmp"]));
     }
 
-    private function fetchData() : void
+    public function fetchData() : void
     {
         $this->getLogger()->info(Language::translate("messages.pool.fetching", []));
         $client = HttpClientBuilder::buildDefault();

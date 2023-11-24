@@ -20,6 +20,7 @@ use thebigcrafter\omp\commands\subcommands\InstallCommand;
 use thebigcrafter\omp\commands\subcommands\ListCommand;
 use thebigcrafter\omp\commands\subcommands\RemoveCommand;
 use thebigcrafter\omp\commands\subcommands\ShowCommand;
+use thebigcrafter\omp\commands\subcommands\UpdateCommand;
 use thebigcrafter\omp\commands\subcommands\VersionCommand;
 
 class OMPCommand extends BaseCommand
@@ -34,7 +35,8 @@ class OMPCommand extends BaseCommand
             new ListCommand($this->getOwningPlugin(), "list", "List available plugins", ["l", "-l", "--list"]),
             new ShowCommand($this->getOwningPlugin(), "show", "Get details about a plugin", ["s", "-s", "--show"]),
             new InstallCommand($this->getOwningPlugin(), "install", "Install a plugin", ["i", "-i", "--install"]),
-            new ExtractCommand($this->getOwningPlugin(), "extract", "Extract a plugin", ["e", "-e", "--extract"])
+            new ExtractCommand($this->getOwningPlugin(), "extract", "Extract a plugin", ["e", "-e", "--extract"]),
+			new UpdateCommand($this->getOwningPlugin(), "update", "Update fetched data", ["ud", "-ud", "--update"])
         ];
 
         foreach ($subcommands as $subcommand) {
