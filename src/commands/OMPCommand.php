@@ -17,6 +17,7 @@ use CortexPE\Commando\BaseCommand;
 use pocketmine\command\CommandSender;
 use thebigcrafter\omp\commands\subcommands\ListCommand;
 use thebigcrafter\omp\commands\subcommands\RemoveCommand;
+use thebigcrafter\omp\commands\subcommands\ShowCommand;
 use thebigcrafter\omp\commands\subcommands\VersionCommand;
 
 class OMPCommand extends BaseCommand
@@ -28,7 +29,8 @@ class OMPCommand extends BaseCommand
         $subcommands = [
             new VersionCommand($this->getOwningPlugin(), "version", "Print oh-my-pmmp and PHP version", ["v", "-v", "--version"]),
             new RemoveCommand($this->getOwningPlugin(), "remove", "Remove a plugin", ["r", "-r", "--remove"]),
-            new ListCommand($this->getOwningPlugin(), "list", "List available plugins", ["l", "-l", "--list"])
+            new ListCommand($this->getOwningPlugin(), "list", "List available plugins", ["l", "-l", "--list"]),
+            new ShowCommand($this->getOwningPlugin(), "show", "Get details about a plugin", ["s", "-s", "--show"])
         ];
 
         foreach ($subcommands as $subcommand) {

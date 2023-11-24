@@ -10,5 +10,19 @@
 
     "commands.list.form.name": "Name: {{name}}",
     "commands.list.form.license": "License: {{license}}",
-    "commands.list.form.versions": "Versions: {{versions}}"
+    "commands.list.form.versions": "Versions: {{versions}}",
+
+    "commands.show.failed_1": "{{name}} not found",
+    "commands.show.failed_2": "{{version}} not found",
+    "commands.show.form.name": "Name: {{name}}",
+    "commands.show.form.version": "Version: {{version}}",
+    "commands.show.form.license": "License: {{license}}",
+    "commands.show.form.homepage": "Homepage: {{homepage}}",
+    "commands.show.form.download_url": "Download URL: {{download_url}}",
+    "commands.show.form.downloads": "Downloads: {{downloads}}",
+    "commands.show.form.score": "Score: {{score}}",
+    "commands.show.form.description_url": "Description URL: {{description_url}}",
+    "commands.show.form.changelog_url": "Changelog URL: {{changelog_url}}",
+    "commands.show.form.api": "Supports from {{from}} to {{to}}",
+    "commands.show.form.deps": "Dependencies: "
 }
