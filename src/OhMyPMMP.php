@@ -32,75 +32,79 @@ use function strval;
 
 class OhMyPMMP extends PluginBase
 {
-    use SingletonTrait;
-    public function onLoad() : void
-    {
-        self::setInstance($this);
-        Language::loadLanguages();
-    }
+	use SingletonTrait;
+	public function onLoad(): void
+	{
+		self::setInstance($this);
+		Language::loadLanguages();
+	}
 
-    public function onEnable() : void
-    {
-        $this->fetchData();
-        $this->saveDefaultConfig();
+	public function onEnable(): void
+	{
+		$this->fetchData();
+		$this->saveDefaultConfig();
 
-        $this->getServer()->getCommandMap()->register("OhMyPMMP", new OMPCommand($this, "ohmypmmp", "Oh My PMMP", ["omp", "oh-my-pmmp"]));
-    }
+		$this->getServer()->getCommandMap()->register("OhMyPMMP", new OMPCommand($this, "ohmypmmp", "Oh My PMMP", ["omp", "oh-my-pmmp"]));
+	}
 
-    private function fetchData() : void
-    {
-        $this->getLogger()->info(Language::translate("messages.pool.fetching", []));
-        $client = HttpClientBuilder::buildDefault();
+	private function fetchData(): void
+	{
+		$this->getLogger()->info(Language::translate("messages.pool.fetching", []));
+		$client = HttpClientBuilder::buildDefault();
 
-        $res = $client->request(new Request(Vars::POGGIT_REPO_URL));
+		$res = $client->request(new Request(Vars::POGGIT_REPO_URL));
 
-        if ($res->getStatus() !== 200) {
-            return;
-        }
+		if ($res->getStatus() !== 200) {
+			return;
+		}
 
-        $data = json_decode($res->getBody()->buffer(), true);
+		$data = json_decode($res->getBody()->buffer(), true);
 
-        foreach ($data as $pl) {
-            if (!isset($pl["api"][0])) {
-                continue;
-            }
+		foreach ($data as $pl) {
+			if (!isset($pl["api"][0])) {
+				continue;
+			}
 
-            if (PoggitPluginsPool::getItem($pl["name"]) === null) {
-                PoggitPluginsPool::addItem($pl["name"], new Plugin($pl["license"] ? $pl["license"] : ""));
-                PoggitPluginsPool::getItem($pl["name"])->addVersion(
-                    $pl["version"],
-                    new PluginVersion(
-                        $pl["html_url"],
-                        $pl["artifact_url"],
-                        $pl["downloads"],
-                        $pl["score"],
-                        $pl["description_url"],
-                        $pl["changelog_url"] ? $pl["changelog_url"] : "",
-                        new API($pl["api"][0]["from"], $pl["api"][0]["to"]),
-                        array_map(function ($dep) {
-                            return new Dependency($dep["name"], $dep["version"], strval($dep["depRelId"]), $dep["isHard"]);
-                        }, $pl["deps"])
-                    )
-                );
-            } else {
-                PoggitPluginsPool::getItem($pl["name"])->addVersion(
-                    $pl["version"],
-                    new PluginVersion(
-                        $pl["html_url"],
-                        $pl["artifact_url"],
-                        $pl["downloads"],
-                        $pl["score"],
-                        $pl["description_url"],
-                        $pl["changelog_url"] ? $pl["changelog_url"] : "",
-                        new API($pl["api"][0]["from"], $pl["api"][0]["to"]),
-                        array_map(function ($dep) {
-                            return new Dependency($dep["name"], $dep["version"], strval($dep["depRelId"]), $dep["isHard"]);
-                        }, $pl["deps"])
-                    )
-                );
-            }
-        }
+			if ($this->getConfig()->get("skipIncompatiblePlugins") && !Utils::isMajorVersionInRange(OhMyPMMP::getInstance()->getServer()->getApiVersion(), $pl["api"][0]["from"], $pl["api"][0]["to"])) {
+				continue;
+			}
 
-        $this->getLogger()->info(Language::translate("messages.pool.fetched", ["amount" => count(PoggitPluginsPool::getPool())]));
-    }
+			if (PoggitPluginsPool::getItem($pl["name"]) === null) {
+				PoggitPluginsPool::addItem($pl["name"], new Plugin($pl["license"] ? $pl["license"] : ""));
+				PoggitPluginsPool::getItem($pl["name"])->addVersion(
+					$pl["version"],
+					new PluginVersion(
+						$pl["html_url"],
+						$pl["artifact_url"],
+						$pl["downloads"],
+						$pl["score"],
+						$pl["description_url"],
+						$pl["changelog_url"] ? $pl["changelog_url"] : "",
+						new API($pl["api"][0]["from"], $pl["api"][0]["to"]),
+						array_map(function ($dep) {
+							return new Dependency($dep["name"], $dep["version"], strval($dep["depRelId"]), $dep["isHard"]);
+						}, $pl["deps"])
+					)
+				);
+			} else {
+				PoggitPluginsPool::getItem($pl["name"])->addVersion(
+					$pl["version"],
+					new PluginVersion(
+						$pl["html_url"],
+						$pl["artifact_url"],
+						$pl["downloads"],
+						$pl["score"],
+						$pl["description_url"],
+						$pl["changelog_url"] ? $pl["changelog_url"] : "",
+						new API($pl["api"][0]["from"], $pl["api"][0]["to"]),
+						array_map(function ($dep) {
+							return new Dependency($dep["name"], $dep["version"], strval($dep["depRelId"]), $dep["isHard"]);
+						}, $pl["deps"])
+					)
+				);
+			}
+		}
+
+		$this->getLogger()->info(Language::translate("messages.pool.fetched", ["amount" => count(PoggitPluginsPool::getPool())]));
+	}
 }
