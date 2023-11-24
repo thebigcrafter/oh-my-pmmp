@@ -1,6 +1,7 @@
 {
     "messages.pool.fetching": "Fetching data from Poggit...",
     "messages.pool.fetched": "Fetched {{amount}} plugins from Poggit successfully",
+    "messages.operation.failed": "Operation failed: {{reason}}",
 
     "commands.version.message_1": "OMP v{{version}}",
     "commands.version.message_2": "PHP v{{phpVersion}} {{arch}}",
@@ -24,5 +25,9 @@
     "commands.show.form.description_url": "Description URL: {{description_url}}",
     "commands.show.form.changelog_url": "Changelog URL: {{changelog_url}}",
     "commands.show.form.api": "Supports from {{from}} to {{to}}",
-    "commands.show.form.deps": "Dependencies: "
+    "commands.show.form.deps": "Dependencies: ",
+
+    "commands.install.failed_1": "{{name}} not found",
+    "commands.install.failed_2": "{{version}} not found",
+    "commands.install.successfully": "Installed {{name}} v{{version}} successfully"
 }
