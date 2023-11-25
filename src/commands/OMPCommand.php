@@ -36,7 +36,7 @@ class OMPCommand extends BaseCommand
             new ShowCommand($this->getOwningPlugin(), "show", "Get details about a plugin", ["s", "-s", "--show"]),
             new InstallCommand($this->getOwningPlugin(), "install", "Install a plugin", ["i", "-i", "--install"]),
             new ExtractCommand($this->getOwningPlugin(), "extract", "Extract a plugin", ["e", "-e", "--extract"]),
-			new UpdateCommand($this->getOwningPlugin(), "update", "Update fetched data", ["ud", "-ud", "--update"])
+            new UpdateCommand($this->getOwningPlugin(), "update", "Update fetched data", ["ud", "-ud", "--update"])
         ];
 
         foreach ($subcommands as $subcommand) {
