@@ -24,8 +24,7 @@ jobs:
           install-path: "./bin"
           pm-version-major: "5"
 
-      - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-interaction
+      - uses: "ramsey/composer-install@v2"
 
       - name: Run PHPStan
         run: composer run-script analyse
