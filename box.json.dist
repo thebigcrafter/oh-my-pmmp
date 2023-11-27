@@ -1,14 +1,16 @@
 {
+    "$schema": "https://raw.githubusercontent.com/box-project/box/main/res/schema.json",
     "main": false,
+    "compression": "GZ",
+    "algorithm": "SHA256",
+    "output": "oh-my-pmmp.phar",
     "files": [
         "plugin.yml",
         "LICENSE"
     ],
     "directories": [
-        "src",
-        "resources"
-    ],
-    "compression": "GZ",
-    "algorithm": "SHA256",
-    "output": "oh-my-pmmp.phar"
+        "vendor",
+        "resources",
+        "src"
+    ]
 }
