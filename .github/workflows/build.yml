@@ -24,6 +24,7 @@ jobs:
       - uses: "ramsey/composer-install@v2"
         with:
           working-directory: "vendor-bin/box"
+          composer-options: "--ignore-platform-reqs --optimize-autoloader"
 
       - name: Run Box
         run: composer run-script build
