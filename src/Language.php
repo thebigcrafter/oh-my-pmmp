@@ -22,7 +22,7 @@ class Language
 {
     private static ?Locale $language = null;
 
-    public static function loadLanguages()
+    public static function loadLanguages(): void
     {
         $selectedLanguage = OhMyPMMP::getInstance()->getConfig()->get("language");
 

@@ -1,0 +1,29 @@
+name: Build plugin
+
+on:
+  push:
+
+jobs:
+  build-phar:
+    name: Build PHAR file
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP 🐘
+        uses: pmmp/setup-php-action@2.0.0
+        with:
+          php-version: 8.1
+          install-path: "./bin"
+          pm-version-major: "5"
+
+      - uses: "ramsey/composer-install@v2"
+        with:
+          working-directory: "vendor-bin/box"
+
+      - name: Run Box
+        run: composer run-script build
