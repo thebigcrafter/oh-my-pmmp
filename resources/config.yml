@@ -1,4 +1,4 @@
-language: en_us
+language: en_US
 
 pluginsPerPage: 10
 skipIncompatiblePlugins: true # It will skip caching outdated API plugins if it is set to true
