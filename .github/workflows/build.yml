@@ -28,3 +28,8 @@ jobs:
 
       - name: Run Box
         run: ./vendor-bin/box/vendor/bin/box compile
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: oh-my-pmmp
+          path: oh-my-pmmp.phar
