@@ -21,6 +21,11 @@ jobs:
           install-path: "./bin"
           pm-version-major: "5"
 
+      - name: Install dependencies
+        uses: "ramsey/composer-install@v2"
+        with:
+          composer-options: "--ignore-platform-reqs --optimize-autoloader"
+
       - uses: "ramsey/composer-install@v2"
         with:
           working-directory: "vendor-bin/box"
