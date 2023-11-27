@@ -27,4 +27,4 @@ jobs:
           composer-options: "--ignore-platform-reqs --optimize-autoloader"
 
       - name: Run Box
-        run: composer run-script build
+        run: ./vendor-bin/box/vendor/bin/box compile
