@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         uses: "ramsey/composer-install@v2"
         with:
-          composer-options: "--ignore-platform-reqs --optimize-autoloader"
+          composer-options: "--ignore-platform-reqs --optimize-autoloader --no-dev"
 
       - uses: "ramsey/composer-install@v2"
         with:
