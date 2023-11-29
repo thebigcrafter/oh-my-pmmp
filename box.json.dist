@@ -4,6 +4,7 @@
     "compression": "GZ",
     "algorithm": "SHA256",
     "output": "oh-my-pmmp.phar",
+    "check-requirements": false,
     "files": [
         "plugin.yml",
         "LICENSE"
