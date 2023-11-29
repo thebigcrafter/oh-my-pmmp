@@ -42,7 +42,7 @@ class ListCommand extends BaseSubCommand
     public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void
     {
         $page = isset($args["page"]) ? (int) $args["page"] : 0;
-		/** @var int $pluginsPerPage */
+        /** @var int $pluginsPerPage */
         $pluginsPerPage = OhMyPMMP::getInstance()->getConfig()->get("pluginsPerPage");
         $totalPages = ceil(count(PoggitPluginsPool::getPool()) / $pluginsPerPage);
         $page = max(0, min($page, $totalPages - 1));

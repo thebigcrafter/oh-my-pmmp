@@ -15,6 +15,8 @@ namespace thebigcrafter\omp\commands;
 
 use CortexPE\Commando\BaseCommand;
 use pocketmine\command\CommandSender;
+use thebigcrafter\omp\commands\subcommands\DisableCommand;
+use thebigcrafter\omp\commands\subcommands\EnableCommand;
 use thebigcrafter\omp\commands\subcommands\ExtractCommand;
 use thebigcrafter\omp\commands\subcommands\InstallCommand;
 use thebigcrafter\omp\commands\subcommands\ListCommand;
@@ -36,7 +38,9 @@ class OMPCommand extends BaseCommand
             new ShowCommand($this->getOwningPlugin(), "show", "Get details about a plugin", ["s", "-s", "--show"]),
             new InstallCommand($this->getOwningPlugin(), "install", "Install a plugin", ["i", "-i", "--install"]),
             new ExtractCommand($this->getOwningPlugin(), "extract", "Extract a plugin", ["e", "-e", "--extract"]),
-            new UpdateCommand($this->getOwningPlugin(), "update", "Update fetched data", ["ud", "-ud", "--update"])
+            new UpdateCommand($this->getOwningPlugin(), "update", "Update fetched data", ["ud", "-ud", "--update"]),
+            new EnableCommand($this->getOwningPlugin(), "enable", "Enable plugin"),
+            new DisableCommand($this->getOwningPlugin(), "disable", "Disable plugin")
         ];
 
         foreach ($subcommands as $subcommand) {

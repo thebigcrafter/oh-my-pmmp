@@ -22,9 +22,9 @@ class Language
 {
     private static ?Locale $language = null;
 
-    public static function loadLanguages(): void
+    public static function loadLanguages() : void
     {
-		/** @var string $selectedLanguage */
+        /** @var string $selectedLanguage */
         $selectedLanguage = OhMyPMMP::getInstance()->getConfig()->get("language");
 
         self::saveAndLoadLanguageFiles();
@@ -51,8 +51,8 @@ class Language
 
     public static function getLanguage() : Locale
     {
-		/** @var string $selectedLanguage */
-		$selectedLanguage = OhMyPMMP::getInstance()->getConfig()->get("language");
+        /** @var string $selectedLanguage */
+        $selectedLanguage = OhMyPMMP::getInstance()->getConfig()->get("language");
         if (self::$language === null) {
             self::$language = new Locale($selectedLanguage);
         }
@@ -64,8 +64,8 @@ class Language
      */
     public static function translate(string $key, array $placeholders) : string
     {
-		/** @var string $translation */
-		$translation = self::getLanguage()->getText($key, $placeholders);
+        /** @var string $translation */
+        $translation = self::getLanguage()->getText($key, $placeholders);
         return $translation;
     }
 }

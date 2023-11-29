@@ -38,3 +38,9 @@ permissions:
   oh-my-pmmp.extract:
     description: Allow players to extract plugin Phar file into a folder
     default: op
+  oh-my-pmmp.enable:
+    description: Allow players to enable a disabled plugin
+    default: op
+  oh-my-pmmp.disable:
+    description: Allow players to disable a plugin
+    default: op

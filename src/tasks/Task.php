@@ -14,5 +14,5 @@ declare(strict_types=1);
 namespace thebigcrafter\omp\tasks;
 
 abstract class Task {
-    abstract public function execute(): mixed;
+    abstract public function execute() : mixed;
 }

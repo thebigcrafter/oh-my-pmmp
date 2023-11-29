@@ -14,11 +14,12 @@ declare(strict_types=1);
 namespace thebigcrafter\omp;
 
 use Symfony\Component\Filesystem\Path;
+use function Amp\File\exists;
 use function explode;
 
 class Utils
 {
-    public static function isMajorVersionInRange(string $checkVersion, string $minVersion, string $maxVersion): bool
+    public static function isMajorVersionInRange(string $checkVersion, string $minVersion, string $maxVersion) : bool
     {
         $checkMajor = (int) explode('.', $checkVersion)[0];
         $minMajor = (int) explode('.', $minVersion)[0];
@@ -27,7 +28,24 @@ class Utils
         return $checkMajor >= $minMajor && $checkMajor <= $maxMajor;
     }
 
-    public static function getPluginsFolder() : string {
+    public static function getPluginsFolder() : string
+    {
         return Path::join(OhMyPMMP::getInstance()->getServer()->getDataPath(), "plugins");
+    }
+
+    /**
+     * Check plugin by looking for it PHAR file
+     */
+    public static function doesPluginExist(string $name) : bool
+    {
+        return exists(self::getPluginFilePath($name));
+    }
+
+    /**
+     * Get it PHAR file path
+     */
+    public static function getPluginFilePath(string $name) : string
+    {
+        return Path::join(self::getPluginsFolder(), "$name.phar");
     }
 }

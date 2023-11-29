@@ -18,6 +18,7 @@ require __DIR__ . "/../vendor/autoload.php";
 use Amp\Http\Client\HttpClientBuilder;
 use Amp\Http\Client\Request;
 use pocketmine\plugin\PluginBase;
+use Symfony\Component\Filesystem\Path;
 use thebigcrafter\omp\commands\OMPCommand;
 use thebigcrafter\omp\pool\PoggitPluginsPool;
 use thebigcrafter\omp\trait\SingletonTrait;
@@ -25,6 +26,8 @@ use thebigcrafter\omp\types\API;
 use thebigcrafter\omp\types\Dependency;
 use thebigcrafter\omp\types\Plugin;
 use thebigcrafter\omp\types\PluginVersion;
+use function Amp\File\createDirectory;
+use function Amp\File\isDirectory;
 use function array_map;
 use function count;
 use function json_decode;
@@ -37,6 +40,8 @@ class OhMyPMMP extends PluginBase
     {
         self::setInstance($this);
         Language::loadLanguages();
+        $this->createFolders();
+
     }
 
     public function onEnable() : void
@@ -106,5 +111,14 @@ class OhMyPMMP extends PluginBase
         }
 
         $this->getLogger()->info(Language::translate("messages.pool.fetched", ["amount" => count(PoggitPluginsPool::getPool())]));
+    }
+
+    private function createFolders() : void
+    {
+        $disabledPluginsFolderPath = Path::join($this->getServer()->getPluginPath(), "..", "disabled_plugins");
+
+        if (!isDirectory($disabledPluginsFolderPath)) {
+            createDirectory($disabledPluginsFolderPath);
+        }
     }
 }

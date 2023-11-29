@@ -45,8 +45,8 @@ class Plugin
 
     /**
      * Return an array of version. Example: ["1.0.0", "1.0.1"]
-	 * 
-	 * @return string[]
+     *
+     * @return string[]
      */
     public function getVersionsOnly() : array
     {

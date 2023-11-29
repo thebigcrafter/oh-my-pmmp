@@ -52,7 +52,7 @@ class InstallCommand extends BaseSubCommand {
         $pluginVersion = $plugin->getVersion($version);
 
         if (is_null($pluginVersion["plugin"])) {
-            $sender->sendMessage(Language::translate("commands.install.failed_2", ["version" => (string)$version]));
+            $sender->sendMessage(Language::translate("commands.install.failed_2", ["version" => (string) $version]));
             return;
         }
 

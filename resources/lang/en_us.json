@@ -35,5 +35,11 @@
     "commands.install.successfully": "Installed {{name}} v{{version}} successfully",
 
     "commands.extract.failed": "{{name}} not found",
-    "commands.extract.successfully": "Extracted {{name}} successfully"
+    "commands.extract.successfully": "Extracted {{name}} successfully",
+
+    "commands.enable.failed": "{{name}} not found",
+    "commands.enable.successfully": "Enabled {{name}} successfully",
+
+    "commands.disable.failed": "{{name}} not found",
+    "commands.disable.successfully": "Disabled {{name}} successfully"
 }
