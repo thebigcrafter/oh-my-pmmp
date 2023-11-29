@@ -63,7 +63,7 @@ class OhMyPMMP extends PluginBase
             return;
         }
 
-		/** @var array<string, array<string>> $data */
+        /** @var array<string, array<string>> $data */
         $data = json_decode($res->getBody()->buffer(), true);
 
         foreach ($data as $pl) {
@@ -71,7 +71,7 @@ class OhMyPMMP extends PluginBase
                 continue;
             }
 
-			// @phpstan-ignore-next-line
+            // @phpstan-ignore-next-line
             if ($this->getConfig()->get("skipIncompatiblePlugins") && !Utils::isMajorVersionInRange(OhMyPMMP::getInstance()->getServer()->getApiVersion(), $pl["api"][0]["from"], $pl["api"][0]["to"])) {
                 continue;
             }
