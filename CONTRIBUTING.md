@@ -26,23 +26,21 @@ Please include the following with each issue:
 
 # Translate this plugin
 
-Before translate this plugin, please add the language will be translated to the `availableLanguages` array in [`resources/config.yml`](https://github.com/thebigcrafter/oh-my-pmmp/blob/main/resources/config.yml#L1)  
-Copy the `resources/lang/eng.ini`, rename and translate it.  
-**NOTE:** The language name in `availableLanguages` must be the same as the language file name in `resources/lang/`.
+Before translate this plugin, please add the language will be translated to the `AVAILABLE_LANGUAGES` array in [`src/Vars.php`](https://github.com/thebigcrafter/oh-my-pmmp/blob/main/src/Vars.php#L18)  
+Copy the `resources/lang/en_US.json`, rename and translate it.  
+**NOTE:** The language name in `AVAILABLE_LANGUAGES` must be the same as the language file name in `resources/lang/`.
 
 For example:
-```yaml
-availableLanguages: [eng] # => availableLanguages: [eng, vie, rus, ukr]
+```php
+public const AVAILABLE_LANGUAGES = ["en_US"]; # => public const AVAILABLE_LANGUAGES = ["en_US", "vi_VN"];
 ```
 And the `resources/lang` folder will have:
-- eng.ini
-- vie.ini
-- rus.ini
-- ukr.ini
+- en_US.json
+- vi_VN.json
 
 # Asking Questions
 
-Please join our [Discord server](https://discord.gg/cEXW8uK6QA) to ask questions, get help, and discuss the project.
+Please join our [Discord server](https://discord.gg/PykBfE2TZ9) to ask questions, get help, and discuss the project.
 
 # Thank You!
 
