@@ -11,7 +11,7 @@ The asynchronous <a href="https://pmmp.io">PocketMine-MP</a> plugin manager
 [![Discord](https://img.shields.io/discord/1087729577004122112?label=&color=ecebe6&labelColor=bd93f9&logo=discord&logoColor=white)](https://discord.gg/PykBfE2TZ9 
 )
 
-Oh My PMMP provides commands to allow you to install plugins from [Poggit](https://poggit.pmmp.io). It's fast and easy to use.
+Oh My PMMP provides commands to allow you to manage plugins. It's fast and easy to use.
 
 <br />
 
