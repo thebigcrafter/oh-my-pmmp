@@ -36,7 +36,7 @@ class RemoveCommand extends BaseSubCommand
     public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void
     {
         $name = $args["name"];
-        $wipeData = isset($args["wipeData"]) ? $args["wipeData"] : false;
+        $wipeData = isset($args["wipeData"]) ? (bool) $args["wipeData"] : false;
 
         $exec = (new RemovePluginTask($name, $wipeData))->execute();
 

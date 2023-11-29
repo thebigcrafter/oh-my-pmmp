@@ -19,6 +19,7 @@ use pocketmine\command\CommandSender;
 use thebigcrafter\omp\Language;
 use thebigcrafter\omp\OhMyPMMP;
 use thebigcrafter\omp\pool\PoggitPluginsPool;
+use thebigcrafter\omp\types\Plugin;
 use function array_slice;
 use function ceil;
 use function count;
@@ -40,7 +41,8 @@ class ListCommand extends BaseSubCommand
      */
     public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void
     {
-        $page = isset($args["page"]) ? $args["page"] : 0;
+        $page = isset($args["page"]) ? (int) $args["page"] : 0;
+		/** @var int $pluginsPerPage */
         $pluginsPerPage = OhMyPMMP::getInstance()->getConfig()->get("pluginsPerPage");
         $totalPages = ceil(count(PoggitPluginsPool::getPool()) / $pluginsPerPage);
         $page = max(0, min($page, $totalPages - 1));

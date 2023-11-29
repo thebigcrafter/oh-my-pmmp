@@ -45,6 +45,8 @@ class Plugin
 
     /**
      * Return an array of version. Example: ["1.0.0", "1.0.1"]
+	 * 
+	 * @return string[]
      */
     public function getVersionsOnly() : array
     {
@@ -52,9 +54,9 @@ class Plugin
     }
 
     /**
-     * Return the latest version if no specific version is provided. $arr["version"] is null if no specific version is provided
+     * Return the latest version if no specific version is provided.
      *
-     * @return array{version: ?string, plugin: ?PluginVersion}
+     * @return array{version: string, plugin: string|?PluginVersion}
      */
     public function getVersion(string $version = null) : array
     {

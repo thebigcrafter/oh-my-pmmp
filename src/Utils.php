@@ -18,7 +18,7 @@ use function explode;
 
 class Utils
 {
-    public static function isMajorVersionInRange($checkVersion, $minVersion, $maxVersion)
+    public static function isMajorVersionInRange(string $checkVersion, string $minVersion, string $maxVersion): bool
     {
         $checkMajor = (int) explode('.', $checkVersion)[0];
         $minMajor = (int) explode('.', $minVersion)[0];

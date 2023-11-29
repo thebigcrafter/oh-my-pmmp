@@ -52,13 +52,13 @@ class InstallCommand extends BaseSubCommand {
         $pluginVersion = $plugin->getVersion($version);
 
         if (is_null($pluginVersion["plugin"])) {
-            $sender->sendMessage(Language::translate("commands.install.failed_2", ["version" => $version]));
+            $sender->sendMessage(Language::translate("commands.install.failed_2", ["version" => (string)$version]));
             return;
         }
 
         $info = $pluginVersion["plugin"];
         // aka $version if user provides a specified version
-        $latestVersion = $pluginVersion["version"];
+        $latestVersion = (string) $pluginVersion["version"];
 
         $client = HttpClientBuilder::buildDefault();
 

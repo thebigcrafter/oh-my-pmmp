@@ -20,6 +20,7 @@ trait SingletonTrait{
     private static $instance = null;
 
     private static function make() : OhMyPMMP{
+		// @phpstan-ignore-next-line
         return new self();
     }
 
