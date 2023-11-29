@@ -7,8 +7,8 @@ The asynchronous <a href="https://pmmp.io">PocketMine-MP</a> plugin manager
 [![Build plugin](https://github.com/thebigcrafter/oh-my-pmmp/actions/workflows/build.yml/badge.svg)](https://github.com/thebigcrafter/oh-my-pmmp/actions/workflows/build.yml)
 [![State](https://poggit.pmmp.io/shield.state/oh-my-pmmp)](https://poggit.pmmp.io/p/oh-my-pmmp)
 [![Downloads Total](https://poggit.pmmp.io/shield.dl.total/oh-my-pmmp)](https://poggit.pmmp.io/p/oh-my-pmmp)
-[![License](https://img.shields.io/github/license/thebigcrafter/oh-my-pmmp)](https://github.com/thebigcrafter/oh-my-pmmp/blob/main/LICENSE)
-[![Discord](https://img.shields.io/discord/1087729577004122112?label=discord&color=7289DA&logo=discord)](https://discord.gg/PykBfE2TZ9 
+[![License](https://img.shields.io/github/license/thebigcrafter/oh-my-pmmp?color=ecebe6&labelColor=bd93f9&logo=discord&logoColor=white)](https://github.com/thebigcrafter/oh-my-pmmp/blob/main/LICENSE)
+[![Discord](https://img.shields.io/discord/1087729577004122112?label=&color=ecebe6&labelColor=bd93f9&logo=discord&logoColor=white)](https://discord.gg/PykBfE2TZ9 
 )
 
 Oh My PMMP provides commands to allow you to install plugins from [Poggit](https://poggit.pmmp.io). It's fast and easy to use.
