@@ -2,5 +2,3 @@ parameters:
 	level: 9
 	paths:
 		- src
-	ignoreErrors:
-		- '#Call to (an undefined method|undefined function) pocketmine\\\\.*#'
