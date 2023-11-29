@@ -4,7 +4,7 @@
 The asynchronous <a href="https://pmmp.io">PocketMine-MP</a> plugin manager
 
 [![CI](https://github.com/thebigcrafter/oh-my-pmmp/actions/workflows/ci.yml/badge.svg)](https://github.com/thebigcrafter/oh-my-pmmp/actions/workflows/ci.yml)
-[![Build Phar](https://github.com/thebigcrafter/oh-my-pmmp/actions/workflows/build.yml/badge.svg)](https://github.com/thebigcrafter/oh-my-pmmp/actions/workflows/build.yml)
+[![Build plugin](https://github.com/thebigcrafter/oh-my-pmmp/actions/workflows/build.yml/badge.svg)](https://github.com/thebigcrafter/oh-my-pmmp/actions/workflows/build.yml)
 [![State](https://poggit.pmmp.io/shield.state/oh-my-pmmp)](https://poggit.pmmp.io/p/oh-my-pmmp)
 [![Downloads Total](https://poggit.pmmp.io/shield.dl.total/oh-my-pmmp)](https://poggit.pmmp.io/p/oh-my-pmmp)
 [![License](https://img.shields.io/github/license/thebigcrafter/oh-my-pmmp)](https://github.com/thebigcrafter/oh-my-pmmp/blob/main/LICENSE)
@@ -66,7 +66,7 @@ Print plugin version.
 
 **`Permission:` `oh-my-pmmp.install`**
 
-Install a plugin with a specified version or use the word `latest` as a version to install the latest one.
+Install a plugin with a specified version or leave it empty to install the latest one.
 
 #### `omp remove` `<plugin>`
 
@@ -95,23 +95,25 @@ List available plugins or installed plugins.
 
 Get details about a plugin (name, version, api, depends, etc.).
 
-#### `omp upgrade` `<plugin>` `<version>`
+#### `omp extract` `<plugin>`
 
-**`Permission:` `oh-my-pmmp.upgrade`**
+**`Permission:` `oh-my-pmmp.extract`**
 
-Upgrade a plugin to a specified version or use the word `latest` as a version to upgrade to the latest one.
+Unphar a plugin
 
+#### `omp enable` `<plugin>`
+
+**`Permission:` `oh-my-pmmp.enable`**
+
+Enable a disabled plugin
+
+#### `omp disable` `<plugin>`
+
+**`Permission:` `oh-my-pmmp.disable`**
+
+Disable a plugin
 
 `NOTE:` To use all commands of Oh My PMMP, use `oh-my-pmmp.cmds` permission.
-
-# Advanced Topics
-
-## Developer Mode
-
-Turn on this mode in `config.yml` by changing `devMode` to `true`
-
-Some features will be unlocked after developer mode is enabled:
-- **Download plugins as folder**: Download the plugin and oh-my-pmmp will help you extract it by adding the word `true` after the install command. For example: `omp i ExamplePlugin latest true`
 
 # How do I contribute to Oh My PMMP?
 
