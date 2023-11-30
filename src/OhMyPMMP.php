@@ -21,6 +21,7 @@ use pocketmine\plugin\PluginBase;
 use Symfony\Component\Filesystem\Path;
 use thebigcrafter\omp\commands\OMPCommand;
 use thebigcrafter\omp\pool\PoggitPluginsPool;
+use thebigcrafter\omp\tasks\FetchDataTask;
 use thebigcrafter\omp\trait\SingletonTrait;
 use thebigcrafter\omp\types\API;
 use thebigcrafter\omp\types\Dependency;
@@ -55,64 +56,7 @@ class OhMyPMMP extends PluginBase
     public function fetchData() : void
     {
         $this->getLogger()->info(Language::translate("messages.pool.fetching", []));
-        $client = HttpClientBuilder::buildDefault();
-
-        $res = $client->request(new Request(Vars::POGGIT_REPO_URL));
-
-        if ($res->getStatus() !== 200) {
-            return;
-        }
-
-        /** @var array<string, array<string>> $data */
-        $data = json_decode($res->getBody()->buffer(), true);
-
-        foreach ($data as $pl) {
-            if (!isset($pl["api"][0])) {
-                continue;
-            }
-
-            // @phpstan-ignore-next-line
-            if ($this->getConfig()->get("skipIncompatiblePlugins") && !Utils::isMajorVersionInRange(OhMyPMMP::getInstance()->getServer()->getApiVersion(), $pl["api"][0]["from"], $pl["api"][0]["to"])) {
-                continue;
-            }
-
-            if (PoggitPluginsPool::getItem($pl["name"]) === null) {
-                PoggitPluginsPool::addItem($pl["name"], new Plugin($pl["license"] ? $pl["license"] : ""));
-                PoggitPluginsPool::getItem($pl["name"])->addVersion(
-                    $pl["version"],
-                    new PluginVersion(
-                        $pl["html_url"],
-                        $pl["artifact_url"],
-                        $pl["downloads"],
-                        $pl["score"],
-                        $pl["description_url"],
-                        $pl["changelog_url"] ? $pl["changelog_url"] : "",
-                        new API($pl["api"][0]["from"], $pl["api"][0]["to"]),
-                        array_map(function ($dep) {
-                            return new Dependency($dep["name"], $dep["version"], strval($dep["depRelId"]), $dep["isHard"]);
-                        }, $pl["deps"])
-                    )
-                );
-            } else {
-                PoggitPluginsPool::getItem($pl["name"])->addVersion(
-                    $pl["version"],
-                    new PluginVersion(
-                        $pl["html_url"],
-                        $pl["artifact_url"],
-                        $pl["downloads"],
-                        $pl["score"],
-                        $pl["description_url"],
-                        $pl["changelog_url"] ? $pl["changelog_url"] : "",
-                        new API($pl["api"][0]["from"], $pl["api"][0]["to"]),
-                        array_map(function ($dep) {
-                            return new Dependency($dep["name"], $dep["version"], strval($dep["depRelId"]), $dep["isHard"]);
-                        }, $pl["deps"])
-                    )
-                );
-            }
-        }
-
-        $this->getLogger()->info(Language::translate("messages.pool.fetched", ["amount" => count(PoggitPluginsPool::getPool())]));
+        $this->getServer()->getAsyncPool()->submitTask(new FetchDataTask($this)); 
     }
 
     private function createFolders() : void
