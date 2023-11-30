@@ -10,7 +10,6 @@
         "LICENSE"
     ],
     "directories": [
-        "vendor",
         "resources",
         "src"
     ]

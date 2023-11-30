@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace thebigcrafter\omp;
 
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Path;
-use function Amp\File\exists;
 use function explode;
 
 class Utils
@@ -38,7 +38,8 @@ class Utils
      */
     public static function doesPluginExist(string $name) : bool
     {
-        return exists(self::getPluginFilePath($name));
+        $fs = new Filesystem();
+        return $fs->exists(self::getPluginFilePath($name));
     }
 
     /**

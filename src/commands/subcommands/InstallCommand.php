@@ -13,19 +13,20 @@ declare(strict_types=1);
 
 namespace thebigcrafter\omp\commands\subcommands;
 
-use Amp\Http\Client\HttpClientBuilder;
-use Amp\Http\Client\Request;
 use CortexPE\Commando\args\RawStringArgument;
 use CortexPE\Commando\BaseSubCommand;
 use pocketmine\command\CommandSender;
+use pocketmine\utils\Internet;
+use pocketmine\utils\InternetRequestResult;
 use Symfony\Component\Filesystem\Path;
 use thebigcrafter\omp\Language;
 use thebigcrafter\omp\OhMyPMMP;
 use thebigcrafter\omp\pool\PoggitPluginsPool;
-use function Amp\File\openFile;
+use function file_put_contents;
 use function is_null;
 
-class InstallCommand extends BaseSubCommand {
+class InstallCommand extends BaseSubCommand
+{
     protected function prepare() : void
     {
         $this->setPermission("oh-my-pmmp.install");
@@ -60,22 +61,16 @@ class InstallCommand extends BaseSubCommand {
         // aka $version if user provides a specified version
         $latestVersion = (string) $pluginVersion["version"];
 
-        $client = HttpClientBuilder::buildDefault();
+        $res = Internet::getURL($info->getArtifactUrl());
 
-        $res = $client->request(new Request($info->getArtifactUrl()));
-
-        if($res->getStatus() !== 200) {
-            $sender->sendMessage(Language::translate("messages.operation.failed", ["reason" => $res->getReason()]));
+        if (!$res instanceof InternetRequestResult || $res->getCode() !== 200) {
+            $sender->sendMessage(Language::translate("messages.operation.failed", ["reason" => $res->getCode()]));
             return;
         }
 
         $pharPath = Path::join(OhMyPMMP::getInstance()->getServer()->getDataPath(), "plugins", "$name.phar");
-        $phar = openFile($pharPath, "w");
 
-        while (($chunk = $res->getBody()->read()) !== null) {
-            $phar->write((string) $chunk);
-        }
-        $phar->end();
+        file_put_contents($pharPath, $res->getBody());
 
         $sender->sendMessage(Language::translate("commands.install.successfully", ["name" => $name, "version" => $latestVersion]));
     }

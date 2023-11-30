@@ -4,8 +4,6 @@
     "type": "project",
     "require": {
         "php": "^8.1",
-        "amphp/file": "^3.0",
-        "amphp/http-client": "^5.0",
         "thebigcrafter/commando": "dev-master"
     },
     "require-dev": {

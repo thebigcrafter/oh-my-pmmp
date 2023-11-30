@@ -17,11 +17,10 @@ use CortexPE\Commando\args\RawStringArgument;
 use CortexPE\Commando\BaseSubCommand;
 use Phar;
 use pocketmine\command\CommandSender;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Path;
 use thebigcrafter\omp\Language;
 use thebigcrafter\omp\Utils;
-
-use function Amp\File\exists;
 
 class ExtractCommand extends BaseSubCommand {
     protected function prepare() : void
@@ -36,10 +35,11 @@ class ExtractCommand extends BaseSubCommand {
      */
     public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void
     {
+        $fs = new Filesystem();
         $name = $args["name"];
         $pluginFilePath = Path::join(Utils::getPluginsFolder(), "$name.phar");
 
-        if(!exists($pluginFilePath)) {
+        if(!$fs->exists($pluginFilePath)) {
             $sender->sendMessage(Language::translate("commands.extract.failed", ["name" => $name]));
             return;
         }
