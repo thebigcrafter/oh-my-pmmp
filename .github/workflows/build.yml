@@ -20,14 +20,13 @@ jobs:
           php-version: 8.1
           install-path: "./bin"
           pm-version-major: "5"
-
-      - name: Download pharynx
-        run: wget https://github.com/SOF3/pharynx/releases/download/0.3.6/pharynx.phar
   
-      - name: Run pharynx
-        run: php -d phar.readonly=0 pharynx.phar -i ./ && mv ./output.phar ./oh-my-pmmp.phar
-
+      - uses: SOF3/pharynx@v0.1
+        id: pharynx
+        with:
+          pharynx-version: "0.3.6"
+            
       - uses: actions/upload-artifact@v3
         with:
           name: oh-my-pmmp
-          path: oh-my-pmmp.phar
+          path: ${{steps.pharynx.outputs.output-phar}}
