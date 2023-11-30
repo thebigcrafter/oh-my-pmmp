@@ -25,7 +25,7 @@ jobs:
         run: wget https://github.com/SOF3/pharynx/releases/download/0.3.6/pharynx.phar
   
       - name: Run pharynx
-        run: php -d phar.readonly=0 pharynx.phar -i ./ -o ./oh-my-pmmp.phar
+        run: php -d phar.readonly=0 pharynx.phar -i ./ && mv ./output.phar ./oh-my-pmmp.phar
 
       - uses: actions/upload-artifact@v3
         with:
