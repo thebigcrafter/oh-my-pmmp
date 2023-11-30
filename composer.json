@@ -7,7 +7,6 @@
         "thebigcrafter/commando": "dev-master"
     },
     "require-dev": {
-        "bamarni/composer-bin-plugin": "^1.8",
         "friendsofphp/php-cs-fixer": "^3.40",
         "phpstan/phpstan": "^1.10",
         "pocketmine/pocketmine-mp": "^5.8"
@@ -15,14 +14,11 @@
     "license": "GPL-3.0-only",
     "config": {
         "sort-packages": true,
-        "optimize-autoloader": true,
-        "allow-plugins": {
-            "bamarni/composer-bin-plugin": true
-        }
+        "optimize-autoloader": true
     },
     "autoload": {
         "psr-4": {
-            "thebigcrafter\\omp\\": "src/"
+            "thebigcrafter\\omp\\": "src/thebigcrafter/omp"
         }
     },
     "authors": [
@@ -31,7 +27,6 @@
         }
     ],
     "scripts": {
-        "post-install-cmd": ["@composer bin box install"],
         "analyse": "./vendor/bin/phpstan analyse -c phpstan.neon.dist",
         "fix-cs": "./vendor/bin/php-cs-fixer fix",
         "build": "./vendor/bin/box compile"
