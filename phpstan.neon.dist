@@ -4,8 +4,8 @@ parameters:
 		- src
 	excludePaths:
 		analyseAndScan:
-			- src/OhMyPMMP.php
-			- src/pool/*
-			- src/types/*
-			- src/commands/*
-			- src/tasks/*
+			- src/*/*/OhMyPMMP.php
+			- src/*/*/pool/*
+			- src/*/*/types/*
+			- src/*/*/commands/*
+			- src/*/*/tasks/*
