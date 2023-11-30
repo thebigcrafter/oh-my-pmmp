@@ -25,8 +25,10 @@ jobs:
         id: pharynx
         with:
           pharynx-version: "0.3.6"
+
+      - run: mv ${{steps.pharynx.outputs.output-phar}} ./oh-my-pmmp.phar
             
       - uses: actions/upload-artifact@v3
         with:
           name: oh-my-pmmp
-          path: ${{steps.pharynx.outputs.output-phar}}
+          path: ./oh-my-pmmp.phar
