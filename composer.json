@@ -6,8 +6,7 @@
         "php": "^8.1",
         "amphp/file": "^3.0",
         "amphp/http-client": "^5.0",
-        "thebigcrafter/commando": "dev-master",
-        "utopia-php/locale": "^0.6.0"
+        "thebigcrafter/commando": "dev-master"
     },
     "require-dev": {
         "bamarni/composer-bin-plugin": "^1.8",

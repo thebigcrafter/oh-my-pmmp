@@ -8,3 +8,4 @@ parameters:
 			- src/pool/*
 			- src/types/*
 			- src/commands/*
+			- src/tasks/*

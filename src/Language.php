@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace thebigcrafter\omp;
 
 use Symfony\Component\Filesystem\Filesystem;
-use Utopia\Locale\Locale;
+use thebigcrafter\omp\lang\Locale;
 use function is_dir;
 use function mkdir;
 
