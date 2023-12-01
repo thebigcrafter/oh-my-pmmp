@@ -2,6 +2,7 @@
     "messages.pool.fetching": "Fetching data from Poggit...",
     "messages.pool.fetched": "Fetched {{amount}} plugins from Poggit successfully",
     "messages.operation.failed": "Operation failed: {{reason}}",
+    "messages.new_update": "{{name}} v{{version}} is available for download at {{download_url}}",
 
     "commands.version.message_1": "OMP v{{version}}",
     "commands.version.message_2": "PHP v{{phpVersion}} {{arch}}",

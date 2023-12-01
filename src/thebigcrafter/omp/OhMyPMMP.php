@@ -17,6 +17,7 @@ use pocketmine\plugin\PluginBase;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Path;
 use thebigcrafter\omp\commands\OMPCommand;
+use thebigcrafter\omp\helpers\UpdateChecker;
 use thebigcrafter\omp\tasks\FetchDataTask;
 use thebigcrafter\omp\trait\SingletonTrait;
 
@@ -33,6 +34,7 @@ class OhMyPMMP extends PluginBase
 
     public function onEnable() : void
     {
+		UpdateChecker::init($this);
         $this->fetchData();
         $this->saveDefaultConfig();
 
