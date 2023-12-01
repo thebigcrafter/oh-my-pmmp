@@ -41,7 +41,7 @@ final class CheckForUpdates extends AsyncTask
              * @var array{'version': string, 'artifact_url': string} $release
              */
             foreach ($releases as $release) {
-                if (version_compare($this->highestVersion, $release["version"], ">=")) {
+                if (version_compare($this->highestVersion, $release["version"], ">")) {
                     continue;
                 }
 
