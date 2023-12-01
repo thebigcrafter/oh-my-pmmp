@@ -20,23 +20,23 @@ use Symfony\Component\Filesystem\Exception\IOException;
 
 class Filesystem
 {
-	public static function remove(string $path): Generator
-	{
-		return yield from Await::promise(function (Closure $resolve, Closure $reject) use ($path) {
-			$fs = new \Symfony\Component\Filesystem\Filesystem();
-			try {
-				// @phpstan-ignore-next-line
-				$resolve($fs->remove($path));
-			} catch (IOException $e) {
-				$reject($e);
-			}
-		});
-	}
+    public static function remove(string $path) : Generator
+    {
+        return yield from Await::promise(function (Closure $resolve, Closure $reject) use ($path) {
+            $fs = new \Symfony\Component\Filesystem\Filesystem();
+            try {
+                // @phpstan-ignore-next-line
+                $resolve($fs->remove($path));
+            } catch (IOException $e) {
+                $reject($e);
+            }
+        });
+    }
 
-	// @phpstan-ignore-next-line
-	public static function exists(iterable|string $files): bool
-	{
-		$fs = new \Symfony\Component\Filesystem\Filesystem();
-		return $fs->exists($files);
-	}
+    // @phpstan-ignore-next-line
+    public static function exists(iterable|string $files) : bool
+    {
+        $fs = new \Symfony\Component\Filesystem\Filesystem();
+        return $fs->exists($files);
+    }
 }
