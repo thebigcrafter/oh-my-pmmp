@@ -33,6 +33,19 @@ class Filesystem
         });
     }
 
+    public static function rename(string $origin, string $target) : Generator
+    {
+        return yield from Await::promise(function (Closure $resolve, Closure $reject) use ($origin, $target) {
+            $fs = new \Symfony\Component\Filesystem\Filesystem();
+            try {
+                // @phpstan-ignore-next-line
+                $resolve($fs->rename($origin, $target));
+            } catch (IOException $e) {
+                $reject($e);
+            }
+        });
+    }
+
     // @phpstan-ignore-next-line
     public static function exists(iterable|string $files) : bool
     {

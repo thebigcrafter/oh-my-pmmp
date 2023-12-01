@@ -18,11 +18,12 @@ use CortexPE\Commando\BaseSubCommand;
 use pocketmine\command\CommandSender;
 use pocketmine\utils\Internet;
 use pocketmine\utils\InternetRequestResult;
+use SOFe\AwaitGenerator\Await;
 use Symfony\Component\Filesystem\Path;
+use thebigcrafter\omp\helpers\PharHelper;
 use thebigcrafter\omp\Language;
 use thebigcrafter\omp\OhMyPMMP;
 use thebigcrafter\omp\pool\PoggitPluginsPool;
-use function file_put_contents;
 use function is_null;
 
 class InstallCommand extends BaseSubCommand
@@ -70,7 +71,7 @@ class InstallCommand extends BaseSubCommand
 
         $pharPath = Path::join(OhMyPMMP::getInstance()->getServer()->getDataPath(), "plugins", "$name.phar");
 
-        file_put_contents($pharPath, $res->getBody());
+        Await::g2c(PharHelper::writePhar($pharPath, $res->getBody()));
 
         $sender->sendMessage(Language::translate("commands.install.successfully", ["name" => $name, "version" => $latestVersion]));
     }
