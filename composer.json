@@ -28,7 +28,6 @@
     ],
     "scripts": {
         "analyse": "./vendor/bin/phpstan analyse -c phpstan.neon.dist",
-        "fix-cs": "./vendor/bin/php-cs-fixer fix",
-        "build": "./vendor/bin/box compile"
+        "fix-cs": "./vendor/bin/php-cs-fixer fix"
     }
 }
