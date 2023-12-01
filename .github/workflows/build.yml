@@ -21,7 +21,7 @@ jobs:
           install-path: "./bin"
           pm-version-major: "5"
   
-      - uses: SOF3/pharynx@v0.1
+      - uses: SOF3/pharynx@v0.2
         id: pharynx
         with:
           pharynx-version: "0.3.6"
