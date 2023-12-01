@@ -4,6 +4,7 @@
     "type": "project",
     "require": {
         "php": "^8.1",
+        "sof3/await-generator": "^3.6",
         "thebigcrafter/commando": "dev-master"
     },
     "require-dev": {

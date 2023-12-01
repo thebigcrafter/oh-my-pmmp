@@ -13,37 +13,36 @@ declare(strict_types=1);
 
 namespace thebigcrafter\omp\tasks;
 
-use Symfony\Component\Filesystem\Filesystem;
+use SOFe\AwaitGenerator\Await;
 use Symfony\Component\Filesystem\Path;
 use thebigcrafter\omp\OhMyPMMP;
 use thebigcrafter\omp\Utils;
+use thebigcrafter\omp\utils\Filesystem;
 
 class RemovePluginTask extends Task
 {
-    private readonly Filesystem $fs;
-    public function __construct(private readonly string $name, private readonly bool $wipeData)
-    {
-        $this->fs = new Filesystem();
-    }
-    public function execute() : bool
-    {
-        $name = $this->name;
-        $wipeData = $this->wipeData;
+	public function __construct(private readonly string $name, private readonly bool $wipeData)
+	{
+	}
+	public function execute(): bool
+	{
+		$name = $this->name;
+		$wipeData = $this->wipeData;
 
-        $pluginFilePath = Path::join(Utils::getPluginsFolder(), "$name.phar");
-        $pluginFolderPath = Path::join(Utils::getPluginsFolder(), $name);
+		$pluginFilePath = Path::join(Utils::getPluginsFolder(), "$name.phar");
+		$pluginFolderPath = Path::join(Utils::getPluginsFolder(), $name);
 
-        if ($this->fs->exists($pluginFilePath)) {
-            $this->fs->remove($pluginFilePath);
-        } elseif ($this->fs->exists($pluginFolderPath)) {
-            $this->fs->remove($pluginFolderPath);
-        } else {
-            return false;
-        }
-        if ($wipeData) {
-            $pluginDataFolder = Path::join(OhMyPMMP::getInstance()->getDataFolder(), "..", $name);
-            $this->fs->remove($pluginDataFolder);
-        }
-        return true;
-    }
+		if (Filesystem::exists($pluginFilePath)) {
+			Await::g2c(Filesystem::remove($pluginFilePath));
+		} elseif (Filesystem::exists($pluginFolderPath)) {
+			Await::g2c(Filesystem::remove($pluginFolderPath));
+		} else {
+			return false;
+		}
+		if ($wipeData) {
+			$pluginDataFolder = Path::join(OhMyPMMP::getInstance()->getDataFolder(), "..", $name);
+			Await::g2c(Filesystem::remove($pluginDataFolder));
+		}
+		return true;
+	}
 }
