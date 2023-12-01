@@ -34,7 +34,7 @@ class OhMyPMMP extends PluginBase
 
     public function onEnable() : void
     {
-		UpdateChecker::init($this);
+        UpdateChecker::init($this);
         $this->fetchData();
         $this->saveDefaultConfig();
 

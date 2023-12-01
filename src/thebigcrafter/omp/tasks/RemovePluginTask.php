@@ -21,28 +21,28 @@ use thebigcrafter\omp\utils\Filesystem;
 
 class RemovePluginTask extends Task
 {
-	public function __construct(private readonly string $name, private readonly bool $wipeData)
-	{
-	}
-	public function execute(): bool
-	{
-		$name = $this->name;
-		$wipeData = $this->wipeData;
+    public function __construct(private readonly string $name, private readonly bool $wipeData)
+    {
+    }
+    public function execute() : bool
+    {
+        $name = $this->name;
+        $wipeData = $this->wipeData;
 
-		$pluginFilePath = Path::join(Utils::getPluginsFolder(), "$name.phar");
-		$pluginFolderPath = Path::join(Utils::getPluginsFolder(), $name);
+        $pluginFilePath = Path::join(Utils::getPluginsFolder(), "$name.phar");
+        $pluginFolderPath = Path::join(Utils::getPluginsFolder(), $name);
 
-		if (Filesystem::exists($pluginFilePath)) {
-			Await::g2c(Filesystem::remove($pluginFilePath));
-		} elseif (Filesystem::exists($pluginFolderPath)) {
-			Await::g2c(Filesystem::remove($pluginFolderPath));
-		} else {
-			return false;
-		}
-		if ($wipeData) {
-			$pluginDataFolder = Path::join(OhMyPMMP::getInstance()->getDataFolder(), "..", $name);
-			Await::g2c(Filesystem::remove($pluginDataFolder));
-		}
-		return true;
-	}
+        if (Filesystem::exists($pluginFilePath)) {
+            Await::g2c(Filesystem::remove($pluginFilePath));
+        } elseif (Filesystem::exists($pluginFolderPath)) {
+            Await::g2c(Filesystem::remove($pluginFolderPath));
+        } else {
+            return false;
+        }
+        if ($wipeData) {
+            $pluginDataFolder = Path::join(OhMyPMMP::getInstance()->getDataFolder(), "..", $name);
+            Await::g2c(Filesystem::remove($pluginDataFolder));
+        }
+        return true;
+    }
 }
