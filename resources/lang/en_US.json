@@ -42,5 +42,8 @@
     "commands.enable.successfully": "Enabled {{name}} successfully",
 
     "commands.disable.failed": "{{name}} not found",
-    "commands.disable.successfully": "Disabled {{name}} successfully"
+    "commands.disable.successfully": "Disabled {{name}} successfully",
+
+    "commands.upgrade.failed": "{{name}} not found",
+    "commands.upgrade.successfully": "Upgraded {{name}} successfully"
 }
