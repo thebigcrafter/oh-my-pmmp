@@ -26,7 +26,7 @@ Please include the following with each issue:
 
 # Translate this plugin
 
-Before translate this plugin, please add the language will be translated to the `AVAILABLE_LANGUAGES` array in [`src/Vars.php`](https://github.com/thebigcrafter/oh-my-pmmp/blob/main/src/Vars.php#L18)  
+Before translate this plugin, please add the language will be translated to the `AVAILABLE_LANGUAGES` array in [`src/thebigcrafter/omp/constants/Languages.php`](https://github.com/thebigcrafter/oh-my-pmmp/blob/main/src/thebigcrafter/omp/constants/Languages.php#L17)  
 Copy the `resources/lang/en_US.json`, rename and translate it.  
 **NOTE:** The language name in `AVAILABLE_LANGUAGES` must be the same as the language file name in `resources/lang/`.
 
