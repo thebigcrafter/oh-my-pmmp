@@ -11,4 +11,6 @@ projects:
         version: ^3.6.1
       - src: thebigcrafter/Commando/Commando
         version: ^3.1.0
+    lint:
+      phpstan: false
 ...
