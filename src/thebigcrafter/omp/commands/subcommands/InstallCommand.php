@@ -15,6 +15,8 @@ namespace thebigcrafter\omp\commands\subcommands;
 
 use CortexPE\Commando\args\RawStringArgument;
 use CortexPE\Commando\BaseSubCommand;
+use Exception;
+use Generator;
 use pocketmine\command\CommandSender;
 use pocketmine\utils\Internet;
 use pocketmine\utils\InternetRequestResult;
@@ -71,8 +73,13 @@ class InstallCommand extends BaseSubCommand
 
         $pharPath = Path::join(OhMyPMMP::getInstance()->getServer()->getDataPath(), "plugins", "$name.phar");
 
-        Await::g2c(PharHelper::writePhar($pharPath, $res->getBody()));
-
-        $sender->sendMessage(Language::translate("commands.install.successfully", ["name" => $name, "version" => $latestVersion]));
+        Await::f2c(function () use ($pharPath, $res, $sender, $name, $latestVersion) : Generator {
+            try {
+                yield from PharHelper::create($pharPath, $res->getBody());
+                $sender->sendMessage(Language::translate("commands.install.successfully", ["name" => $name, "version" => $latestVersion]));
+            } catch (Exception $e) {
+                $sender->sendMessage(Language::translate("messages.operation.failed", ["reason" => $e->getMessage()]));
+            }
+        });
     }
 }

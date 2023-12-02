@@ -15,8 +15,10 @@ namespace thebigcrafter\omp\commands\subcommands;
 
 use CortexPE\Commando\args\RawStringArgument;
 use CortexPE\Commando\BaseSubCommand;
+use Generator;
 use pocketmine\command\CommandSender;
 use SOFe\AwaitGenerator\Await;
+use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Path;
 use thebigcrafter\omp\Language;
 use thebigcrafter\omp\OhMyPMMP;
@@ -46,7 +48,13 @@ class DisableCommand extends BaseSubCommand
             return;
         }
 
-        Await::g2c(Filesystem::rename($oldPluginFilePath, $newPluginFilePath));
+        Await::f2c(function () use ($oldPluginFilePath, $newPluginFilePath, $sender) : Generator {
+            try {
+                yield from Filesystem::rename($oldPluginFilePath, $newPluginFilePath);
+            } catch (IOException $e) {
+                $sender->sendMessage(Language::translate("messages.operation.failed", ["reason" => $e->getMessage()]));
+            }
+        });
 
         $sender->sendMessage(Language::translate("commands.disable.successfully", ["name" => $name]));
     }

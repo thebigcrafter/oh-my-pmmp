@@ -16,9 +16,11 @@ namespace thebigcrafter\omp\commands\subcommands;
 use CortexPE\Commando\args\BooleanArgument;
 use CortexPE\Commando\args\RawStringArgument;
 use CortexPE\Commando\BaseSubCommand;
+use Generator;
 use pocketmine\command\CommandSender;
+use SOFe\AwaitGenerator\Await;
+use thebigcrafter\omp\helpers\PluginHelper;
 use thebigcrafter\omp\Language;
-use thebigcrafter\omp\tasks\RemovePluginTask;
 
 class RemoveCommand extends BaseSubCommand
 {
@@ -38,13 +40,13 @@ class RemoveCommand extends BaseSubCommand
         $name = $args["name"];
         $wipeData = isset($args["wipeData"]) ? (bool) $args["wipeData"] : false;
 
-        $exec = (new RemovePluginTask($name, $wipeData))->execute();
-
-        if (!$exec) {
-            $sender->sendMessage(Language::translate("commands.remove.failed", ["name" => $name]));
-            return;
-        }
-        $sender->sendMessage(Language::translate("commands.remove.successfully", ["name" => $name]));
-        return;
+        Await::f2c(function () use ($name, $wipeData, $sender) : Generator {
+            try {
+                yield from PluginHelper::remove($name, $wipeData);
+                $sender->sendMessage(Language::translate("commands.remove.successfully", ["name" => $name]));
+            } catch (\Throwable $th) {
+                $sender->sendMessage(Language::translate("commands.remove.failed", ["name" => $name]));
+            }
+        });
     }
 }
