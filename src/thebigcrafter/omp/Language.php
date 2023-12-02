@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace thebigcrafter\omp;
 
 use Symfony\Component\Filesystem\Filesystem;
+use thebigcrafter\omp\constants\Languages;
 use thebigcrafter\omp\lang\Locale;
 use function is_dir;
 use function mkdir;
@@ -40,7 +41,7 @@ class Language
             @mkdir($langFolder);
         }
 
-        foreach (Vars::AVAILABLE_LANGUAGES as $lang) {
+        foreach (Languages::AVAILABLE_LANGUAGES as $lang) {
             $languageFilePath = OhMyPMMP::getInstance()->getDataFolder() . "lang/$lang.json";
 
             if (!$fs->exists($languageFilePath)) {

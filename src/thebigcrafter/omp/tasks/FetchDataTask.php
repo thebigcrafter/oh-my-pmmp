@@ -16,6 +16,7 @@ namespace thebigcrafter\omp\tasks;
 use pocketmine\scheduler\AsyncTask;
 use pocketmine\utils\Internet;
 use pocketmine\utils\InternetRequestResult;
+use thebigcrafter\omp\constants\Poggit;
 use thebigcrafter\omp\Language;
 use thebigcrafter\omp\OhMyPMMP;
 use thebigcrafter\omp\pool\PoggitPluginsPool;
@@ -24,7 +25,6 @@ use thebigcrafter\omp\types\Dependency;
 use thebigcrafter\omp\types\Plugin;
 use thebigcrafter\omp\types\PluginVersion;
 use thebigcrafter\omp\Utils;
-use thebigcrafter\omp\Vars;
 use function array_map;
 use function count;
 use function json_decode;
@@ -34,7 +34,7 @@ class FetchDataTask extends AsyncTask
 {
     public function onRun() : void
     {
-        $res = Internet::getURL(Vars::POGGIT_REPO_URL);
+        $res = Internet::getURL(Poggit::REPO_URL);
 
         if (!$res instanceof InternetRequestResult) {
             return;
