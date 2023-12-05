@@ -25,7 +25,7 @@ class PharHelper
 {
     /**
      * Create a Phar file
-     * Returns the number of bytes that were written to the file, or throw an Exception on failure.
+     * Returns the number of bytes that were written to the file, or throw an Exception on failure
      */
     public static function create(string $path, string $content) : Generator
     {
@@ -41,6 +41,10 @@ class PharHelper
         });
     }
 
+    /**
+     * Extract a Phar file to specified location
+     * Throw an exception on failure
+     */
     public static function extract(string $filePath, string $to) : Generator
     {
         return Await::promise(function (Closure $resolve, Closure $reject) use ($filePath, $to) {

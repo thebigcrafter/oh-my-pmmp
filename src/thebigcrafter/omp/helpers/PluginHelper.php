@@ -25,6 +25,12 @@ use thebigcrafter\omp\utils\Filesystem;
 
 class PluginHelper
 {
+    /**
+     * Remove a plugin by it name and remove it data if it is required. Return true if succeed
+     * This function will check if the plugin Phar file exist or not, if it does, remove it.
+     * Else if the plugin folder exists, remove it
+     * If plugin not found, throw an Exception
+     */
     public static function remove(string $name, bool $wipeData) : Generator
     {
         return yield from Await::promise(function (Closure $resolve, Closure $reject) use ($name, $wipeData) {
@@ -48,6 +54,7 @@ class PluginHelper
 
     /**
      * Return true if plugin exists, false on failure
+     * This function can check plugin Phar file and plugin folder
      */
     public static function exists(string $name, PluginType $type = PluginType::FILE_TYPE) : bool
     {

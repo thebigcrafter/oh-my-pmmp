@@ -19,6 +19,7 @@ use thebigcrafter\omp\tasks\CheckForUpdates;
 
 class UpdateChecker
 {
+    /** Init a update checker */
     public static function init(Plugin $plugin) : void
     {
         OhMyPMMP::getInstance()->getServer()->getAsyncPool()->submitTask(new CheckForUpdates($plugin->getDescription()->getName(), $plugin->getDescription()->getVersion()));

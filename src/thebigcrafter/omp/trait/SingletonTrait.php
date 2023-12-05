@@ -20,7 +20,7 @@ trait SingletonTrait{
     private static $instance = null;
 
     private static function make() : OhMyPMMP{
-        // @phpstan-ignore-next-line
+        // It can create a new OhMyPMMP without any params. Magical!
         return new self();
     }
 

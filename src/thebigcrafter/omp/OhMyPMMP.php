@@ -27,9 +27,8 @@ class OhMyPMMP extends PluginBase
     public function onLoad() : void
     {
         self::setInstance($this);
-        Language::loadLanguages();
+        Language::loadLanguages($this->getConfig()->get("language"));
         $this->createFolders();
-
     }
 
     public function onEnable() : void
@@ -41,12 +40,19 @@ class OhMyPMMP extends PluginBase
         $this->getServer()->getCommandMap()->register("OhMyPMMP", new OMPCommand($this, "ohmypmmp", "Oh My PMMP", ["omp", "oh-my-pmmp"]));
     }
 
+    /**
+     * Fetch necessary data such as Poggit plugins list
+     * TODO: fetch installed plugins and upgradable plugins
+     */
     public function fetchData() : void
     {
         $this->getLogger()->info(Language::translate("messages.pool.fetching", []));
         $this->getServer()->getAsyncPool()->submitTask(new FetchDataTask());
     }
 
+    /**
+     * Create necessary folders if they haven't existed yet
+     */
     private function createFolders() : void
     {
         $fs = new Filesystem();

@@ -23,15 +23,18 @@ class Language
 {
     private static ?Locale $language = null;
 
-    public static function loadLanguages() : void
+    /**
+     * Load a specified language in `plugin_data/oh-my-pmmp/lang/*`
+     */
+    public static function loadLanguages(string $selectedLanguage) : void
     {
-        /** @var string $selectedLanguage */
-        $selectedLanguage = OhMyPMMP::getInstance()->getConfig()->get("language");
-
         self::saveAndLoadLanguageFiles();
         Locale::setLanguageFromJSON($selectedLanguage, OhMyPMMP::getInstance()->getDataFolder() . "lang/$selectedLanguage.json");
     }
 
+    /**
+     * Save all languages file in `resources/lang/*` and load them to `plugin_data/oh-my-pmmp/lang/`
+     */
     private static function saveAndLoadLanguageFiles() : void
     {
         $fs = new Filesystem();

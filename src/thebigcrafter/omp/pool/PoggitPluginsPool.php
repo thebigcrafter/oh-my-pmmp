@@ -15,6 +15,10 @@ namespace thebigcrafter\omp\pool;
 
 use thebigcrafter\omp\types\Plugin;
 
+/**
+ * Items in pool are saved following this structure: ["plugin name" => new Plugin()];
+ */
+
 class PoggitPluginsPool
 {
     /** @var array{name: string, plugin: Plugin} $pool */
@@ -33,16 +37,25 @@ class PoggitPluginsPool
         self::$pool[$name] = $plugin;
     }
 
+    /**
+     * Find an item by it `name`, return `null` if it hasn't existed
+     */
     public static function getItem(string $name) : Plugin|null
     {
         return self::$pool[$name] ?? null;
     }
 
+    /**
+     * Check if an item exists or not
+     */
     public static function hasItem(string $name) : bool
     {
         return isset(self::$pool[$name]);
     }
 
+    /**
+     * Remove item by it name
+     */
     public static function removeItem(string $name) : void
     {
         unset(self::$pool[$name]);

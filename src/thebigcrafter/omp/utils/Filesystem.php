@@ -20,6 +20,9 @@ use Symfony\Component\Filesystem\Exception\IOException;
 
 class Filesystem
 {
+    /**
+     * Files and folders remover
+     */
     public static function remove(string $path) : Generator
     {
         return yield from Await::promise(function (Closure $resolve, Closure $reject) use ($path) {
@@ -33,6 +36,9 @@ class Filesystem
         });
     }
 
+    /**
+     * Rename files and directories, can move them also
+     */
     public static function rename(string $origin, string $target) : Generator
     {
         return yield from Await::promise(function (Closure $resolve, Closure $reject) use ($origin, $target) {
@@ -46,7 +52,9 @@ class Filesystem
         });
     }
 
-    // @phpstan-ignore-next-line
+    /**
+     * Check if files or folders exist
+     */
     public static function exists(iterable|string $files) : bool
     {
         $fs = new \Symfony\Component\Filesystem\Filesystem();
