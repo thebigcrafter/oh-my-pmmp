@@ -18,9 +18,7 @@ use function version_compare;
 
 class Plugin
 {
-	/**
-	 * @var array<string, PluginVersion> $versions
-	 */
+    /** @var array<string, PluginVersion> $versions */
     private array $versions;
 
     public function __construct(
@@ -28,10 +26,10 @@ class Plugin
     ) {
     }
 
-	public function addVersion(string $version, PluginVersion $info) : void
-	{
-		$this->versions[$version] = $info;
-	}
+    public function addVersion(string $version, PluginVersion $info) : void
+    {
+        $this->versions[$version] = $info;
+    }
 
     /**
      * Get plugin's license
@@ -74,19 +72,19 @@ class Plugin
         return $this->getLatestVersion();
     }
 
-	/** @return array{version: string, plugin: PluginVersion} */
-	public function getLatestVersion() : array
-	{
-		$latestVersion = null;
-		foreach ($this->getVersionsOnly() as $version) {
-			if ($latestVersion === null || version_compare($version, $latestVersion, '>')) {
-				$latestVersion = $version;
-			}
-		}
+    /** @return array{version: string, plugin: PluginVersion} */
+    public function getLatestVersion() : array
+    {
+        $latestVersion = null;
+        foreach ($this->getVersionsOnly() as $version) {
+            if ($latestVersion === null || version_compare($version, $latestVersion, '>')) {
+                $latestVersion = $version;
+            }
+        }
 
-		return [
-			"version" => (string) $latestVersion,
-			"plugin" => $this->versions[$latestVersion]
-		];
-	}
+        return [
+            "version" => (string) $latestVersion,
+            "plugin" => $this->versions[$latestVersion]
+        ];
+    }
 }

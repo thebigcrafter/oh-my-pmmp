@@ -18,26 +18,17 @@ use CortexPE\Commando\BaseSubCommand;
 use Exception;
 use Generator;
 use pocketmine\command\CommandSender;
-use pocketmine\utils\Internet;
-use pocketmine\utils\InternetRequestResult;
 use SOFe\AwaitGenerator\Await;
 use Symfony\Component\Filesystem\Path;
 use thebigcrafter\omp\helpers\PharHelper;
 use thebigcrafter\omp\Language;
 use thebigcrafter\omp\OhMyPMMP;
 use thebigcrafter\omp\pool\PoggitPluginsPool;
+use thebigcrafter\omp\utils\Internet;
 use function is_null;
 
 class InstallCommand extends BaseSubCommand
 {
-    protected function prepare() : void
-    {
-        $this->setPermission("oh-my-pmmp.install");
-
-        $this->registerArgument(0, new RawStringArgument("name", false));
-        $this->registerArgument(1, new RawStringArgument("version", true));
-    }
-
     /**
      * @param array<string> $args
      */
@@ -64,22 +55,25 @@ class InstallCommand extends BaseSubCommand
         // aka $version if user provides a specified version
         $latestVersion = (string) $pluginVersion["version"];
 
-        $res = Internet::getURL($info->getArtifactUrl());
-
-        if (!$res instanceof InternetRequestResult || $res->getCode() !== 200) {
-            $sender->sendMessage(Language::translate("messages.operation.failed", ["reason" => $res->getCode()]));
-            return;
-        }
-
-        $pharPath = Path::join(OhMyPMMP::getInstance()->getServer()->getDataPath(), "plugins", "$name.phar");
-
-        Await::f2c(function () use ($pharPath, $res, $sender, $name, $latestVersion) : Generator {
+        Await::f2c(function () use ($latestVersion, $name, $sender, $info) : Generator {
             try {
-                yield from PharHelper::create($pharPath, $res->getBody());
+                $res = yield from Internet::fetch($info->getArtifactUrl());
+
+                $pharPath = Path::join(OhMyPMMP::getInstance()->getServer()->getDataPath(), "plugins", "$name.phar");
+                yield from PharHelper::create($pharPath, $res);
                 $sender->sendMessage(Language::translate("commands.install.successfully", ["name" => $name, "version" => $latestVersion]));
+
             } catch (Exception $e) {
                 $sender->sendMessage(Language::translate("messages.operation.failed", ["reason" => $e->getMessage()]));
             }
         });
+    }
+
+    protected function prepare() : void
+    {
+        $this->setPermission("oh-my-pmmp.install");
+
+        $this->registerArgument(0, new RawStringArgument("name", false));
+        $this->registerArgument(1, new RawStringArgument("version", true));
     }
 }
