@@ -10,5 +10,4 @@
 
 	- [Commands](commands.md)
 
-- [Awesome docsify](awesome.md)
 - [Changelog](changelog.md)
