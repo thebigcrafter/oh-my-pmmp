@@ -124,7 +124,7 @@ See [Contributing](https://github.com/thebigcrafter/oh-my-pmmp/blob/main/CONTRIB
 
 <a href="https://www.jetbrains.com/community/opensource/#support"><img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg" alt="JetBrains Logo (Main) logo."><a/>
 
-[JetBrains](https://jetbrains.com), the creator of the PhpStorm, supports oh-my-pmmp with one of their [Open Source Licenses](https://www.jetbrains.com/community/opensource/#support). PhpStorm is the recommended IDE for working with oh-my-pmmp, and most of the thebigcrafter developers is using it.
+[JetBrains](https://jetbrains.com), the creator of the PhpStorm, supports oh-my-pmmp with one of their [Open Source Licenses](https://www.jetbrains.com/community/opensource/#support). PhpStorm is the recommended IDE for working with PocketMine-MP in general and oh-my-pmmp in particular, and most of the thebigcrafter developers is using it.
 
 # License
 
