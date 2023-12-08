@@ -120,6 +120,12 @@ Before you participate in our community, please read the [Code of Conduct](https
 
 See [Contributing](https://github.com/thebigcrafter/oh-my-pmmp/blob/main/CONTRIBUTING.md) for more details.
 
+# Special Thanks To:
+
+<a href="https://www.jetbrains.com/community/opensource/#support"><img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg" alt="JetBrains Logo (Main) logo."><a/>
+
+[JetBrains](https://jetbrains.com), the creator of the PhpStorm, supports oh-my-pmmp with one of their [Open Source Licenses](https://www.jetbrains.com/community/opensource/#support). PhpStorm is the recommended IDE for working with oh-my-pmmp, and most of the thebigcrafter developers is using it.
+
 # License
 
 Licensed under the [GNU General Public License v3.0](https://github.com/thebigcrafter/oh-my-pmmp/blob/main/LICENSE) license.
