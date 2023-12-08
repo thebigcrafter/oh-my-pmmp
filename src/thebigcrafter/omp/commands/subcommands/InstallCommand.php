@@ -44,7 +44,7 @@ class InstallCommand extends BaseSubCommand
     public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void
     {
         $name = $args["name"];
-        $version = isset($args["version"]) ? $args["version"] : null;
+        $version = $args["version"] ?? null;
 
         $plugin = PoggitPluginsPool::getItem($name);
 

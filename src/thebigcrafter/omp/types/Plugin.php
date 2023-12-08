@@ -18,13 +18,20 @@ use function version_compare;
 
 class Plugin
 {
-    /** @var array{version: string, plugin: PluginVersion} $versions */
+	/**
+	 * @var array<string, PluginVersion> $versions
+	 */
     private array $versions;
 
     public function __construct(
-        private string $license,
+        private readonly string $license,
     ) {
     }
+
+	public function addVersion(string $version, PluginVersion $info) : void
+	{
+		$this->versions[$version] = $info;
+	}
 
     /**
      * Get plugin's license
@@ -36,7 +43,7 @@ class Plugin
     /**
      * Get available versions
      *
-     * @return array{version: string, plugin: PluginVersion}
+     * @return array<string, PluginVersion>
      */
     public function getVersions() : array
     {
@@ -56,35 +63,30 @@ class Plugin
     /**
      * Return the latest version if no specific version is provided.
      *
-     * @return array{version: string, plugin: string|?PluginVersion}
+     * @return array{version: string, plugin: ?PluginVersion}
      */
     public function getVersion(string $version = null) : array
     {
         if (isset($version)) {
-            return ["version" => $version, "plugin" => isset($this->versions[$version]) ? $this->versions[$version] : null];
+            return ["version" => $version, "plugin" => $this->versions[$version] ?? null];
         }
 
         return $this->getLatestVersion();
     }
 
-    public function addVersion(string $version, PluginVersion $info) : void
-    {
-        $this->versions[$version] = $info;
-    }
+	/** @return array{version: string, plugin: PluginVersion} */
+	public function getLatestVersion() : array
+	{
+		$latestVersion = null;
+		foreach ($this->getVersionsOnly() as $version) {
+			if ($latestVersion === null || version_compare($version, $latestVersion, '>')) {
+				$latestVersion = $version;
+			}
+		}
 
-    /** @return array{version: string, plugin: PluginVersion} */
-    public function getLatestVersion() : array
-    {
-        $latestVersion = null;
-        foreach ($this->getVersionsOnly() as $version) {
-            if ($latestVersion === null || version_compare($version, $latestVersion, '>')) {
-                $latestVersion = $version;
-            }
-        }
-
-        return [
-            "version" => $latestVersion,
-            "plugin" => $this->getVersions()[$latestVersion]
-        ];
-    }
+		return [
+			"version" => (string) $latestVersion,
+			"plugin" => $this->versions[$latestVersion]
+		];
+	}
 }

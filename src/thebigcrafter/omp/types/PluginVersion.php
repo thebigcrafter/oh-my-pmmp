@@ -18,14 +18,14 @@ class PluginVersion {
      * @param Dependency[] $deps
      */
     public function __construct(
-        private string $html_url,
-        private string $artifact_url,
-        private int $downloads,
-        private ?int $score,
-        private string $description_url,
-        private string $changelog_url,
-        private API $api,
-        private array $deps = []
+        private readonly string $html_url,
+        private readonly string $artifact_url,
+        private readonly int    $downloads,
+        private readonly ?int   $score,
+        private readonly string $description_url,
+        private readonly string $changelog_url,
+        private readonly API    $api,
+        private readonly array $deps = []
     ) {}
 
     public function getHtmlUrl() : string {

@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace thebigcrafter\omp\types;
 
 class API {
-    public function __construct(private string $from, private string $to) {}
+    public function __construct(private readonly string $from, private readonly string $to) {}
 
     public function getMinimumSupportedVersion() : string {
         return $this->from;

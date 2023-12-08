@@ -16,10 +16,10 @@ namespace thebigcrafter\omp\types;
 class Dependency
 {
     public function __construct(
-        private string $name,
-        private string $version,
-        private string $depRelId,
-        private bool $isHard,
+        private readonly string $name,
+        private readonly string $version,
+        private readonly string $depRelId,
+        private readonly bool   $isHard,
     ) {
     }
 
