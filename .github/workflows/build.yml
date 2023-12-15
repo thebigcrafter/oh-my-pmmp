@@ -28,7 +28,7 @@ jobs:
 
       - run: mv ${{steps.pharynx.outputs.output-phar}} ./oh-my-pmmp.phar
             
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: oh-my-pmmp
           path: ./oh-my-pmmp.phar
