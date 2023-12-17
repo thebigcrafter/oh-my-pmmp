@@ -3,7 +3,7 @@
     "description": "A plugin manager for PocketMine-MP downloads plugin from PocketMine-MP official plugin repository",
     "type": "project",
     "require": {
-        "php": "^8.1",
+        "php": "^8.2",
         "sof3/await-generator": "^3.6",
         "thebigcrafter/commando": "dev-master"
     },
