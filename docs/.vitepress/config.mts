@@ -2,7 +2,7 @@ import { defineConfig } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base: "https://thebigcrafter.github.io/oh-my-pmmp/",
+  base: "/oh-my-pmmp/",
   title: "Oh My PMMP",
   description: "A powerful plugin manager for PocketMine-MP",
   themeConfig: {
