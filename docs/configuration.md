@@ -1,3 +1,8 @@
+---
+title: Docs with VitePress
+editLink: true
+---
+
 ## Language
 Change oh-my-pmmp's language. For available languages, check [here](https://github.com/thebigcrafter/oh-my-pmmp/tree/main/resources/lang).
 ```yaml

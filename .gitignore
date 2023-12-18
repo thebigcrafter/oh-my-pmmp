@@ -3,8 +3,13 @@ vendor/
 vendor-bin/*/vendor/
 composer.lock
 
+# Node
+node_modules/
+
 # Cache
 *.cache
+docs/.vitepress/cache
 
 # Build
 *.phar
+docs/.vitepress/dist

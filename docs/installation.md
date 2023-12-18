@@ -1,3 +1,8 @@
+---
+title: Installation
+editLink: true
+---
+
 # Installation
 
 ## Prerequisites

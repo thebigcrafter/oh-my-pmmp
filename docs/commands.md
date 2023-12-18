@@ -1,66 +1,32 @@
+---
+title: Docs with VitePress
+editLink: true
+---
+
 # Commands
 
-Oh My PMMP provides `omp` command to allow you to install, upgrade, remove, etc. plugins from [Poggit](https://poggit.pmmp.io)  
-`NOTE:` To use all commands of Oh My PMMP, use `oh-my-pmmp.cmds` permission.
+### `omp`
 
-### /omp help
+- Oh My PMMP provides omp command to allow you to install, upgrade, remove, etc. plugins from Poggit  
+- To use all commands of Oh My PMMP, use `oh-my-pmmp.cmds` permission.
 
-> Permission: oh-my-pmmp.help
+#### Usage
 
-List available commands.
+```bash
+omp
+```
 
-### /omp version
+#### Options
 
-> Permission: oh-my-pmmp.version
-
-Print plugin version.
-
-### /omp install <plugin> <version>
-
-> Permission: oh-my-pmmp.install
-
-Install a plugin with a specified version or leave it empty to install the latest one.
-
-### /omp remove <plugin>
-
-> Permission: oh-my-pmmp.remove
-
-Remove a plugin.
-
-### /omp update
-
-> Permission: oh-my-pmmp.update
-
-Update cached data.
-
-### /omp list
-
-> Permission: oh-my-pmmp.list
-
-List available plugins or installed plugins.
-
-- To display the list of plugins by page, use the command `omp list <page>`, default is `1`.
-
-### /omp show <plugin> <version>
-
-> Permission: oh-my-pmmp.show
-
-Get details about a plugin (name, version, api, depends, etc.).
-
-### /omp extract <plugin>
-
-> Permission: oh-my-pmmp.extract
-
-Unphar a plugin
-
-### /omp enable <plugin>
-
-> Permission: oh-my-pmmp.enable
-
-Enable a disabled plugin
-
-### /omp disable <plugin>
-
-> Permission: oh-my-pmmp.disable
-
-Disable a plugin
+| Permission | Options |  |
+|---|---|---|
+| `oh-my-pmmp.help` | `help, h, -h, --help` | List available commands. |
+| `oh-my-pmmp.version` | `version, v, -v, --version` | Print plugin version. |
+| `oh-my-pmmp.install` | `install, i, -i, --install` | Install a plugin with a specified version or leave it empty to install the latest one. |
+| `oh-my-pmmp.remove` | `remove, r, -r, --remove` | Remove a plugin. |
+| `oh-my-pmmp.update` | `update` | Update cached data. |
+| `oh-my-pmmp.list` | `list, l, -l, --list` | List available plugins or installed plugins. |
+| `oh-my-pmmp.show` | `show, s, -s, --show` | Get details about a plugin (name, version, api, depends, etc.). |
+| `oh-my-pmmp.extract` | `extract, e, -e, --extract` | Unphar a plugin |
+| `oh-my-pmmp.enable` | `enable` | Enable a disabled plugin |
+| `oh-my-pmmp.disable` | `disable` | Disable a plugin |
