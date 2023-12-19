@@ -5,8 +5,7 @@ branches:
 projects:
   oh-my-pmmp:
     path: ""
-    lint:
-      phpstan: false
+    lint: false
     icon: assets/icon.png
     libs:
       - src: SOF3/await-generator/await-generator
