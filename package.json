@@ -2,7 +2,7 @@
   "name": "oh-my-pmmp-docs",
   "version": "1.0.0",
   "description": "oh-my-pmmp docs",
-  "main": "index.js",
+  "main": "./docs/index.md",
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
