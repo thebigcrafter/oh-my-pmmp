@@ -18,6 +18,8 @@ use Exception;
 use Generator;
 use Phar;
 use SOFe\AwaitGenerator\Await;
+use Symfony\Component\Filesystem\Path;
+use thebigcrafter\omp\OhMyPMMP;
 use Throwable;
 use function file_put_contents;
 
@@ -41,13 +43,16 @@ class PharHelper
         });
     }
 
-    /**
-     * Extract a Phar file to specified location
-     * Throw an exception on failure
-     */
+	/**
+	 * <p>Extract the PHAR file</p>
+	 *
+	 * @param string $filePath
+	 * @param string $to
+	 * @return Generator
+	 */
     public static function extract(string $filePath, string $to) : Generator
     {
-        return Await::promise(function (Closure $resolve, Closure $reject) use ($filePath, $to) {
+        return Await::promise(function (Closure $resolve, Closure $reject) use ($to, $filePath) {
             $phar = new Phar($filePath);
             try {
                 $phar->extractTo($to);

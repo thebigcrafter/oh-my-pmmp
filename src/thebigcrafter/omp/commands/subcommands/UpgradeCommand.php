@@ -15,6 +15,7 @@ namespace thebigcrafter\omp\commands\subcommands;
 
 use CortexPE\Commando\args\RawStringArgument;
 use CortexPE\Commando\BaseSubCommand;
+use CortexPE\Commando\exception\ArgumentOrderException;
 use Exception;
 use Generator;
 use pocketmine\command\CommandSender;
@@ -25,7 +26,10 @@ use thebigcrafter\omp\OhMyPMMP;
 
 class UpgradeCommand extends BaseSubCommand
 {
-    protected function prepare() : void
+	/**
+	 * @throws ArgumentOrderException
+	 */
+	protected function prepare() : void
     {
         $this->setPermission("oh-my-pmmp.upgrade");
 

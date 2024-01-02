@@ -24,7 +24,7 @@ final class CheckForUpdates extends AsyncTask
 {
     private string $highestVersion;
     private string $artifactUrl;
-    public function __construct(private readonly string $name, private string $currentVersion)
+    public function __construct(private readonly string $name, private readonly string $currentVersion)
     {
         $this->highestVersion = $currentVersion;
         $this->artifactUrl = "";

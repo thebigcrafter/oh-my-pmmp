@@ -24,8 +24,9 @@ final class Internet {
             /**
              * @var string $err
              */
-            if($err) {
+            if($err || $res === null) {
                 $reject(new Exception($err));
+				return;
             }
 
             $resolve($res->getBody());

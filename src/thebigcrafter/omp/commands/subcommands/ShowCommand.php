@@ -15,6 +15,7 @@ namespace thebigcrafter\omp\commands\subcommands;
 
 use CortexPE\Commando\args\RawStringArgument;
 use CortexPE\Commando\BaseSubCommand;
+use CortexPE\Commando\exception\ArgumentOrderException;
 use pocketmine\command\CommandSender;
 use thebigcrafter\omp\Language;
 use thebigcrafter\omp\pool\PoggitPluginsPool;
@@ -23,7 +24,10 @@ use function is_null;
 
 class ShowCommand extends BaseSubCommand
 {
-    protected function prepare() : void
+	/**
+	 * @throws ArgumentOrderException
+	 */
+	protected function prepare() : void
     {
         $this->setPermission("oh-my-pmmp.show");
 
@@ -37,7 +41,7 @@ class ShowCommand extends BaseSubCommand
     public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void
     {
         $name = $args["name"];
-        $version = isset($args["version"]) ? $args["version"] : null;
+        $version = $args["version"] ?? null;
 
         $plugin = PoggitPluginsPool::getItem($name);
 

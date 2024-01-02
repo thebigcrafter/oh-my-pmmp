@@ -15,12 +15,14 @@ namespace thebigcrafter\omp\commands\subcommands;
 
 use CortexPE\Commando\args\RawStringArgument;
 use CortexPE\Commando\BaseSubCommand;
+use CortexPE\Commando\exception\ArgumentOrderException;
 use Exception;
 use Generator;
 use pocketmine\command\CommandSender;
 use SOFe\AwaitGenerator\Await;
 use Symfony\Component\Filesystem\Path;
 use thebigcrafter\omp\helpers\PharHelper;
+use thebigcrafter\omp\helpers\PoggitHelper;
 use thebigcrafter\omp\Language;
 use thebigcrafter\omp\OhMyPMMP;
 use thebigcrafter\omp\pool\PoggitPluginsPool;
@@ -39,10 +41,10 @@ class InstallCommand extends BaseSubCommand
 
         $plugin = PoggitPluginsPool::getItem($name);
 
-        if (!isset($plugin)) {
-            $sender->sendMessage(Language::translate("commands.install.failed_1", ["name" => $name]));
-            return;
-        }
+		if(!PoggitHelper::pluginExist($name)) {
+			$sender->sendMessage(Language::translate("commands.install.failed_1", ["name" => $name]));
+			return;
+		}
 
         $pluginVersion = $plugin->getVersion($version);
 
@@ -69,7 +71,10 @@ class InstallCommand extends BaseSubCommand
         });
     }
 
-    protected function prepare() : void
+	/**
+	 * @throws ArgumentOrderException
+	 */
+	protected function prepare() : void
     {
         $this->setPermission("oh-my-pmmp.install");
 

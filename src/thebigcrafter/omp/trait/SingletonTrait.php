@@ -17,7 +17,7 @@ use thebigcrafter\omp\OhMyPMMP;
 
 trait SingletonTrait{
     /** @var OhMyPMMP|null */
-    private static $instance = null;
+    private static ?OhMyPMMP $instance = null;
 
     private static function make() : OhMyPMMP{
         // It can create a new OhMyPMMP without any params. Magical!

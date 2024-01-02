@@ -27,23 +27,26 @@ use function str_replace;
 final class Locale
 {
     /** @var array<string, array<string, string>> */
-    protected static $languages = [];
+    protected static array $languages = [];
 
     /**
      * Throw Exceptions?
      *
      * @var bool
      */
-    public static $exceptions = true;
+    public static bool $exceptions = true;
 
     /**
      * Default Locale
      *
      * @var string
      */
-    public $default;
+    public string $default;
 
-    public function __construct(string $default)
+	/**
+	 * @throws Exception
+	 */
+	public function __construct(string $default)
     {
         if (!array_key_exists($default, self::$languages)) {
             throw new Exception("Locale not found");
@@ -52,7 +55,10 @@ final class Locale
         $this->default = $default;
     }
 
-    public static function setLanguageFromJSON(string $name, string $path) : void
+	/**
+	 * @throws Exception
+	 */
+	public static function setLanguageFromJSON(string $name, string $path) : void
     {
         if (!file_exists($path)) {
             throw new Exception("Translation file not found.");
@@ -65,12 +71,12 @@ final class Locale
 
     /**
      * @param array<string, string|int> $placeholders
-     * @return mixed
-     *
+     * @return array|string|string[]
+	 *
      * @throws Exception
      */
-    public function getText(string $key, array $placeholders = [])
-    {
+    public function getText(string $key, array $placeholders = []): array|string
+	{
         $default = "{{$key}}";
 
         if (!array_key_exists($key, self::$languages[$this->default])) {

@@ -21,15 +21,15 @@ use Symfony\Component\Filesystem\Exception\IOException;
 class Filesystem
 {
     /**
-     * Files and folders remover
+     * Remove files and folder
      */
     public static function remove(string $path) : Generator
     {
         return yield from Await::promise(function (Closure $resolve, Closure $reject) use ($path) {
             $fs = new \Symfony\Component\Filesystem\Filesystem();
             try {
-                // @phpstan-ignore-next-line
-                $resolve($fs->remove($path));
+				$fs->remove($path);
+                $resolve();
             } catch (IOException $e) {
                 $reject($e);
             }
@@ -44,17 +44,21 @@ class Filesystem
         return yield from Await::promise(function (Closure $resolve, Closure $reject) use ($origin, $target) {
             $fs = new \Symfony\Component\Filesystem\Filesystem();
             try {
-                // @phpstan-ignore-next-line
-                $resolve($fs->rename($origin, $target));
+				$fs->rename($origin, $target);
+                $resolve();
             } catch (IOException $e) {
                 $reject($e);
             }
         });
     }
 
-    /**
-     * Check if files or folders exist
-     */
+	/**
+	 * Checks the existence of files or directories.
+	 *
+	 * @param iterable|string $files
+	 *
+	 * @return bool
+	 */
     public static function exists(iterable|string $files) : bool
     {
         $fs = new \Symfony\Component\Filesystem\Filesystem();

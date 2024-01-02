@@ -15,6 +15,7 @@ namespace thebigcrafter\omp\commands\subcommands;
 
 use CortexPE\Commando\args\IntegerArgument;
 use CortexPE\Commando\BaseSubCommand;
+use CortexPE\Commando\exception\ArgumentOrderException;
 use pocketmine\command\CommandSender;
 use thebigcrafter\omp\Language;
 use thebigcrafter\omp\OhMyPMMP;
@@ -29,7 +30,10 @@ use function min;
 
 class ListCommand extends BaseSubCommand
 {
-    protected function prepare() : void
+	/**
+	 * @throws ArgumentOrderException
+	 */
+	protected function prepare() : void
     {
         $this->setPermission("oh-my-pmmp.list");
 

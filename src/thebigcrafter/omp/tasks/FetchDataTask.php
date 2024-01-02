@@ -24,7 +24,7 @@ use thebigcrafter\omp\types\API;
 use thebigcrafter\omp\types\Dependency;
 use thebigcrafter\omp\types\Plugin;
 use thebigcrafter\omp\types\PluginVersion;
-use thebigcrafter\omp\Utils;
+use thebigcrafter\omp\utils\Utils;
 use function array_map;
 use function count;
 use function json_decode;
@@ -53,7 +53,6 @@ class FetchDataTask extends AsyncTask
                 continue;
             }
 
-            // @phpstan-ignore-next-line
             if (OhMyPMMP::getInstance()->getConfig()->get("skipIncompatiblePlugins") && !Utils::isMajorVersionInRange(OhMyPMMP::getInstance()->getServer()->getApiVersion(), $pl["api"][0]["from"], $pl["api"][0]["to"])) {
                 continue;
             }

@@ -16,6 +16,7 @@ namespace thebigcrafter\omp\commands\subcommands;
 use CortexPE\Commando\args\BooleanArgument;
 use CortexPE\Commando\args\RawStringArgument;
 use CortexPE\Commando\BaseSubCommand;
+use CortexPE\Commando\exception\ArgumentOrderException;
 use Generator;
 use pocketmine\command\CommandSender;
 use SOFe\AwaitGenerator\Await;
@@ -24,7 +25,10 @@ use thebigcrafter\omp\Language;
 
 class RemoveCommand extends BaseSubCommand
 {
-    protected function prepare() : void
+	/**
+	 * @throws ArgumentOrderException
+	 */
+	protected function prepare() : void
     {
         $this->setPermission("oh-my-pmmp.remove");
 

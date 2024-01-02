@@ -15,6 +15,7 @@ namespace thebigcrafter\omp\commands\subcommands;
 
 use CortexPE\Commando\args\RawStringArgument;
 use CortexPE\Commando\BaseSubCommand;
+use CortexPE\Commando\exception\ArgumentOrderException;
 use Generator;
 use pocketmine\command\CommandSender;
 use SOFe\AwaitGenerator\Await;
@@ -22,12 +23,15 @@ use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Path;
 use thebigcrafter\omp\Language;
 use thebigcrafter\omp\OhMyPMMP;
-use thebigcrafter\omp\Utils;
 use thebigcrafter\omp\utils\Filesystem;
+use thebigcrafter\omp\utils\Utils;
 
 class EnableCommand extends BaseSubCommand
 {
-    protected function prepare() : void
+	/**
+	 * @throws ArgumentOrderException
+	 */
+	protected function prepare() : void
     {
         $this->setPermission("oh-my-pmmp.enable");
 
@@ -40,7 +44,7 @@ class EnableCommand extends BaseSubCommand
     public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void
     {
         $name = $args["name"];
-        $newPluginFilePath = Path::join(Utils::getPluginsFolder(), "$name.phar");
+        $newPluginFilePath = Utils::generatePluginFilePathWithName($name);
         $oldPluginFilePath = Path::join(OhMyPMMP::getInstance()->getServer()->getPluginPath(), "..", "disabled_plugins", "$name.phar");
 
         if (!Filesystem::exists($oldPluginFilePath)) {
