@@ -15,14 +15,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup PHP 🐘
+      - name: Set up PHP 8.1 environment
         uses: pmmp/setup-php-action@2.0.0
         with:
           php-version: 8.1
           install-path: "./bin"
           pm-version-major: "5"
 
-      - uses: "ramsey/composer-install@v2"
+      - name: Install Composer dependencies
+        uses: "ramsey/composer-install@v2"
 
       - name: Run PHPStan analysis
         run: composer run-script analyse
@@ -37,7 +38,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup PHP 🐘
+      - name: Set up PHP 8.1 environment
         uses: shivammathur/setup-php@2.29.0
         with:
           php-version: 8.1

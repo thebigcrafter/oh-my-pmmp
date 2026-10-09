@@ -14,21 +14,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup PHP 🐘
+      - name: Set up PHP 8.1 environment
         uses: pmmp/setup-php-action@2.0.0
         with:
           php-version: 8.1
           install-path: "./bin"
           pm-version-major: "5"
   
-      - uses: SOF3/pharynx@v0.1
+      - name: Build plugin PHAR with Pharynx
+        uses: SOF3/pharynx@v0.1
         id: pharynx
         with:
           pharynx-version: "0.3.6"
 
-      - run: mv ${{steps.pharynx.outputs.output-phar}} ./oh-my-pmmp.phar
+      - name: Rename generated plugin PHAR
+        run: mv ${{steps.pharynx.outputs.output-phar}} ./oh-my-pmmp.phar
             
-      - uses: actions/upload-artifact@v4
+      - name: Upload plugin artifact
+        uses: actions/upload-artifact@v4
         with:
           name: oh-my-pmmp
           path: ./oh-my-pmmp.phar

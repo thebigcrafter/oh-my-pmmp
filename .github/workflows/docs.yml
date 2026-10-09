@@ -18,27 +18,28 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Check out repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: pnpm/action-setup@v2
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2
         with:
           version: 8
-      - name: Setup Node
+      - name: Set up Node.js 18 environment
         uses: actions/setup-node@v4
         with:
           node-version: 18
           cache: pnpm
-      - name: Setup Pages
+      - name: Configure GitHub Pages
         uses: actions/configure-pages@v4
-      - name: Install dependencies
+      - name: Install documentation dependencies
         run: pnpm i
-      - name: Build with VitePress
+      - name: Build documentation with VitePress
         run: |
           pnpm docs:build
           touch docs/.vitepress/dist/.nojekyll
-      - name: Upload artifact
+      - name: Upload documentation artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: docs/.vitepress/dist

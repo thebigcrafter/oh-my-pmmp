@@ -55,7 +55,7 @@ class Filesystem
 	/**
 	 * Checks the existence of files or directories.
 	 *
-	 * @param iterable|string $files
+	 * @param iterable<string>|string $files
 	 *
 	 * @return bool
 	 */
