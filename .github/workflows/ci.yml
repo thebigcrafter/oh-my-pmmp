@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Set up PHP 8.1 environment
-        uses: pmmp/setup-php-action@2.0.0
+        uses: pmmp/setup-php-action@3.2.0
         with:
           php-version: 8.1
           install-path: "./bin"
