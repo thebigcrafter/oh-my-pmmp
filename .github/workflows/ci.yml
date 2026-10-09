@@ -1,4 +1,4 @@
-name: CI
+name: Run static analysis and code style checks
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   phpstan:
-    name: PHPStan analysis
+    name: Analyze PHP code with PHPStan
     runs-on: ubuntu-latest
 
     strategy:
@@ -24,11 +24,11 @@ jobs:
 
       - uses: "ramsey/composer-install@v2"
 
-      - name: Run PHPStan 🔍
+      - name: Run PHPStan analysis
         run: composer run-script analyse
 
   codestyle:
-    name: Code Style checks
+    name: Check PHP code style
     runs-on: ubuntu-latest
 
     strategy:
@@ -45,5 +45,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run PHP-CS-Fixer 🔍
+      - name: Check PHP code style
         run: php-cs-fixer fix --dry-run --ansi --diff

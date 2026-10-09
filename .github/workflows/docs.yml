@@ -1,4 +1,4 @@
-name: Documentation
+name: Build and publish documentation
 
 on:
   push:
@@ -48,8 +48,8 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     needs: build
     runs-on: ubuntu-latest
-    name: Deploy
+    name: Publish documentation
     steps:
-      - name: Deploy to GitHub Pages
+      - name: Publish documentation to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

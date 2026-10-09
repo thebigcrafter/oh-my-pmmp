@@ -1,11 +1,11 @@
-name: Build
+name: Build plugin PHAR
 
 on:
   push:
 
 jobs:
   build-phar:
-    name: Build PHAR file
+    name: Build plugin PHAR
     runs-on: ubuntu-latest
 
     strategy:
