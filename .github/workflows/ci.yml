@@ -25,7 +25,7 @@ jobs:
       - name: Install Composer dependencies
         uses: ramsey/composer-install@1919f6c305aea6ab10e6181a8ddf72317ad77e0e
 
-      - name: Run PHPStan analysis
+      - name: Run PHPStan at maximum level
         run: composer run-script analyse
 
   codestyle:
