@@ -27,10 +27,10 @@ use Throwable;
 
 class ExtractCommand extends BaseSubCommand
 {
-	/**
-	 * @throws ArgumentOrderException
-	 */
-	protected function prepare() : void
+    /**
+     * @throws ArgumentOrderException
+     */
+    protected function prepare() : void
     {
         $this->setPermission("oh-my-pmmp.extract");
 

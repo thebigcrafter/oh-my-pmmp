@@ -28,7 +28,7 @@ class Filesystem
         return yield from Await::promise(function (Closure $resolve, Closure $reject) use ($path) {
             $fs = new \Symfony\Component\Filesystem\Filesystem();
             try {
-				$fs->remove($path);
+                $fs->remove($path);
                 $resolve();
             } catch (IOException $e) {
                 $reject($e);
@@ -44,7 +44,7 @@ class Filesystem
         return yield from Await::promise(function (Closure $resolve, Closure $reject) use ($origin, $target) {
             $fs = new \Symfony\Component\Filesystem\Filesystem();
             try {
-				$fs->rename($origin, $target);
+                $fs->rename($origin, $target);
                 $resolve();
             } catch (IOException $e) {
                 $reject($e);
@@ -52,13 +52,11 @@ class Filesystem
         });
     }
 
-	/**
-	 * Checks the existence of files or directories.
-	 *
-	 * @param iterable<string>|string $files
-	 *
-	 * @return bool
-	 */
+    /**
+     * Checks the existence of files or directories.
+     *
+     * @param iterable<string>|string $files
+     */
     public static function exists(iterable|string $files) : bool
     {
         $fs = new \Symfony\Component\Filesystem\Filesystem();

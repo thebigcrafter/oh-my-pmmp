@@ -28,10 +28,10 @@ use thebigcrafter\omp\utils\Utils;
 
 class EnableCommand extends BaseSubCommand
 {
-	/**
-	 * @throws ArgumentOrderException
-	 */
-	protected function prepare() : void
+    /**
+     * @throws ArgumentOrderException
+     */
+    protected function prepare() : void
     {
         $this->setPermission("oh-my-pmmp.enable");
 

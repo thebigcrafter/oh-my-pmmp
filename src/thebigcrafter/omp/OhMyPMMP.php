@@ -27,8 +27,8 @@ class OhMyPMMP extends PluginBase
     public function onLoad() : void
     {
         self::setInstance($this);
-		/** @var string $selectedLanguage */
-		$selectedLanguage = $this->getConfig()->get("language");
+        /** @var string $selectedLanguage */
+        $selectedLanguage = $this->getConfig()->get("language");
         Language::loadLanguages($selectedLanguage);
         $this->createFolders();
     }

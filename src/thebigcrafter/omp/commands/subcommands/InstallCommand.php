@@ -41,10 +41,10 @@ class InstallCommand extends BaseSubCommand
 
         $plugin = PoggitPluginsPool::getItem($name);
 
-		if(!PoggitHelper::pluginExist($name)) {
-			$sender->sendMessage(Language::translate("commands.install.failed_1", ["name" => $name]));
-			return;
-		}
+        if(!PoggitHelper::pluginExist($name)) {
+            $sender->sendMessage(Language::translate("commands.install.failed_1", ["name" => $name]));
+            return;
+        }
 
         $pluginVersion = $plugin->getVersion($version);
 
@@ -71,10 +71,10 @@ class InstallCommand extends BaseSubCommand
         });
     }
 
-	/**
-	 * @throws ArgumentOrderException
-	 */
-	protected function prepare() : void
+    /**
+     * @throws ArgumentOrderException
+     */
+    protected function prepare() : void
     {
         $this->setPermission("oh-my-pmmp.install");
 

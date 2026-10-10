@@ -30,10 +30,10 @@ use function min;
 
 class ListCommand extends BaseSubCommand
 {
-	/**
-	 * @throws ArgumentOrderException
-	 */
-	protected function prepare() : void
+    /**
+     * @throws ArgumentOrderException
+     */
+    protected function prepare() : void
     {
         $this->setPermission("oh-my-pmmp.list");
 

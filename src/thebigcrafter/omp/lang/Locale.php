@@ -29,24 +29,16 @@ final class Locale
     /** @var array<string, array<string, string>> */
     protected static array $languages = [];
 
-    /**
-     * Throw Exceptions?
-     *
-     * @var bool
-     */
+    /** Throw Exceptions? */
     public static bool $exceptions = true;
 
-    /**
-     * Default Locale
-     *
-     * @var string
-     */
+    /** Default Locale */
     public string $default;
 
-	/**
-	 * @throws Exception
-	 */
-	public function __construct(string $default)
+    /**
+     * @throws Exception
+     */
+    public function __construct(string $default)
     {
         if (!array_key_exists($default, self::$languages)) {
             throw new Exception("Locale not found");
@@ -55,10 +47,10 @@ final class Locale
         $this->default = $default;
     }
 
-	/**
-	 * @throws Exception
-	 */
-	public static function setLanguageFromJSON(string $name, string $path) : void
+    /**
+     * @throws Exception
+     */
+    public static function setLanguageFromJSON(string $name, string $path) : void
     {
         if (!file_exists($path)) {
             throw new Exception("Translation file not found.");
@@ -71,12 +63,11 @@ final class Locale
 
     /**
      * @param array<string, string|int> $placeholders
-	 * @return string
-	 *
+     *
      * @throws Exception
      */
-    public function getText(string $key, array $placeholders = []): string
-	{
+    public function getText(string $key, array $placeholders = []) : string
+    {
         $default = "{{$key}}";
 
         if (!array_key_exists($key, self::$languages[$this->default])) {

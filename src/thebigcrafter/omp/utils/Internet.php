@@ -26,7 +26,7 @@ final class Internet {
              */
             if($err || $res === null) {
                 $reject(new Exception($err));
-				return;
+                return;
             }
 
             $resolve($res->getBody());

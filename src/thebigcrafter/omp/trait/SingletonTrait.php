@@ -16,7 +16,6 @@ namespace thebigcrafter\omp\trait;
 use thebigcrafter\omp\OhMyPMMP;
 
 trait SingletonTrait{
-    /** @var OhMyPMMP|null */
     private static ?OhMyPMMP $instance = null;
 
     public static function getInstance() : OhMyPMMP{
