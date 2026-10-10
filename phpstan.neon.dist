@@ -1,10 +1,9 @@
 parameters:
-	level: 9
+	level: max
 	paths:
 		- src
 	excludePaths:
 		analyseAndScan:
-			- src/*/*/OhMyPMMP.php
 			- src/*/*/pool/*
 			- src/*/*/types/*
 			- src/*/*/commands/*

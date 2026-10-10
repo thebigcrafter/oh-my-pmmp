@@ -19,14 +19,9 @@ trait SingletonTrait{
     /** @var OhMyPMMP|null */
     private static ?OhMyPMMP $instance = null;
 
-    private static function make() : OhMyPMMP{
-        // It can create a new OhMyPMMP without any params. Magical!
-        return new self();
-    }
-
     public static function getInstance() : OhMyPMMP{
         if(self::$instance === null){
-            self::$instance = self::make();
+            throw new \LogicException("oh-my-pmmp is not initialized");
         }
         return self::$instance;
     }

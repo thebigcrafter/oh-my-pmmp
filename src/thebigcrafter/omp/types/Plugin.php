@@ -63,7 +63,7 @@ class Plugin
      *
      * @return array{version: string, plugin: ?PluginVersion}
      */
-    public function getVersion(string $version = null) : array
+    public function getVersion(?string $version = null) : array
     {
         if (isset($version)) {
             return ["version" => $version, "plugin" => $this->versions[$version] ?? null];

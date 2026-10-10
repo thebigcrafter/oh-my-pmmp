@@ -64,7 +64,7 @@ class Language
     }
 
     /**
-     * @param string[] $placeholders
+     * @param array<string, string|int> $placeholders
      */
     public static function translate(string $key, array $placeholders) : string
     {

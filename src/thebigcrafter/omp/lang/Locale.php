@@ -71,11 +71,11 @@ final class Locale
 
     /**
      * @param array<string, string|int> $placeholders
-     * @return array|string|string[]
+	 * @return string
 	 *
      * @throws Exception
      */
-    public function getText(string $key, array $placeholders = []): array|string
+    public function getText(string $key, array $placeholders = []): string
 	{
         $default = "{{$key}}";
 
