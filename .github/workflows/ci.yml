@@ -13,7 +13,7 @@ jobs:
       fail-fast: false
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
 
       - name: Set up PHP 8.2 environment
         uses: pmmp/setup-php-action@3c38c259834f945351a662392836d90eb08abff0
@@ -23,7 +23,7 @@ jobs:
           pm-version-major: "5"
 
       - name: Install Composer dependencies
-        uses: "ramsey/composer-install@v2"
+        uses: ramsey/composer-install@1919f6c305aea6ab10e6181a8ddf72317ad77e0e
 
       - name: Run PHPStan analysis
         run: composer run-script analyse
@@ -36,10 +36,10 @@ jobs:
       fail-fast: false
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
 
       - name: Set up PHP 8.1 environment
-        uses: shivammathur/setup-php@2.29.0
+        uses: shivammathur/setup-php@8111a99597b62a73e9445b0d625ea6c4c82c0a04
         with:
           php-version: 8.1
           tools: php-cs-fixer
