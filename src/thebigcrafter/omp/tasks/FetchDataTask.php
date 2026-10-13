@@ -37,16 +37,22 @@ class FetchDataTask extends AsyncTask
         $res = Internet::getURL(Poggit::REPO_URL);
 
         if (!$res instanceof InternetRequestResult) {
+            $this->setResult([]);
             return;
         }
 
-        $this->setResult(json_decode($res->getBody(), true));
+        $data = json_decode($res->getBody(), true);
+        $this->setResult(is_array($data) ? $data : []);
     }
 
     public function onCompletion() : void
     {
         /** @var array<string, array<string>> $data */
         $data = $this->getResult();
+
+        if (!is_array($data)) {
+            return;
+        }
 
         foreach ($data as $pl) {
             if (!isset($pl["api"][0])) {
