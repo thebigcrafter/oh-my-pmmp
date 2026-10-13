@@ -27,6 +27,7 @@ use thebigcrafter\omp\types\PluginVersion;
 use thebigcrafter\omp\utils\Utils;
 use function array_map;
 use function count;
+use function is_array;
 use function json_decode;
 use function strval;
 
@@ -53,7 +54,6 @@ class FetchDataTask extends AsyncTask
         if (!is_array($data)) {
             return;
         }
-
         foreach ($data as $pl) {
             if (!isset($pl["api"][0])) {
                 continue;
