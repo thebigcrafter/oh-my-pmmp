@@ -33,16 +33,16 @@ class OMPCommand extends BaseCommand
         $this->setPermission("oh-my-pmmp.cmds");
 
         $subcommands = [
-            new VersionCommand($this->getOwningPlugin(), "version", "Print oh-my-pmmp and PHP version", ["v", "-v", "--version"]),
-            new RemoveCommand($this->getOwningPlugin(), "remove", "Remove a plugin", ["r", "-r", "--remove"]),
-            new ListCommand($this->getOwningPlugin(), "list", "List available plugins", ["l", "-l", "--list"]),
-            new ShowCommand($this->getOwningPlugin(), "show", "Get details about a plugin", ["s", "-s", "--show"]),
-            new InstallCommand($this->getOwningPlugin(), "install", "Install a plugin", ["i", "-i", "--install"]),
-            new ExtractCommand($this->getOwningPlugin(), "extract", "Extract a plugin", ["e", "-e", "--extract"]),
-            new UpdateCommand($this->getOwningPlugin(), "update", "Update fetched data", ["ud", "-ud", "--update"]),
-            new EnableCommand($this->getOwningPlugin(), "enable", "Enable plugin"),
-            new DisableCommand($this->getOwningPlugin(), "disable", "Disable plugin"),
-            new UpgradeCommand($this->getOwningPlugin(), "upgrade", "Upgrade plugin", ["u", "-u", "--upgrade"])
+            new VersionCommand("version", "Print oh-my-pmmp and PHP version", ["v", "-v", "--version"]),
+            new RemoveCommand("remove", "Remove a plugin", ["r", "-r", "--remove"]),
+            new ListCommand("list", "List available plugins", ["l", "-l", "--list"]),
+            new ShowCommand("show", "Get details about a plugin", ["s", "-s", "--show"]),
+            new InstallCommand("install", "Install a plugin", ["i", "-i", "--install"]),
+            new ExtractCommand("extract", "Extract a plugin", ["e", "-e", "--extract"]),
+            new UpdateCommand("update", "Update fetched data", ["ud", "-ud", "--update"]),
+            new EnableCommand("enable", "Enable plugin"),
+            new DisableCommand("disable", "Disable plugin"),
+            new UpgradeCommand("upgrade", "Upgrade plugin", ["u", "-u", "--upgrade"])
         ];
 
         foreach ($subcommands as $subcommand) {
