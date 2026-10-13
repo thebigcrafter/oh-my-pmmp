@@ -2,6 +2,13 @@
     "name": "thebigcrafter/oh-my-pmmp",
     "description": "A plugin manager for PocketMine-MP downloads plugin from PocketMine-MP official plugin repository",
     "type": "project",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/axolotl-pm/PocketMine-MP",
+            "no-api": true
+        }
+    ],
     "require": {
         "php": "^8.2",
         "sof3/await-generator": "^3.6",
@@ -10,7 +17,7 @@
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.40",
         "phpstan/phpstan": "^2.1",
-        "pocketmine/pocketmine-mp": "^5.8"
+        "axolotl-pm/pocketmine-mp": "5.49.1"
     },
     "license": "GPL-3.0-only",
     "config": {
