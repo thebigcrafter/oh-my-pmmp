@@ -50,10 +50,6 @@ class FetchDataTask extends AsyncTask
     {
         /** @var array<string, array<string>> $data */
         $data = $this->getResult();
-        if (!is_array($data)) {
-            return;
-        }
-
         foreach ($data as $pl) {
             if (!isset($pl["api"][0])) {
                 continue;
