@@ -5,7 +5,7 @@
     "require": {
         "php": "^8.2",
         "sof3/await-generator": "^3.6",
-        "thebigcrafter/commando": "dev-master"
+        "thebigcrafter/commando": "3.3.2"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.40",
