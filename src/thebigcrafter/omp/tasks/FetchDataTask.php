@@ -54,6 +54,7 @@ class FetchDataTask extends AsyncTask
         if (!is_array($data)) {
             return;
         }
+
         foreach ($data as $pl) {
             if (!isset($pl["api"][0])) {
                 continue;
