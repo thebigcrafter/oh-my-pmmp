@@ -7,13 +7,13 @@ on:
 jobs:
   phpstan:
     name: Analyze PHP code with PHPStan
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     strategy:
       fail-fast: false
 
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/checkout@f548e57e544e1ff5a4c46bf1e1b8685f8e4a348a
 
       - name: Set up PHP 8.2 environment
         uses: pmmp/setup-php-action@3c38c259834f945351a662392836d90eb08abff0
@@ -30,16 +30,16 @@ jobs:
 
   codestyle:
     name: Check PHP code style
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     strategy:
       fail-fast: false
 
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/checkout@f548e57e544e1ff5a4c46bf1e1b8685f8e4a348a
 
       - name: Set up PHP 8.1 environment
-        uses: shivammathur/setup-php@6d7209f44a25a59e904b1ee9f3b0c33ab2cd888d
+        uses: shivammathur/setup-php@5a89ae6dd61c772780c51d7542f4374d76990a0b
         with:
           php-version: 8.1
           tools: php-cs-fixer

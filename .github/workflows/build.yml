@@ -1,18 +1,18 @@
-name: Build and validate plugin
+name: Build and validate oh-my-pmmp plugin
 
 on:
   push:
 
 jobs:
   build-phar:
-    name: Build and validate plugin
-    runs-on: ubuntu-latest
+    name: Build and validate oh-my-pmmp plugin
+    runs-on: ubuntu-24.04
 
     strategy:
       fail-fast: false
 
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/checkout@f548e57e544e1ff5a4c46bf1e1b8685f8e4a348a
 
       - name: Set up PHP 8.2 environment
         uses: pmmp/setup-php-action@3c38c259834f945351a662392836d90eb08abff0
