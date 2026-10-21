@@ -17,7 +17,7 @@
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.40",
         "phpstan/phpstan": "^2.1",
-        "axolotl-pm/pocketmine-mp": "5.49.1"
+        "axolotl-pm/pocketmine-mp": "5.50.0"
     },
     "license": "GPL-3.0-only",
     "config": {
