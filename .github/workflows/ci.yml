@@ -41,7 +41,7 @@ jobs:
       - uses: actions/checkout@f548e57e544e1ff5a4c46bf1e1b8685f8e4a348a
 
       - name: Set up PHP 8.1 environment
-        uses: shivammathur/setup-php@5a89ae6dd61c772780c51d7542f4374d76990a0b
+        uses: shivammathur/setup-php@3bdfe21000ea9539e3a94c4f692f984b24fa97e0
         with:
           php-version: 8.1
           tools: php-cs-fixer
