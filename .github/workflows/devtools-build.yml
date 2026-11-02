@@ -14,6 +14,7 @@ jobs:
       axolotl-ref: e881fc1bc1c401545baf6bd1f824e41ff3f57bd1
       php-version: '8.4'
       pm-version-major: '5'
+      prepare-dependencies: true
       phpstan: off
       artifact-name: oh-my-pmmp-${{ github.sha }}
 

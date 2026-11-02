@@ -15,10 +15,10 @@ jobs:
     steps:
       - uses: actions/checkout@f548e57e544e1ff5a4c46bf1e1b8685f8e4a348a
 
-      - name: Set up PHP 8.2 environment
+      - name: Set up PHP 8.4 environment
         uses: pmmp/setup-php-action@3c38c259834f945351a662392836d90eb08abff0
         with:
-          php-version: 8.2
+          php-version: 8.4
           install-path: "./bin"
           pm-version-major: "5"
 
@@ -40,10 +40,10 @@ jobs:
     steps:
       - uses: actions/checkout@f548e57e544e1ff5a4c46bf1e1b8685f8e4a348a
 
-      - name: Set up PHP 8.1 environment
+      - name: Set up PHP 8.4 environment
         uses: shivammathur/setup-php@5a89ae6dd61c772780c51d7542f4374d76990a0b
         with:
-          php-version: 8.1
+          php-version: 8.4
           tools: php-cs-fixer
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

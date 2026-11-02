@@ -14,10 +14,10 @@ jobs:
     steps:
       - uses: actions/checkout@f548e57e544e1ff5a4c46bf1e1b8685f8e4a348a
 
-      - name: Set up PHP 8.2 environment
+      - name: Set up PHP 8.4 environment
         uses: pmmp/setup-php-action@3c38c259834f945351a662392836d90eb08abff0
         with:
-          php-version: 8.2
+          php-version: 8.4
           install-path: "./bin"
           pm-version-major: "5"
 
