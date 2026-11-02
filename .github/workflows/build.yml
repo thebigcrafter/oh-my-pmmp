@@ -20,7 +20,7 @@ jobs:
           php-version: 8.2
           install-path: "./bin"
           pm-version-major: "5"
-  
+
       - name: Build plugin PHAR with Pharynx
         uses: SOF3/pharynx@6926183c038643556b2cb2609e01fd18004794fe
         id: pharynx
@@ -29,7 +29,7 @@ jobs:
 
       - name: Rename generated plugin PHAR
         run: mv ${{steps.pharynx.outputs.output-phar}} ./oh-my-pmmp.phar
-            
+
       - name: Upload plugin artifact
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:

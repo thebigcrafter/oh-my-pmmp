@@ -1,0 +1,19 @@
+name: Build oh-my-pmmp plugin PHAR with DevTools
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    uses: NhanAZ/DevTools/.github/workflows/build-plugin.yml@v2
+    with:
+      axolotl-ref: e881fc1bc1c401545baf6bd1f824e41ff3f57bd1
+      php-version: '8.4'
+      pm-version-major: '5'
+      phpstan: off
+      artifact-name: oh-my-pmmp-${{ github.sha }}
+

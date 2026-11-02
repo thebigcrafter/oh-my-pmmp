@@ -1,7 +1,6 @@
 # Composer
 vendor/
 vendor-bin/*/vendor/
-composer.lock
 
 # Node
 node_modules/
