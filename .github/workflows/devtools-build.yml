@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   build:
-    uses: NhanAZ/DevTools/.github/workflows/build-plugin.yml@v2
+    uses: AxolotlBucketLabs/DevTools/.github/workflows/build-plugin.yml@v3
     with:
       axolotl-ref: e881fc1bc1c401545baf6bd1f824e41ff3f57bd1
       php-version: '8.4'
