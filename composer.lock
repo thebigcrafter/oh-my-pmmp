@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/AxolotlBucketLabs/await-generator",
-                "reference": "51b0294595af5053ed46e3858a80b6a956c75128"
+                "reference": "150476bea0cf0ffc6c2cd7d81932ad1ae0d3dd9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AxolotlBucketLabs/await-generator/zipball/51b0294595af5053ed46e3858a80b6a956c75128",
-                "reference": "51b0294595af5053ed46e3858a80b6a956c75128",
+                "url": "https://api.github.com/repos/AxolotlBucketLabs/await-generator/zipball/150476bea0cf0ffc6c2cd7d81932ad1ae0d3dd9c",
+                "reference": "150476bea0cf0ffc6c2cd7d81932ad1ae0d3dd9c",
                 "shasum": ""
             },
             "require": {
@@ -68,7 +68,7 @@
                 }
             ],
             "description": "Use async/await in PHP using generators",
-            "time": "2026-11-04T01:39:39+00:00"
+            "time": "2026-11-06T13:24:39+00:00"
         },
         {
             "name": "thebigcrafter/commando",
