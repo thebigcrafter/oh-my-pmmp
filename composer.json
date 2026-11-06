@@ -5,13 +5,18 @@
     "repositories": [
         {
             "type": "vcs",
+            "url": "https://github.com/AxolotlBucketLabs/await-generator",
+            "no-api": true
+        },
+        {
+            "type": "vcs",
             "url": "https://github.com/axolotl-pm/PocketMine-MP",
             "no-api": true
         }
     ],
     "require": {
         "php": "^8.2",
-        "sof3/await-generator": "^3.6",
+        "sof3/await-generator": "dev-devtools-shading-compat as 3.6.1",
         "thebigcrafter/commando": "3.3.2"
     },
     "require-dev": {
