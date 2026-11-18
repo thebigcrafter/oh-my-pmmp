@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1050008efe5d20914babaab94887af79",
+    "content-hash": "a614df27a257a7535d5cafd16479c3b7",
     "packages": [
         {
             "name": "sof3/await-generator",
@@ -255,16 +255,16 @@
         },
         {
             "name": "axolotl-pm/bedrock-protocol",
-            "version": "64.0.0+bedrock-1.26.60",
+            "version": "64.0.1+bedrock-1.26.60",
             "source": {
                 "type": "git",
                 "url": "https://github.com/axolotl-pm/BedrockProtocol.git",
-                "reference": "f9d8b40da3940cef8242b0da34ba41fe49ea7364"
+                "reference": "cfbe298338c41fe3b15a46b41be1e2a62aebf825"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/axolotl-pm/BedrockProtocol/zipball/f9d8b40da3940cef8242b0da34ba41fe49ea7364",
-                "reference": "f9d8b40da3940cef8242b0da34ba41fe49ea7364",
+                "url": "https://api.github.com/repos/axolotl-pm/BedrockProtocol/zipball/cfbe298338c41fe3b15a46b41be1e2a62aebf825",
+                "reference": "cfbe298338c41fe3b15a46b41be1e2a62aebf825",
                 "shasum": ""
             },
             "require": {
@@ -296,9 +296,9 @@
             "description": "An implementation of the Minecraft: Bedrock Edition protocol in PHP",
             "support": {
                 "issues": "https://github.com/axolotl-pm/BedrockProtocol/issues",
-                "source": "https://github.com/axolotl-pm/BedrockProtocol/tree/64.0.0+bedrock-1.26.60"
+                "source": "https://github.com/axolotl-pm/BedrockProtocol/tree/64.0.1+bedrock-1.26.60"
             },
-            "time": "2026-10-26T06:25:21+00:00"
+            "time": "2026-11-14T01:53:43+00:00"
         },
         {
             "name": "axolotl-pm/nethernet",
@@ -351,16 +351,16 @@
         },
         {
             "name": "axolotl-pm/pocketmine-mp",
-            "version": "5.51.1",
+            "version": "5.51.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/axolotl-pm/PocketMine-MP",
-                "reference": "e881fc1bc1c401545baf6bd1f824e41ff3f57bd1"
+                "reference": "208bd1202ccbda139b67b2ca9088d8eb08549b66"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/axolotl-pm/PocketMine-MP/zipball/e881fc1bc1c401545baf6bd1f824e41ff3f57bd1",
-                "reference": "e881fc1bc1c401545baf6bd1f824e41ff3f57bd1",
+                "url": "https://api.github.com/repos/axolotl-pm/PocketMine-MP/zipball/208bd1202ccbda139b67b2ca9088d8eb08549b66",
+                "reference": "208bd1202ccbda139b67b2ca9088d8eb08549b66",
                 "shasum": ""
             },
             "require": {
@@ -464,7 +464,7 @@
             ],
             "description": "A server software for Minecraft: Bedrock Edition written in PHP",
             "homepage": "https://pmmp.io",
-            "time": "2026-11-02T00:58:31+00:00"
+            "time": "2026-11-14T03:56:46+00:00"
         },
         {
             "name": "axolotl-pm/xoroshiro128pp",
@@ -2692,16 +2692,16 @@
         },
         {
             "name": "symfony/deprecation-contracts",
-            "version": "v3.7.1",
+            "version": "v3.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/deprecation-contracts.git",
-                "reference": "f3202fa1b5097b0af062dc978b32ecf63404e31d"
+                "reference": "feb1edf4e546af3b85c5caebe8359a20db230ca3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/f3202fa1b5097b0af062dc978b32ecf63404e31d",
-                "reference": "f3202fa1b5097b0af062dc978b32ecf63404e31d",
+                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/feb1edf4e546af3b85c5caebe8359a20db230ca3",
+                "reference": "feb1edf4e546af3b85c5caebe8359a20db230ca3",
                 "shasum": ""
             },
             "require": {
@@ -2714,7 +2714,7 @@
                     "name": "symfony/contracts"
                 },
                 "branch-alias": {
-                    "dev-main": "3.7-dev"
+                    "dev-main": "3.8-dev"
                 }
             },
             "autoload": {
@@ -2739,7 +2739,7 @@
             "description": "A generic function and convention to trigger deprecation notices",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.7.1"
+                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.8.1"
             },
             "funding": [
                 {
@@ -2759,7 +2759,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-06-05T06:23:12+00:00"
+            "time": "2026-09-16T14:15:10+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -2929,16 +2929,16 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v6.4.48",
+            "version": "v6.4.50",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "e3ff48b19ac71ee79f89021122211710b892ae0b"
+                "reference": "9c54f695d2fcfb0bb21c8003b7a038bc631aa2e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/e3ff48b19ac71ee79f89021122211710b892ae0b",
-                "reference": "e3ff48b19ac71ee79f89021122211710b892ae0b",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/9c54f695d2fcfb0bb21c8003b7a038bc631aa2e9",
+                "reference": "9c54f695d2fcfb0bb21c8003b7a038bc631aa2e9",
                 "shasum": ""
             },
             "require": {
@@ -2975,7 +2975,7 @@
             "description": "Provides basic utilities for the filesystem",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/filesystem/tree/v6.4.48"
+                "source": "https://github.com/symfony/filesystem/tree/v6.4.50"
             },
             "funding": [
                 {
@@ -2995,7 +2995,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-06T17:30:58+00:00"
+            "time": "2026-11-04T08:16:31+00:00"
         },
         {
             "name": "symfony/finder",
